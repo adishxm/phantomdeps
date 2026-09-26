@@ -236,7 +236,8 @@ Time:        3.416 s
 |---|---|---|
 | 00 — Intake & audit | ✅ PASSED | Repo initialized, scaffold verified, MVP selected, pushed to GitHub |
 | 01 — Product contract | ✅ PASSED | 8 user stories, 10 ACs, 14 requirements mapped, 6 contradictions resolved |
-| 02–08 | 🔲 Pending | Architecture → build → validation → demo → submission |
+| 02 — Architecture & design | ✅ PASSED | Architecture, data model, UX flows, threat model, CI plan all documented |
+| 03–08 | 🔲 Pending | Build → validation → demo → submission |
 
 ## Research and planning
 
@@ -244,6 +245,7 @@ Time:        3.416 s
 - Phase roadmap: [`.brain/.imple-plan/ibm-bob-roadmap.md`](.brain/.imple-plan/ibm-bob-roadmap.md)
 - Phase 00 report: [`.brain/.report/phase-00-report.md`](.brain/.report/phase-00-report.md)
 - Phase 01 report: [`.brain/.report/phase-01-report.md`](.brain/.report/phase-01-report.md)
+- Phase 02 report: [`.brain/.report/phase-02-report.md`](.brain/.report/phase-02-report.md)
 
 ---
 
