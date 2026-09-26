@@ -24,7 +24,19 @@ npx tsx src/cli.ts demo --fixture --offline  # live BLOCK demo
 
 ---
 
-## Demo output
+## Verified output
+
+Confirmed on Windows / Node.js v24 — `npm install && npm test && npx tsx src/cli.ts demo --fixture --offline`:
+
+### `npm test`
+
+```
+Test Suites: 4 passed, 4 total
+Tests:       23 passed, 23 total
+Time:        3.416 s
+```
+
+### `npx tsx src/cli.ts demo --fixture --offline`
 
 ```
 phantomdeps — pre-install AI dependency claim gate
@@ -36,28 +48,41 @@ Offline fixture demo — no network calls, no package installation
   The generated code uses: import { isOddBatch } from 'is-odd'
   phantomdeps intercepts the install command and checks the claim...
 
+[FIXTURE] Loaded: is-odd-demo — captured 2025-09-20T00:00:00.000Z
+
 ────────────────────────────────────────────────────────────
 phantomdeps gate — BLOCK
 ────────────────────────────────────────────────────────────
-  Package  : is-odd@3.0.1
+  Package  : is-odd@3.0.1 → 3.0.1
   Ecosystem: npm
-  Source   : fixture://is-odd-demo (captured 2025-09-20)
+  Source   : fixture (fixture://is-odd-demo)
+  Integrity: sha512-sSqAd7pMnQdFnCDMjIosBv6Ud7JJnDEE2pWXFQyRtDlOTvlDLnMZx27AEBGJ2Iigg8b5vFJ1qpNMsjW0mXJA==
+  Time     : 2026-09-26T13:34:42.640Z
+  Decision : f19b0b40-fe5b-4d05-be96-5e1ad70f7a8e
+  Origin   : fixture
 
 Findings:
   ✖ [l2.symbol_missing]
-    BLOCK: Symbol 'isOddBatch' is NOT present in the declared exports of
-    is-odd@3.0.1. The AI-generated import claims a symbol that this
-    package does not export.
-    Evidence: fixture 'is-odd-demo' | Exported symbols: isOdd, default
+    BLOCK: Symbol(s) [isOddBatch] are NOT present in the declared exports of is-odd@3.0.1.
+    The AI-generated import claims a symbol that this package does not export.
+    Citations: Source: fixture 'is-odd-demo' (2025-09-20T00:00:00.000Z) | Package: is-odd@3.0.1
+               Exported symbols count: 2
+               Exports source: is-odd@3.0.1 package.json exports + index.js — single default export `isOdd(n: number): boolean`
+    Evidence: Source: fixture 'is-odd-demo' (2025-09-20T00:00:00.000Z) | Package: is-odd@3.0.1 | Exported symbols count: 2
+
+  Record hash : sha256:f3588ad683808cf632acf7b82cf49f278d015c224ded58427ea7d23b3c3fa4ca
+  Prev hash   : sha256:0000000000000000000000000000000000000000000000000000000000000000
+────────────────────────────────────────────────────────────
 
 [REMEDIATION]
+  The symbol 'isOddBatch' does not exist in is-odd@3.0.1.
   The correct exported function is: isOdd(n)
-  Suggested patch (human approval required):
+  Suggested patch (requires human approval before application):
     - import { isOddBatch } from 'is-odd'
     + import isOdd from 'is-odd'
 
   No package was installed. No code was executed.
-────────────────────────────────────────────────────────────
+  Decision record appended to .phantomdeps/decisions.ndjson
 
 ✔ Demo completed. Verdict: BLOCK (expected: BLOCK)
 ```
@@ -190,17 +215,35 @@ Hook config (`.bob/settings.json`):
 
 ```bash
 npm test
-# Test Suites: 4 passed
-# Tests:       23 passed
+```
+
+```
+ PASS  tests/static-claim.test.ts
+ PASS  tests/policy.test.ts
+ PASS  tests/parser.test.ts
+ PASS  tests/fixture-loader.test.ts
+
+Test Suites: 4 passed, 4 total
+Tests:       23 passed, 23 total
+Time:        3.416 s
 ```
 
 ---
+
+## Phases completed
+
+| Phase | Status | Summary |
+|---|---|---|
+| 00 — Intake & audit | ✅ PASSED | Repo initialized, scaffold verified, MVP selected, pushed to GitHub |
+| 01 — Product contract | ✅ PASSED | 8 user stories, 10 ACs, 14 requirements mapped, 6 contradictions resolved |
+| 02–08 | 🔲 Pending | Architecture → build → validation → demo → submission |
 
 ## Research and planning
 
 - Full research report: [`.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md`](.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md)
 - Phase roadmap: [`.brain/.imple-plan/ibm-bob-roadmap.md`](.brain/.imple-plan/ibm-bob-roadmap.md)
 - Phase 00 report: [`.brain/.report/phase-00-report.md`](.brain/.report/phase-00-report.md)
+- Phase 01 report: [`.brain/.report/phase-01-report.md`](.brain/.report/phase-01-report.md)
 
 ---
 
