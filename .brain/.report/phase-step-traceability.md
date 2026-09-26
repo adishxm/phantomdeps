@@ -1,0 +1,61 @@
+<!-- Status: DRAFT | Last-updated commit: 540b861 -->
+# Phase/Step Traceability Matrix
+
+**Status:** `DRAFT`  
+**Last-updated commit:** `d63976d`
+
+Both lanes use the same rows, objectives, acceptance criteria, tests, evidence requirements, and done definition. Tool-specific execution is captured in the two roadmap files.
+
+| Phase/step | Requirement / outcome | Implementation artifact | Test/evidence | Owner | Antigravity | IBM Bob | Status |
+|---|---|---|---|---|---|---|---|
+| `00.0.1` | Inventory `.docs`, `.repo`, `.brain`, source, tests, CI, and deployment files | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `00.0.2` | Identify team roster, tool ownership, skills, availability, and decision authority | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `00.0.3` | Extract the user problem, target users, constraints, and hackathon judging opportunity | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `00.0.4` | Select the MVP, define non-goals, and record assumptions/blockers | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `00.0.5` | Create the synchronized roadmap index and traceability matrix | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `01.1.1` | Convert research into a concise problem statement and value proposition | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `01.1.2` | Define personas, user journeys, user stories, and measurable acceptance criteria | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `01.1.3` | Define the MVP boundary, success metrics, demo scenario, and deferred scope | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `01.1.4` | Map each requirement to implementation, test, evidence, and owner | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `01.1.5` | Review the product contract with the team and resolve contradictions | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `02.2.1` | Produce or validate system architecture and repository structure | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `02.2.2` | Define data model, API contracts, integrations, and error behavior | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `02.2.3` | Define UX flows, screens, accessibility requirements, and demo path | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `02.2.4` | Create threat model, privacy boundary, authentication/authorization plan, and secrets policy | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `02.2.5` | Define local setup, CI, deployment, backup/recovery, observability, and rollback approach | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `03.3.1` | Create or repair the local development environment | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `03.3.2` | Implement the highest-value vertical slice end to end | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `03.3.3` | Add user-visible progress, errors, citations/evidence, and safe defaults | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `03.3.4` | Add unit tests and fixtures while implementing each slice | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `03.3.5` | Integrate only the minimum external services required for the demo | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `03.3.6` | Keep Antigravity and IBM Bob outputs behaviorally equivalent; document tool-specific differences | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `04.4.1` | Run formatting, linting, type checks, static analysis, and unit tests | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `04.4.2` | Run integration, API, database, and contract tests where applicable | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `04.4.3` | Run end-to-end happy-path and critical failure-path tests | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `04.4.4` | Test each acceptance criterion against the actual product | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `04.4.5` | Record exact commands, environment, commit, duration, output, failures, and fixes | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `04.4.6` | Conduct a human team review using a clean checkout or clean environment | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `05.5.1` | Test edge cases, malformed inputs, timeouts, retries, empty states, and partial failures | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `05.5.2` | Run regression, mutation/property/fuzz testing where practical | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `05.5.3` | Run dependency, secret, permission, privacy, and basic supply-chain checks | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `05.5.4` | Test reproducibility from a clean checkout and verify no hidden local dependency exists | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `05.5.5` | Test performance against an explicitly stated small-hackathon target | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `05.5.6` | Validate generated outputs against repository evidence; reject hallucinated claims | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `06.6.1` | Prepare a read-only review package containing the product brief, acceptance criteria, source snapshot, test instructions, and known risks | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `06.6.2` | Ask an independent agent with no implementation context to install, run, and review the product | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `06.6.3` | Ask a second independent reviewer to challenge usability, security, correctness, and demo credibility | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `06.6.4` | Compare outsider findings with team findings; classify each as valid, invalid, or needs investigation | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `06.6.5` | Fix all release-blocking findings and document accepted residual risks | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `06.6.6` | Re-run the affected tests after every fix | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `07.7.1` | Freeze scope and create a release-candidate branch or tag | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `07.7.2` | Verify README, setup instructions, architecture explanation, screenshots, and demo data | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `07.7.3` | Create the timed demo script: problem, before state, Bob/Antigravity workflow, evidence, result, and impact | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `07.7.4` | Prepare judge/client questions and concise answers grounded in evidence | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `07.7.5` | Run a full rehearsal from a clean environment and record the result | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `07.7.6` | Create the final release checklist and explicitly document any known limitations | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `08.8.1` | Verify the exact hackathon portal requirements from authoritative sources | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `08.8.2` | Prepare repository URL, demo URL, video, screenshots, pitch, description, team details, and technology disclosure as required | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `08.8.3` | Run a final secret scan and verify that no `.repo` or private data is included | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `08.8.4` | Verify the submission package against the tagged commit, not an uncommitted working tree | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `08.8.5` | Produce a final submission checklist with owner and status for every field | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `08.8.6` | Stop before actually submitting any official, public, legal, financial, or attestational form unless an authorized human explicitly confirms the final payload | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
