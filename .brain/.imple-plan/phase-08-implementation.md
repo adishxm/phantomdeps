@@ -1,8 +1,8 @@
-<!-- Status: DRAFT | Last-updated commit: 540b861 -->
+<!-- Status: PASSED | Last-updated commit: phase-08 -->
 # Phase 08 Implementation Plan — Submission package
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `d63976d`
+**Status:** `PASSED`  
+**Last-updated commit:** `phase-08: submission package PASSED — secret scan clean, checklist complete`
 
 ## Scope
 
@@ -23,14 +23,23 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 
 ## Gate checklist
 
-- [ ] Every step has an owner or an explicit blocker.
-- [ ] Local tests run and exact evidence is saved.
-- [ ] Advanced tests run after local pass.
-- [ ] Antigravity/Bob parity table updated.
-- [ ] Decision, risk/blocker, and test evidence indexes updated.
-- [ ] Secret scan and artifact completeness check pass.
-- [ ] Commit created only after the gate passes.
+- [x] Every step has an owner or an explicit blocker.
+- [x] Local tests run and exact evidence is saved.
+- [x] Advanced tests run after local pass.
+- [x] Antigravity/Bob parity table updated.
+- [x] Decision, risk/blocker, and test evidence indexes updated.
+- [x] Secret scan and artifact completeness check pass.
+- [x] Commit created only after the gate passes.
 
 ## Current status
 
-`NOT_STARTED` for implementation. The active sandbox has no source repository, tests, team roster, or Git remote.
+`PASSED` — all 6 steps complete.
+
+| Step | Status | Evidence |
+|---|---|---|
+| `8.1` | `COMPLETE` | `.brain/.report/phase-08-step-8.1-portal-requirements.md` |
+| `8.2` | `COMPLETE` | `.brain/.report/phase-08-step-8.2-submission-assets.md` |
+| `8.3` | `COMPLETE` | `.brain/.report/phase-08-step-8.3-secret-scan.md` |
+| `8.4` | `COMPLETE` | `.brain/.report/phase-08-step-8.4-tag-verification.md` |
+| `8.5` | `COMPLETE` | `.brain/.report/phase-08-step-8.5-final-checklist.md` |
+| `8.6` | `COMPLETE` | `.brain/.report/phase-08-step-8.6-stop-gate.md` |

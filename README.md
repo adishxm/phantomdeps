@@ -271,7 +271,7 @@ Hook config (`.bob/settings.json`):
 | 05 — Advanced validation | ✅ **PASSED** | 68 new tests (103 total), 2 parser fixes, 0 vulns, avg 1168ms offline |
 | 06 — Outsider review | ✅ **PASSED** | 2 blocking findings fixed (hook TS syntax, missing settings.json), hook verified |
 | 07 — Finalization & demo | ✅ **PASSED** | RC tag v0.1.0-rc.1, demo script finalized, judge Q&A, rehearsal 7/7 PASS |
-| 08 — Submission package | 🔲 Pending | Portal submission, secret scan, final checklist |
+| 08 — Submission package | ✅ **PASSED** | Secret scan clean, 59-item checklist, stop gate enforced |
 
 ---
 
