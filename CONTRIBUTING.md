@@ -39,4 +39,6 @@ Every pull request should state the phase/step ID, evidence paths, exact tests, 
 
 - **Aditya Kumar Sharma** ([@adishxm](https://github.com/adishxm))
 - **Narayan Kumar Jha** ([narayan.nkj@gmail.com](mailto:narayan.nkj@gmail.com))
+- **Utkarsh Yadav** ([@utkarsh-2207](https://github.com/utkarsh-2207))
+
 
