@@ -1,0 +1,46 @@
+{
+  "name": "phantomdeps",
+  "version": "0.1.0",
+  "description": "Pre-install AI dependency claim gate for IBM Bob — verifies ecosystem, artifact, and static API before npm install executes.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "phantomdeps": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "npx tsx src/cli.ts",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --forceExit",
+    "lint": "tsc --noEmit",
+    "phantomdeps": "npx tsx src/cli.ts"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.5",
+    "tsx": "^4.15.7",
+    "typescript": "^5.5.2"
+  },
+  "jest": {
+    "preset": "ts-jest/presets/default-esm",
+    "testEnvironment": "node",
+    "extensionsToTreatAsEsm": [".ts"],
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "useESM": true
+        }
+      ]
+    },
+    "testMatch": ["**/tests/**/*.test.ts"]
+  }
+}

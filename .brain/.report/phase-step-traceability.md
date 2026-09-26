@@ -1,18 +1,18 @@
-<!-- Status: DRAFT | Last-updated commit: 540b861 -->
+<!-- Status: IN_PROGRESS | Last-updated commit: PENDING (phase-00 commit) -->
 # Phase/Step Traceability Matrix
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `d63976d`
+**Status:** `IN_PROGRESS`
+**Last-updated commit:** `PENDING` (phase-00 commit)
 
 Both lanes use the same rows, objectives, acceptance criteria, tests, evidence requirements, and done definition. Tool-specific execution is captured in the two roadmap files.
 
 | Phase/step | Requirement / outcome | Implementation artifact | Test/evidence | Owner | Antigravity | IBM Bob | Status |
 |---|---|---|---|---|---|---|---|
-| `00.0.1` | Inventory `.docs`, `.repo`, `.brain`, source, tests, CI, and deployment files | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `00.0.2` | Identify team roster, tool ownership, skills, availability, and decision authority | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `00.0.3` | Extract the user problem, target users, constraints, and hackathon judging opportunity | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `00.0.4` | Select the MVP, define non-goals, and record assumptions/blockers | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `00.0.5` | Create the synchronized roadmap index and traceability matrix | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `00.0.1` | Inventory `.docs`, `.repo`, `.brain`, source, tests, CI, and deployment files | `.brain/.report/phase-00-step-0.1-inventory.md` | Directory listing + `git log/status` output; commit `bccd363` | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `00.0.2` | Identify team roster, tool ownership, skills, availability, and decision authority | `.brain/.report/phase-00-step-0.2-roster.md` | `team-allocation.md`, `team-knowledge-matrix.md`; names `UNKNOWN` (Blocker B-002) | IBM Bob Agent | Same contract | Same contract | `COMPLETE — PARTIAL` |
+| `00.0.3` | Extract the user problem, target users, constraints, and hackathon judging opportunity | `.brain/.report/phase-00-step-0.3-problem-extract.md` | Research §§1,3; decision log D-001–D-005 | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `00.0.4` | Select the MVP, define non-goals, and record assumptions/blockers | `.brain/.report/phase-00-step-0.4-mvp-selection.md` | Research §§1,5,6,12; D-001–D-005; B-001–B-004; R-001–R-004 | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `00.0.5` | Create the synchronized roadmap index and traceability matrix | `.brain/.report/phase-00-step-0.5-roadmap-index.md` | Confirmed: `ibm-bob-roadmap.md`, `00-roadmap-index.md`, this file — all present and consistent | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
 | `01.1.1` | Convert research into a concise problem statement and value proposition | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
 | `01.1.2` | Define personas, user journeys, user stories, and measurable acceptance criteria | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
 | `01.1.3` | Define the MVP boundary, success metrics, demo scenario, and deferred scope | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |

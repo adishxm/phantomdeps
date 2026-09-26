@@ -1,0 +1,13 @@
+{
+  "id": "is-odd-demo",
+  "packageName": "is-odd",
+  "resolvedVersion": "3.0.1",
+  "integrity": "sha512-sSqAd7pMnQdFnCDMjIosBv6Ud7JJnDEE2pWXFQyRtDlOTvlDLnMZx27AEBGJ2Iigg8b5vFJ1qpNMsjW0mXJA==",
+  "capturedAt": "2025-09-20T00:00:00.000Z",
+  "hasInstallScript": false,
+  "exportedSymbols": ["isOdd", "default"],
+  "exportsSource": "is-odd@3.0.1 package.json exports + index.js — package has a single default export `isOdd(n: number): boolean`",
+  "claimedSymbols": ["isOddBatch"],
+  "expectedVerdict": "BLOCK",
+  "scenario": "IBM Bob generated code that does `import { isOddBatch } from 'is-odd'`. The package `is-odd@3.0.1` is real and exists on npm, but it only exports `isOdd` (default export). The symbol `isOddBatch` does not exist. phantomdeps should BLOCK the install with L2 evidence: symbol statically absent."
+}
