@@ -1,8 +1,8 @@
-<!-- Status: DRAFT | Last-updated commit: 540b861 -->
+<!-- Status: PASSED | Last-updated commit: phase-07 -->
 # Phase 07 Implementation Plan — Finalization, demo, and release candidate
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `d63976d`
+**Status:** `PASSED`
+**Last-updated commit:** `phase-07: finalization PASSED — RC tag v0.1.0-rc.1, demo script, judge Q&A, rehearsal 7/7`
 
 ## Scope
 
@@ -33,4 +33,4 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 
 ## Current status
 
-`NOT_STARTED` for implementation. The active sandbox has no source repository, tests, team roster, or Git remote.
+`PASSED` — RC tag `v0.1.0-rc.1` pushed. README updated (103/103, phase-07, v0.1.0-rc.1). Demo script, judge Q&A (no TBD), and release checklist finalized. Full rehearsal 7/7 PASS from clean state.

@@ -3,8 +3,9 @@
 > **Pre-install AI dependency claim gate for IBM Bob**
 
 [![CI](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml/badge.svg)](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-35%2F35%20passing-brightgreen)
-![Phase](https://img.shields.io/badge/phase-03%20complete-blue)
+![Tests](https://img.shields.io/badge/tests-103%2F103%20passing-brightgreen)
+![Phase](https://img.shields.io/badge/phase-07%20complete-blue)
+![Version](https://img.shields.io/badge/version-v0.1.0--rc.1-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 `phantomdeps` intercepts `npm install` **before it runs**, verifies the exact package artifact and statically provable API against what the AI-generated code actually imports, and returns a `BLOCK / WARN / ALLOW / UNVERIFIED` verdict with cited evidence — **without ever installing or executing the suspect package.**
@@ -30,7 +31,7 @@ phantomdeps: BLOCK — is-odd@3.0.1 exports isOdd(), not isOddBatch
 git clone https://github.com/adishxm/phantomdeps.git
 cd phantomdeps
 npm install
-npm test                                      # 35/35 tests pass
+npm test                                      # 103/103 tests pass
 npx tsx src/cli.ts demo --fixture --offline   # live BLOCK demo
 ```
 
@@ -61,7 +62,7 @@ npx tsx src/cli.ts demo --fixture --offline --scenario warn
 
 ## Verified output
 
-Confirmed on Windows / Node.js v24.
+Confirmed on Windows / Node.js v24.21.0 — tag `v0.1.0-rc.1`.
 
 ### `npm test`
 
@@ -71,10 +72,11 @@ Confirmed on Windows / Node.js v24.
  PASS  tests/policy.test.ts
  PASS  tests/fixture-loader.test.ts
  PASS  tests/gate-integration.test.ts
+ PASS  tests/edge-cases.test.ts
 
-Test Suites: 5 passed, 5 total
-Tests:       35 passed, 35 total
-Time:        ~4.6 s
+Test Suites: 6 passed, 6 total
+Tests:       103 passed, 103 total
+Time:        ~4.3 s
 ```
 
 ### `npx tsx src/cli.ts demo --fixture --offline`
@@ -182,7 +184,7 @@ No package code is ever executed. Offline fixture mode uses version-pinned snaps
 ```
 src/
   cli.ts               — entry point + argument router
-  parser.ts            — safe argv parser (no shell evaluation)
+  parser.ts            — safe argv parser (shell metachar + protocol rejection, 214-char limit)
   gate.ts              — orchestrator
   types.ts             — shared types
   adapters/
@@ -209,10 +211,12 @@ tests/
   static-claim.test.ts      (5 tests)
   policy.test.ts            (6 tests)
   fixture-loader.test.ts    (2 tests)
-  gate-integration.test.ts  (14 tests)   ← added Phase 03
+  gate-integration.test.ts  (14 tests)
+  edge-cases.test.ts        (68 tests)   ← added Phase 05
 
-.bob/hooks/
-  PreToolUse.mjs       — IBM Bob PreToolUse hook (exit 2 = BLOCK)
+.bob/
+  hooks/PreToolUse.mjs — IBM Bob PreToolUse hook (exit 2 = BLOCK)
+  settings.json        — Bob hook registration (npx tsx)
 
 .github/workflows/
   ci.yml               — Node 20 + 22 matrix: lint → test → demo
@@ -266,7 +270,7 @@ Hook config (`.bob/settings.json`):
 | 04 — Local validation | ✅ **PASSED** | Lint clean, 35/35 tests, AC-01–09 verified, NDJSON log bug fixed, evidence recorded |
 | 05 — Advanced validation | ✅ **PASSED** | 68 new tests (103 total), 2 parser fixes, 0 vulns, avg 1168ms offline |
 | 06 — Outsider review | ✅ **PASSED** | 2 blocking findings fixed (hook TS syntax, missing settings.json), hook verified |
-| 07 — Finalization & demo | 🔲 Pending | RC tag, rehearsal, demo script, judge Q&A |
+| 07 — Finalization & demo | ✅ **PASSED** | RC tag v0.1.0-rc.1, demo script finalized, judge Q&A, rehearsal 7/7 PASS |
 | 08 — Submission package | 🔲 Pending | Portal submission, secret scan, final checklist |
 
 ---
