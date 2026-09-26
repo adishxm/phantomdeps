@@ -18,7 +18,7 @@ AI coding agents hallucinate package names and symbols. A [USENIX Security 2025 
 git clone https://github.com/adishxm/phantomdeps.git
 cd phantomdeps
 npm install
-npm test                                     # 23/23 tests pass
+npm test                                     # 35/35 tests pass
 npx tsx src/cli.ts demo --fixture --offline  # live BLOCK demo
 ```
 
@@ -31,9 +31,9 @@ Confirmed on Windows / Node.js v24 — `npm install && npm test && npx tsx src/c
 ### `npm test`
 
 ```
-Test Suites: 4 passed, 4 total
-Tests:       23 passed, 23 total
-Time:        3.416 s
+Test Suites: 5 passed, 5 total
+Tests:       35 passed, 35 total
+Time:        ~4.6 s
 ```
 
 ### `npx tsx src/cli.ts demo --fixture --offline`
@@ -162,13 +162,16 @@ src/
     runner.ts          — fixture demo runner
 
 fixtures/
-  is-odd-demo.json     — is-odd@3.0.1: real package, absent symbol
+  is-odd-demo.json              — is-odd@3.0.1: real package, absent symbol (BLOCK)
+  lodash-allow-demo.json        — lodash@4.17.21: real package, symbol present (ALLOW)
+  risky-new-pkg-warn-demo.json  — risky package with install scripts (WARN)
 
 tests/
   parser.test.ts
   static-claim.test.ts
   policy.test.ts
   fixture-loader.test.ts
+  gate-integration.test.ts
 
 .bob/hooks/
   PreToolUse.mjs       — IBM Bob PreToolUse hook (exit 2 = BLOCK)
@@ -222,10 +225,11 @@ npm test
  PASS  tests/policy.test.ts
  PASS  tests/parser.test.ts
  PASS  tests/fixture-loader.test.ts
+ PASS  tests/gate-integration.test.ts
 
-Test Suites: 4 passed, 4 total
-Tests:       23 passed, 23 total
-Time:        3.416 s
+Test Suites: 5 passed, 5 total
+Tests:       35 passed, 35 total
+Time:        ~4.6 s
 ```
 
 ---
@@ -237,7 +241,8 @@ Time:        3.416 s
 | 00 — Intake & audit | ✅ PASSED | Repo initialized, scaffold verified, MVP selected, pushed to GitHub |
 | 01 — Product contract | ✅ PASSED | 8 user stories, 10 ACs, 14 requirements mapped, 6 contradictions resolved |
 | 02 — Architecture & design | ✅ PASSED | Architecture, data model, UX flows, threat model, CI plan all documented |
-| 03–08 | 🔲 Pending | Build → validation → demo → submission |
+| 03 — Build MVP | ✅ PASSED | CI pipeline, 35/35 tests, BLOCK/WARN/ALLOW all confirmed, 3 fixture files, PreToolUse hook wired |
+| 04–08 | 🔲 Pending | Validation → advanced validation → outsider review → finalization → submission |
 
 ## Research and planning
 
@@ -246,6 +251,7 @@ Time:        3.416 s
 - Phase 00 report: [`.brain/.report/phase-00-report.md`](.brain/.report/phase-00-report.md)
 - Phase 01 report: [`.brain/.report/phase-01-report.md`](.brain/.report/phase-01-report.md)
 - Phase 02 report: [`.brain/.report/phase-02-report.md`](.brain/.report/phase-02-report.md)
+- Phase 03 report: [`.brain/.report/phase-03-report.md`](.brain/.report/phase-03-report.md)
 
 ---
 

@@ -1,8 +1,8 @@
-<!-- Status: IN_PROGRESS | Last-updated commit: PENDING (phase-00 commit) -->
+<!-- Status: IN_PROGRESS | Last-updated commit: PENDING (phase-03 commit) -->
 # Phase/Step Traceability Matrix
 
 **Status:** `IN_PROGRESS`
-**Last-updated commit:** `PENDING` (phase-00 commit)
+**Last-updated commit:** `PENDING` (phase-03 commit)
 
 Both lanes use the same rows, objectives, acceptance criteria, tests, evidence requirements, and done definition. Tool-specific execution is captured in the two roadmap files.
 
@@ -23,12 +23,12 @@ Both lanes use the same rows, objectives, acceptance criteria, tests, evidence r
 | `02.2.3` | Define UX flows, screens, accessibility requirements, and demo path | `.brain/.report/phase-02-step-2.3-ux-flows.md` | 7 terminal screen designs, 3 UX flows, 4 accessibility requirements, 90s demo path | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
 | `02.2.4` | Create threat model, privacy boundary, authentication/authorization plan, and secrets policy | `.brain/.report/phase-02-step-2.4-threat-model.md` | 7 actors, 6 attack paths, privacy boundary (no PII), v1 auth plan, secrets clean scan | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
 | `02.2.5` | Define local setup, CI, deployment, backup/recovery, observability, and rollback approach | `.brain/.report/phase-02-step-2.5-setup-ci-deploy.md` | Local setup verified, CI designed, deployment options, observability signals, rollback plan | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
-| `03.3.1` | Create or repair the local development environment | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `03.3.2` | Implement the highest-value vertical slice end to end | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `03.3.3` | Add user-visible progress, errors, citations/evidence, and safe defaults | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `03.3.4` | Add unit tests and fixtures while implementing each slice | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `03.3.5` | Integrate only the minimum external services required for the demo | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
-| `03.3.6` | Keep Antigravity and IBM Bob outputs behaviorally equivalent; document tool-specific differences | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
+| `03.3.1` | Create or repair the local development environment | `.github/workflows/ci.yml`, `phase-03-step-3.1-dev-env-ci.md` | CI pipeline on Node 20+22; lint, test, demo gates confirmed | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `03.3.2` | Implement the highest-value vertical slice end to end | `src/gate.ts`, `src/engine/policy.ts`, `src/adapters/registry.ts`, `src/checker/static-claim.ts`, `phase-03-step-3.2-vertical-slice.md` | BLOCK/WARN/ALLOW all confirmed via fixture scenarios | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `03.3.3` | Add user-visible progress, errors, citations/evidence, and safe defaults | `src/evidence/writer.ts`, `src/demo/runner.ts`, `phase-03-step-3.3-ux-evidence.md` | Terminal card, remediation block, citation strings, NDJSON log confirmed | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `03.3.4` | Add unit tests and fixtures while implementing each slice | `tests/gate-integration.test.ts`, `fixtures/lodash-allow-demo.json`, `fixtures/risky-new-pkg-warn-demo.json`, `phase-03-step-3.4-tests-fixtures.md` | 5 suites, 35 tests, 0 failures | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `03.3.5` | Integrate only the minimum external services required for the demo | `.bob/hooks/PreToolUse.mjs`, `phase-03-step-3.5-hook-integration.md` | PreToolUse hook live; offline fixture mode verified; D-004 respected | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `03.3.6` | Keep Antigravity and IBM Bob outputs behaviorally equivalent; document tool-specific differences | `phase-03-step-3.6-parity.md` | IBM Bob and Antigravity share identical source, fixtures, tests; tool-specific differences documented | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
 | `04.4.1` | Run formatting, linting, type checks, static analysis, and unit tests | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
 | `04.4.2` | Run integration, API, database, and contract tests where applicable | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |
 | `04.4.3` | Run end-to-end happy-path and critical failure-path tests | `TBD` | `TBD` | `UNKNOWN` | Same contract | Same contract | `NOT_STARTED` |

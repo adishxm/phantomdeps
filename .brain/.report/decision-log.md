@@ -1,8 +1,8 @@
-<!-- Status: IN_PROGRESS | Last-updated commit: PENDING (phase-00 commit) -->
+<!-- Status: IN_PROGRESS | Last-updated commit: PENDING (phase-03 commit) -->
 # Decision Log
 
 **Status:** `IN_PROGRESS`
-**Last-updated commit:** `PENDING` (phase-00 commit)
+**Last-updated commit:** `PENDING` (phase-03 commit)
 
 | ID | Decision | Basis | Type | Owner | Status |
 |---|---|---|---|---|---|
@@ -14,3 +14,4 @@
 | `D-006` | Phase 00 gate: PASSED with recorded open blockers B-001 and B-002 | Phase 00 report and gate checklist; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 00) | `PASSED` — Phase 01 blocked until B-002 resolved |
 | `D-007` | Phase 01 gate: PASSED — product contract complete, 11/14 requirements confirmed, 6 contradictions resolved | Phase 01 report and gate checklist; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 01) | `PASSED` — Phase 02 can begin; B-002 team sign-off still pending |
 | `D-008` | Phase 02 gate: PASSED — architecture, data model, UX, threat model, and delivery plan documented; no new blockers | Phase 02 report and gate checklist; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 02) | `PASSED` — Phase 03 can begin |
+| `D-009` | Phase 03 gate: PASSED — CI pipeline live, 35/35 tests pass, all three demo scenarios confirmed (BLOCK/WARN/ALLOW), PreToolUse hook wired, parity documented | Phase 03 report, step evidence files 3.1–3.6, `npm test` output; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 03) | `PASSED` — Phase 04 can begin |

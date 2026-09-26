@@ -20,7 +20,9 @@ if (!command || command === "--help" || command === "-h") {
 if (command === "demo") {
   const offline = args.includes("--offline");
   const fixture = args.includes("--fixture");
-  await runDemo({ offline, fixture });
+  const scenarioIdx = args.indexOf("--scenario");
+  const scenario = scenarioIdx !== -1 ? args[scenarioIdx + 1] : undefined;
+  await runDemo({ offline, fixture, scenario });
   process.exit(0);
 }
 
