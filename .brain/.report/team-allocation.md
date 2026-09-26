@@ -1,9 +1,18 @@
-<!-- Status: DRAFT | Last-updated commit: 8d9ba18 -->
+<!-- Status: COMPLETE | Last-updated commit: 76ecbff -->
 # Four-Contributor Work Allocation — `phantomdeps`
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `PENDING`  
-**Roster names:** replace `Contributor 1–4` before kickoff; names were not present in repository evidence.
+**Status:** `COMPLETE`
+**Last-updated commit:** `76ecbff`
+**Roster (confirmed — Phase 08):**
+
+| Contributor | Real name | Identity |
+|---|---|---|
+| Contributor 1 (Product + architecture lead) | **Aditya Kumar Sharma** | https://github.com/adishxm |
+| Contributor 2 (Core implementation + test engineer) | **Narayan Kumar Jha** | narayan.nkj@gmail.com |
+| Contributor 3 (Validation + IBM Bob workflow lead) | **Utkarsh Yadav** | https://github.com/utkarsh-2207 |
+| Contributor 4 (Demo + submission lead) | **Aditya Kumar Sharma** (also Contributor 1 — team of 3) | — |
+
+> Source: `package.json` contributors field; `git log` commit `3fa529c` adds Utkarsh Yadav; commits `987a6b9` and `52c3d65` establish Aditya Kumar Sharma and Narayan Kumar Jha.
 
 ## Allocation rule
 

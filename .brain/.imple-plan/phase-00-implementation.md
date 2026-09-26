@@ -1,8 +1,8 @@
-<!-- Status: COMPLETE | Last-updated commit: PENDING (phase-00 commit) -->
+<!-- Status: PASSED | Last-updated commit: 52c3d65 -->
 # Phase 00 Implementation Plan — Intake, Repository Audit, and Operating Agreement
 
-**Status:** `COMPLETE — PARTIAL BLOCKERS REMAIN`
-**Last-updated commit:** `PENDING` (phase-00 commit)
+**Status:** `PASSED`
+**Last-updated commit:** `52c3d65` (feat: phase-00 complete + full phantomdeps CLI implementation)
 
 ## Scope
 

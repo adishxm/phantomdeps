@@ -1,11 +1,14 @@
-<!-- Status: DRAFT | Last-updated commit: 540b861 -->
+<!-- Status: COMPLETE | Last-updated commit: 76ecbff -->
 
 # Synchronized IBM Bob Roadmap — `phantomdeps`
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `d63976d`
+**Status:** `COMPLETE`
+**Last-updated commit:** `76ecbff`
+**All phases:** 00–08 PASSED
+**Repository:** https://github.com/adishxm/phantomdeps
+**Release tag:** `v0.1.0` (commit `c31a950`)
 
-This lane is synchronized with the other lane. Objective, acceptance criteria, tests, evidence, and definition of done are intentionally identical; only execution instructions differ. The current sandbox contains no product repository, so every step begins `NOT_STARTED`.
+This lane is synchronized with the other lane. Objective, acceptance criteria, tests, evidence, and definition of done are intentionally identical; only execution instructions differ. All 51 steps across phases 00–08 are COMPLETE — see `.brain/.report/phase-step-traceability.md` for full evidence mapping.
 
 
 ## Phase 00 — Intake, repository audit, and operating agreement

@@ -1,53 +1,43 @@
-<!-- Status: DRAFT | Last-updated commit: 8d9ba18 -->
+<!-- Status: COMPLETE | Last-updated commit: 76ecbff -->
 # Roadmap Index — `phantomdeps`
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `PENDING`
+**Status:** `COMPLETE`
+**Last-updated commit:** `76ecbff`
+**All phases:** 00–08 PASSED
+**Repository:** https://github.com/adishxm/phantomdeps
+**Release tag:** `v0.1.0` (commit `c31a950`)
 
-## Audit finding
+## Selected MVP (DELIVERED)
 
-The active sandbox had no project repository at `/home/ubuntu` or `/tmp`: no `.docs/`, source, tests, manifests, CI, deployment files, Git history, remotes, roster, or Bob session export were present. Evidence: the initial `find`/`git status` audit on 2026-09-25 returned only the two uploaded Markdown files as task inputs and `fatal: not a git repository` from `/home/ubuntu`. The attached research independently states that the inspected project was documentation-only.
+An npm-first, fixture-replayable pre-install claim gate. A fresh clone runs `npx tsx src/cli.ts demo --fixture --offline` offline; a baseline name-only check would allow `import { isOddBatch } from 'is-odd'`; exact npm artifact/export evidence proves the symbol is absent; the gate returns `BLOCK` with citations and a patch suggestion; suspect packages are never installed in the demo. Delivered in Phase 03 and hardened through Phase 08.
 
-## Selected MVP
+## Team (confirmed)
 
-**Proceed with an npm-first, fixture-replayable pre-install claim gate.** The smallest honest proof is: a fresh clone runs `phantomdeps demo --fixture` offline; a baseline name-only check would allow a package; exact npm artifact/export evidence proves a requested static symbol is absent; the gate returns `BLOCK` with citations; a replacement produces a patch-only plan; after explicit human approval, the patch is applied, safe tests pass, and the gate re-runs. Suspect or replacement packages are never installed in the demo.
+| Contributor | Role | Identity |
+|---|---|---|
+| Aditya Kumar Sharma | Product + architecture lead | https://github.com/adishxm |
+| Narayan Kumar Jha | Core implementation + test engineer | narayan.nkj@gmail.com |
+| Utkarsh Yadav | Validation + IBM Bob workflow lead | https://github.com/utkarsh-2207 |
 
-## Four-contributor operating model
+## Non-goals / deferred (unchanged)
 
-- **Contributor 1:** product, architecture, and Git coordination.
-- **Contributor 2:** core implementation, fixture harness, and tests.
-- **Contributor 3:** validation, security, IBM Bob evidence, and **backup owner** for Contributors 1–2.
-- **Contributor 4:** PPT/slides, demo, pitch, screenshots, and submission package, while also contributing demo fixture/data and release review.
-
-Names, availability, tool ownership, and decision authority are still `UNKNOWN`; replace placeholders in `.brain/.report/team-allocation.md` before implementation.
-
-## Non-goals / deferred ideas
-
-1. **Deferred:** full PyPI API-claim parity and popularity analytics; research says official PyPI download fields are deprecated/`-1` and static parity is harder.
-2. **Deferred:** enterprise-grade transitive behavior monitoring, private registry policy bundles, continuous post-approval compromise detection, and universal shell interception.
+1. **Deferred:** full PyPI API-claim parity and popularity analytics.
+2. **Deferred:** enterprise transitive monitoring, private registry policy bundles, continuous post-approval compromise detection, and universal shell interception.
 
 ## Immutable synchronized IDs
 
-Phases `00`–`08` and every step ID exactly follow the master prompt. See `antigravity-roadmap.md`, `ibm-bob-roadmap.md`, and `phase-step-traceability.md`.
+Phases `00`–`08` and every step ID exactly follow the master prompt. See `ibm-bob-roadmap.md` and `phase-step-traceability.md`.
 
-## Current gate status
+## Final gate status
 
-| Gate | Status | Evidence / next action |
+| Gate | Status | Evidence |
 |---|---|---|
-| Repository audit | `PASSED` for intake only | Audit output recorded in `.brain/.report/phase-00-report.md`; product repo still absent. |
-| MVP selection | `PASSED` as a planning decision | Research-backed scope above; team approval still `UNKNOWN`. |
-| Team allocation | `IN_REVIEW` | Four placeholder contributors allocated; replace names and confirm ownership. |
-| Implementation | `BLOCKED` | Need actual product repository and assigned owners. |
-| Local/advanced tests | `BLOCKED` | No executable product exists. |
-| Outsider review | `BLOCKED` | Requires runnable product and review package. |
-| Submission | `BLOCKED` | Portal, team details, URLs, video, Bob exports, and tagged product commit unavailable. |
-
-## Required unblock sequence
-
-1. Create or attach the actual product repository and confirm branch/remote policy.
-2. Replace `Contributor 1–4` placeholders with actual names and confirm availability/decision authority.
-3. Confirm Contributor 3 as backup owner and Contributor 4 as PPT/demo owner.
-4. Approve the npm-first MVP and non-goals.
-5. Build the fixture/no-install harness before registry breadth.
-6. Test IBM Bob `PreToolUse`; preserve wrapper fallback.
-7. Execute gates in order; do not mark phases passed from planning artifacts alone.
+| Repository audit | ✅ PASSED | Phase 00 — commit `52c3d65`; repo at `github.com/adishxm/phantomdeps` |
+| MVP selection | ✅ PASSED | Phase 00 — D-001; npm-first fixture-replayable gate selected |
+| Team allocation | ✅ RESOLVED | Phase 08 — 3 named contributors confirmed in `package.json` |
+| Implementation | ✅ PASSED | Phase 03 — commit `c6fd683`; BLOCK/WARN/ALLOW confirmed; 35/35 tests |
+| Local/advanced tests | ✅ PASSED | Phase 04/05 — 103/103 tests; AC-01–09 verified; 0 vulns; 1168ms avg |
+| Outsider review | ✅ PASSED | Phase 06 — 2 blocking findings fixed; hook verified; commit `7a493ac` |
+| Finalization | ✅ PASSED | Phase 07 — RC tag `v0.1.0-rc.1`; rehearsal 7/7; commit `8c9bc88` |
+| Submission package | ✅ PASSED | Phase 08 — secret scan CLEAN; 59-item checklist; commit `c31a950` |
+| Human submission | ⚠️ PENDING HUMAN | 18 action items for team — see `phase-08-step-8.5-final-checklist.md` |
