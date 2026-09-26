@@ -5,7 +5,8 @@
   "license": "MIT",
   "contributors": [
     "Aditya Kumar Sharma <https://github.com/adishxm>",
-    "Narayan Kumar Jha <narayan.nkj@gmail.com>"
+    "Narayan Kumar Jha <narayan.nkj@gmail.com>",
+    "Utkarsh Yadav <https://github.com/utkarsh-2207>"
   ],
   "type": "module",
   "bin": {
