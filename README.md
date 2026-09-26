@@ -1,14 +1,26 @@
 # `phantomdeps`
 
-**Pre-install AI dependency claim gate for IBM Bob**
+> **Pre-install AI dependency claim gate for IBM Bob**
 
-`phantomdeps` intercepts `npm install` before it runs, verifies the exact package artifact and statically provable API against what the AI-generated code actually imports, and returns a `BLOCK / WARN / ALLOW / UNVERIFIED` verdict with cited evidence — without ever installing or executing the suspect package.
+[![CI](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml/badge.svg)](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml)
+![Tests](https://img.shields.io/badge/tests-35%2F35%20passing-brightgreen)
+![Phase](https://img.shields.io/badge/phase-03%20complete-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+`phantomdeps` intercepts `npm install` **before it runs**, verifies the exact package artifact and statically provable API against what the AI-generated code actually imports, and returns a `BLOCK / WARN / ALLOW / UNVERIFIED` verdict with cited evidence — **without ever installing or executing the suspect package.**
 
 ---
 
 ## Why it exists
 
-AI coding agents hallucinate package names and symbols. A [USENIX Security 2025 study](https://www.usenix.org/conference/usenixsecurity25) found a **19.7% package-level hallucination rate** across 2.23 million recommendations from 16 models. Name-existence checks miss the harder case: a real package that simply does not export the symbol the agent's code imports. `phantomdeps` catches that gap.
+AI coding agents hallucinate package names and symbols. A [USENIX Security 2025 study](https://www.usenix.org/conference/usenixsecurity25) found a **19.7% package-level hallucination rate** across 2.23 million recommendations from 16 models.
+
+Name-existence checks miss the harder case: a real package that simply does not export the symbol the agent's code imports. `phantomdeps` catches that gap.
+
+```
+IBM Bob: "import { isOddBatch } from 'is-odd'"   ← hallucinated symbol
+phantomdeps: BLOCK — is-odd@3.0.1 exports isOdd(), not isOddBatch
+```
 
 ---
 
@@ -18,19 +30,48 @@ AI coding agents hallucinate package names and symbols. A [USENIX Security 2025 
 git clone https://github.com/adishxm/phantomdeps.git
 cd phantomdeps
 npm install
-npm test                                     # 35/35 tests pass
-npx tsx src/cli.ts demo --fixture --offline  # live BLOCK demo
+npm test                                      # 35/35 tests pass
+npx tsx src/cli.ts demo --fixture --offline   # live BLOCK demo
 ```
+
+---
+
+## Demo scenarios
+
+Three built-in offline scenarios — no network, no package installation:
+
+```bash
+# BLOCK — hallucinated symbol (isOddBatch does not exist in is-odd)
+npx tsx src/cli.ts demo --fixture --offline --scenario block
+
+# ALLOW — real package, symbol confirmed present (lodash.merge)
+npx tsx src/cli.ts demo --fixture --offline --scenario allow
+
+# WARN  — real package, but has install scripts (supply-chain risk)
+npx tsx src/cli.ts demo --fixture --offline --scenario warn
+```
+
+| Scenario | Package | Verdict | Exit |
+|---|---|---|---|
+| `block` (default) | `is-odd@3.0.1` — `isOddBatch` absent | **BLOCK** | `2` |
+| `allow` | `lodash@4.17.21` — `merge` confirmed | **ALLOW** | `0` |
+| `warn` | `risky-new-pkg` — install scripts present | **WARN** | `1` |
 
 ---
 
 ## Verified output
 
-Confirmed on Windows / Node.js v24 — `npm install && npm test && npx tsx src/cli.ts demo --fixture --offline`:
+Confirmed on Windows / Node.js v24.
 
 ### `npm test`
 
 ```
+ PASS  tests/parser.test.ts
+ PASS  tests/static-claim.test.ts
+ PASS  tests/policy.test.ts
+ PASS  tests/fixture-loader.test.ts
+ PASS  tests/gate-integration.test.ts
+
 Test Suites: 5 passed, 5 total
 Tests:       35 passed, 35 total
 Time:        ~4.6 s
@@ -56,22 +97,15 @@ phantomdeps gate — BLOCK
   Package  : is-odd@3.0.1 → 3.0.1
   Ecosystem: npm
   Source   : fixture (fixture://is-odd-demo)
-  Integrity: sha512-sSqAd7pMnQdFnCDMjIosBv6Ud7JJnDEE2pWXFQyRtDlOTvlDLnMZx27AEBGJ2Iigg8b5vFJ1qpNMsjW0mXJA==
-  Time     : 2026-09-26T13:34:42.640Z
+  Integrity: sha512-sSqAd7...
   Decision : f19b0b40-fe5b-4d05-be96-5e1ad70f7a8e
-  Origin   : fixture
 
 Findings:
   ✖ [l2.symbol_missing]
     BLOCK: Symbol(s) [isOddBatch] are NOT present in the declared exports of is-odd@3.0.1.
     The AI-generated import claims a symbol that this package does not export.
-    Citations: Source: fixture 'is-odd-demo' (2025-09-20T00:00:00.000Z) | Package: is-odd@3.0.1
-               Exported symbols count: 2
-               Exports source: is-odd@3.0.1 package.json exports + index.js — single default export `isOdd(n: number): boolean`
-    Evidence: Source: fixture 'is-odd-demo' (2025-09-20T00:00:00.000Z) | Package: is-odd@3.0.1 | Exported symbols count: 2
 
   Record hash : sha256:f3588ad683808cf632acf7b82cf49f278d015c224ded58427ea7d23b3c3fa4ca
-  Prev hash   : sha256:0000000000000000000000000000000000000000000000000000000000000000
 ────────────────────────────────────────────────────────────
 
 [REMEDIATION]
@@ -92,13 +126,17 @@ Findings:
 ## Commands
 
 ```bash
-# Offline fixture demo — no network required
+# Offline fixture demo (default: BLOCK scenario)
 npx tsx src/cli.ts demo --fixture --offline
 
-# Check a package (live registry)
+# Offline demo — choose scenario
+npx tsx src/cli.ts demo --fixture --offline --scenario allow
+npx tsx src/cli.ts demo --fixture --offline --scenario warn
+
+# Check a package against live registry
 npx tsx src/cli.ts check lodash@4.17.21 --symbols merge,cloneDeep
 
-# Use as a drop-in install wrapper
+# Drop-in install wrapper
 npx tsx src/cli.ts install is-odd --symbols isOddBatch
 ```
 
@@ -113,7 +151,7 @@ npm install <pkg>
     ↓
 CommandAdapter     — parses argv without shell evaluation; rejects metacharacters
     ↓
-RegistryAdapter    — resolves exact version + integrity from npm (L1)
+RegistryAdapter    — resolves exact version + integrity from npm registry (L1)
     ↓
 StaticClaimChecker — checks declared exports against imported symbols (L2)
     ↓
@@ -133,8 +171,8 @@ No package code is ever executed. Offline fixture mode uses version-pinned snaps
 | Verdict | Meaning |
 |---|---|
 | `ALLOW` | Required checks passed; no hard finding |
-| `WARN` | Weak signal or bounded ambiguity |
-| `BLOCK` | High-confidence claim failure (404, wrong ecosystem, symbol absent) |
+| `WARN` | Weak signal or bounded ambiguity (install scripts, young package) |
+| `BLOCK` | High-confidence claim failure — 404, wrong ecosystem, symbol absent |
 | `UNVERIFIED` | Network/cache/parser prevented a reliable decision — **never silently converted to ALLOW** |
 
 ---
@@ -143,8 +181,8 @@ No package code is ever executed. Offline fixture mode uses version-pinned snaps
 
 ```
 src/
-  cli.ts               — entry point
-  parser.ts            — safe argv parser
+  cli.ts               — entry point + argument router
+  parser.ts            — safe argv parser (no shell evaluation)
   gate.ts              — orchestrator
   types.ts             — shared types
   adapters/
@@ -159,22 +197,25 @@ src/
   fixtures/
     loader.ts          — offline fixture loader
   demo/
-    runner.ts          — fixture demo runner
+    runner.ts          — fixture demo runner (multi-scenario)
 
 fixtures/
-  is-odd-demo.json              — is-odd@3.0.1: real package, absent symbol (BLOCK)
-  lodash-allow-demo.json        — lodash@4.17.21: real package, symbol present (ALLOW)
-  risky-new-pkg-warn-demo.json  — risky package with install scripts (WARN)
+  is-odd-demo.json              — is-odd@3.0.1: real package, absent symbol  → BLOCK
+  lodash-allow-demo.json        — lodash@4.17.21: real package, symbol present → ALLOW
+  risky-new-pkg-warn-demo.json  — package with install scripts               → WARN
 
 tests/
-  parser.test.ts
-  static-claim.test.ts
-  policy.test.ts
-  fixture-loader.test.ts
-  gate-integration.test.ts
+  parser.test.ts            (8 tests)
+  static-claim.test.ts      (5 tests)
+  policy.test.ts            (6 tests)
+  fixture-loader.test.ts    (2 tests)
+  gate-integration.test.ts  (14 tests)   ← added Phase 03
 
 .bob/hooks/
   PreToolUse.mjs       — IBM Bob PreToolUse hook (exit 2 = BLOCK)
+
+.github/workflows/
+  ci.yml               — Node 20 + 22 matrix: lint → test → demo
 
 .brain/
   .imple-plan/         — phase implementation plans (00–08)
@@ -214,40 +255,27 @@ Hook config (`.bob/settings.json`):
 
 ---
 
-## Tests
-
-```bash
-npm test
-```
-
-```
- PASS  tests/static-claim.test.ts
- PASS  tests/policy.test.ts
- PASS  tests/parser.test.ts
- PASS  tests/fixture-loader.test.ts
- PASS  tests/gate-integration.test.ts
-
-Test Suites: 5 passed, 5 total
-Tests:       35 passed, 35 total
-Time:        ~4.6 s
-```
-
----
-
 ## Phases completed
 
-| Phase | Status | Summary |
+| Phase | Status | Key deliverables |
 |---|---|---|
-| 00 — Intake & audit | ✅ PASSED | Repo initialized, scaffold verified, MVP selected, pushed to GitHub |
-| 01 — Product contract | ✅ PASSED | 8 user stories, 10 ACs, 14 requirements mapped, 6 contradictions resolved |
-| 02 — Architecture & design | ✅ PASSED | Architecture, data model, UX flows, threat model, CI plan all documented |
-| 03 — Build MVP | ✅ PASSED | CI pipeline, 35/35 tests, BLOCK/WARN/ALLOW all confirmed, 3 fixture files, PreToolUse hook wired |
-| 04–08 | 🔲 Pending | Validation → advanced validation → outsider review → finalization → submission |
+| 00 — Intake & audit | ✅ **PASSED** | Repo initialized, scaffold verified, MVP selected, pushed to GitHub |
+| 01 — Product contract | ✅ **PASSED** | 8 user stories, 10 ACs, 14 requirements mapped, 6 contradictions resolved |
+| 02 — Architecture & design | ✅ **PASSED** | Architecture, data model, UX flows, threat model, CI plan documented |
+| 03 — Build MVP | ✅ **PASSED** | CI pipeline, **35/35 tests**, BLOCK + WARN + ALLOW confirmed, 3 fixtures, hook wired |
+| 04 — Local validation | 🔲 Next | Lint, typecheck, E2E, AC verification, full evidence record |
+| 05 — Advanced validation | 🔲 Pending | Edge cases, security scan, reproducibility, performance |
+| 06 — Outsider review | 🔲 Pending | Independent install + review, findings classified + fixed |
+| 07 — Finalization & demo | 🔲 Pending | RC tag, rehearsal, demo script, judge Q&A |
+| 08 — Submission package | 🔲 Pending | Portal submission, secret scan, final checklist |
+
+---
 
 ## Research and planning
 
 - Full research report: [`.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md`](.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md)
 - Phase roadmap: [`.brain/.imple-plan/ibm-bob-roadmap.md`](.brain/.imple-plan/ibm-bob-roadmap.md)
+- Decision log: [`.brain/.report/decision-log.md`](.brain/.report/decision-log.md)
 - Phase 00 report: [`.brain/.report/phase-00-report.md`](.brain/.report/phase-00-report.md)
 - Phase 01 report: [`.brain/.report/phase-01-report.md`](.brain/.report/phase-01-report.md)
 - Phase 02 report: [`.brain/.report/phase-02-report.md`](.brain/.report/phase-02-report.md)
