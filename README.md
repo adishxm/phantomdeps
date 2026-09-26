@@ -284,6 +284,12 @@ Hook config (`.bob/settings.json`):
 - Phase 01 report: [`.brain/.report/phase-01-report.md`](.brain/.report/phase-01-report.md)
 - Phase 02 report: [`.brain/.report/phase-02-report.md`](.brain/.report/phase-02-report.md)
 - Phase 03 report: [`.brain/.report/phase-03-report.md`](.brain/.report/phase-03-report.md)
+- Phase 04 report: [`.brain/.report/phase-04-report.md`](.brain/.report/phase-04-report.md)
+- Phase 05 report: [`.brain/.report/phase-05-report.md`](.brain/.report/phase-05-report.md)
+- Phase 06 report: [`.brain/.report/phase-06-report.md`](.brain/.report/phase-06-report.md)
+- Phase 07 report: [`.brain/.report/phase-07-report.md`](.brain/.report/phase-07-report.md)
+- Phase 08 report: [`.brain/.report/phase-08-report.md`](.brain/.report/phase-08-report.md)
+
 
 ---
 
