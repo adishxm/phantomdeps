@@ -1,8 +1,8 @@
-<!-- Status: DRAFT | Last-updated commit: 540b861 -->
+<!-- Status: PASSED | Last-updated commit: phase-05 -->
 # Phase 05 Implementation Plan — Advanced validation, security, and resilience
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `d63976d`
+**Status:** `PASSED`
+**Last-updated commit:** `phase-05: advanced validation PASSED — 103/103 tests, security scan clean, perf <2s`
 
 ## Scope
 
@@ -33,4 +33,4 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 
 ## Current status
 
-`NOT_STARTED` for implementation. The active sandbox has no source repository, tests, team roster, or Git remote.
+`PASSED` — all six steps executed and evidenced. Two parser security fixes (F-05-01, F-05-02). 68 new tests added (103 total). `npm audit` clean. Performance avg 1168ms. Git checkpoint committed and pushed.

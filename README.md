@@ -264,7 +264,7 @@ Hook config (`.bob/settings.json`):
 | 02 — Architecture & design | ✅ **PASSED** | Architecture, data model, UX flows, threat model, CI plan documented |
 | 03 — Build MVP | ✅ **PASSED** | CI pipeline, **35/35 tests**, BLOCK + WARN + ALLOW confirmed, 3 fixtures, hook wired |
 | 04 — Local validation | ✅ **PASSED** | Lint clean, 35/35 tests, AC-01–09 verified, NDJSON log bug fixed, evidence recorded |
-| 05 — Advanced validation | 🔲 Pending | Edge cases, security scan, reproducibility, performance |
+| 05 — Advanced validation | ✅ **PASSED** | 68 new tests (103 total), 2 parser fixes, 0 vulns, avg 1168ms offline |
 | 06 — Outsider review | 🔲 Pending | Independent install + review, findings classified + fixed |
 | 07 — Finalization & demo | 🔲 Pending | RC tag, rehearsal, demo script, judge Q&A |
 | 08 — Submission package | 🔲 Pending | Portal submission, secret scan, final checklist |

@@ -12,6 +12,12 @@ const REGISTRY_SPEC_RE = /^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*(
 /** Shell metacharacters that must never appear in a safe package spec */
 const SHELL_META_RE = /[;&|`$<>()\{\}\[\]\\'"]/;
 
+/** npm alias/protocol forms that are not supported */
+const PROTOCOL_RE = /^(npm:|file:|git\+|github:|gitlab:|bitbucket:|https?:|ssh:)/i;
+
+/** npm registry names are capped at 214 characters */
+const MAX_NAME_LENGTH = 214;
+
 export interface CheckOptions {
   packageSpec: string;
   symbols: string[];
@@ -44,6 +50,23 @@ export function parseIntent(spec: string): InstallIntent {
   if (SHELL_META_RE.test(spec)) {
     throw new Error(
       `UNSAFE: package spec contains shell metacharacters: ${spec}`
+    );
+  }
+
+  if (PROTOCOL_RE.test(spec)) {
+    throw new Error(
+      `UNSUPPORTED: '${spec}' uses a protocol/alias form. ` +
+      `Only registry-name specs are supported in v1.`
+    );
+  }
+
+  // Strip the version part for length check on the name portion
+  const namePart = spec.startsWith("@")
+    ? spec                          // length check on full scoped name
+    : spec.split("@")[0];
+  if (namePart.length > MAX_NAME_LENGTH) {
+    throw new Error(
+      `UNSUPPORTED: package name exceeds the npm maximum of ${MAX_NAME_LENGTH} characters.`
     );
   }
 
