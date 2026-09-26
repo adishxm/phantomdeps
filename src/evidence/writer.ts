@@ -3,7 +3,7 @@
  * Prints the terminal card and appends a hash-chained NDJSON decision record.
  */
 
-import { createWriteStream, mkdirSync, existsSync, readFileSync, writeFileSync } from "fs";
+import { appendFileSync, mkdirSync, existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import type { GateDecision } from "../types.js";
 
@@ -68,9 +68,8 @@ export function appendDecisionLog(decision: GateDecision, cwd = process.cwd()): 
   }
   const logPath = join(dir, DECISION_LOG_FILE);
   const line = JSON.stringify(decision) + "\n";
-  const stream = createWriteStream(logPath, { flags: "a" });
-  stream.write(line);
-  stream.end();
+  // appendFileSync ensures the write completes synchronously before the process exits.
+  appendFileSync(logPath, line);
 }
 
 /** Read the hash of the last decision record (for chaining). */
