@@ -291,6 +291,8 @@ Hook config (`.bob/settings.json`):
 
 - [Aditya Kumar Sharma](https://github.com/adishxm)
 - [Narayan Kumar Jha](mailto:narayan.nkj@gmail.com)
+- [Utkarsh Yadav](https://github.com/utkarsh-2207)
+
 
 ---
 
