@@ -283,6 +283,14 @@ Hook config (`.bob/settings.json`):
 
 ---
 
+## Contributors
+
+- [Aditya Kumar Sharma](https://github.com/adishxm)
+- [Narayan Kumar Jha](mailto:narayan.nkj@gmail.com)
+
+---
+
 ## License
 
 MIT — see [LICENSE](LICENSE)
+

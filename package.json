@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Pre-install AI dependency claim gate for IBM Bob — verifies ecosystem, artifact, and static API before npm install executes.",
   "license": "MIT",
+  "contributors": [
+    "Aditya Kumar Sharma <https://github.com/adishxm>",
+    "Narayan Kumar Jha <narayan.nkj@gmail.com>"
+  ],
   "type": "module",
   "bin": {
     "phantomdeps": "./dist/cli.js"
@@ -29,7 +33,9 @@
   "jest": {
     "preset": "ts-jest/presets/default-esm",
     "testEnvironment": "node",
-    "extensionsToTreatAsEsm": [".ts"],
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ],
     "moduleNameMapper": {
       "^(\\.{1,2}/.*)\\.js$": "$1"
     },
@@ -41,6 +47,12 @@
         }
       ]
     },
-    "testMatch": ["**/tests/**/*.test.ts"]
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ]
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "fsevents@2.3.3": true
   }
 }

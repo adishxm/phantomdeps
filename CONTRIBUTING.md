@@ -34,3 +34,9 @@ Use small, reviewable commits. Never commit secrets, `.repo` material, dependenc
 - Contributor 4: PPT/demo/submission package plus demo fixture contribution.
 
 Every pull request should state the phase/step ID, evidence paths, exact tests, and rollback point. No phase is passed from a plan alone.
+
+## Contributors
+
+- **Aditya Kumar Sharma** ([@adishxm](https://github.com/adishxm))
+- **Narayan Kumar Jha** ([narayan.nkj@gmail.com](mailto:narayan.nkj@gmail.com))
+
