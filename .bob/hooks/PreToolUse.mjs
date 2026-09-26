@@ -38,7 +38,7 @@ try {
   for await (const chunk of process.stdin) raw += chunk;
 }
 
-let hookInput: { event: string; session_id: string; tool: string; input: Record<string, unknown> };
+let hookInput;
 try {
   hookInput = JSON.parse(raw);
 } catch {
@@ -113,7 +113,7 @@ process.stderr.write(
 );
 process.exit(0);
 
-function writeEvidence(info: Record<string, unknown>) {
+function writeEvidence(info) {
   const dir = join(process.cwd(), ".phantomdeps");
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "hook-unverified.json"), JSON.stringify(info, null, 2));

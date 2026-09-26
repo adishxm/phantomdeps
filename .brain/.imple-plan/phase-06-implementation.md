@@ -1,8 +1,8 @@
-<!-- Status: DRAFT | Last-updated commit: 540b861 -->
+<!-- Status: PASSED | Last-updated commit: phase-06 -->
 # Phase 06 Implementation Plan — Outsider-agent review
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `d63976d`
+**Status:** `PASSED`
+**Last-updated commit:** `phase-06: outsider review PASSED — hook fixed, settings.json added, 103/103 tests`
 
 ## Scope
 
@@ -33,4 +33,4 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 
 ## Current status
 
-`NOT_STARTED` for implementation. The active sandbox has no source repository, tests, team roster, or Git remote.
+`PASSED` — 2 release-blocking findings found and fixed (hook TypeScript syntax in `.mjs`, missing `.bob/settings.json`). Hook verified functional (exit 2 BLOCK, exit 0 ALLOW). 103/103 tests pass post-fix.
