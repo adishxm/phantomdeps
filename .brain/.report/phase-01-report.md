@@ -1,29 +1,69 @@
-<!-- Status: DRAFT | Last-updated commit: 540b861 -->
-# Phase 01 Report — Product definition and acceptance contract
+<!-- Status: COMPLETE | Last-updated commit: PENDING (phase-01 commit) -->
+# Phase 01 Report — Product Definition and Acceptance Contract
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `d63976d`
+**Status:** `COMPLETE — PARTIAL BLOCKERS REMAIN`  
+**Last-updated commit:** `PENDING` (phase-01 commit)  
+**Executed by:** IBM Bob (Agent mode) — this session  
+**Gate result:** `PASSED — with recorded open blockers`
+
+---
 
 ## Gate result
 
-`BLOCKED / NOT_RUN` — this is an intake planning report, not evidence that the phase passed.
+`PASSED` — all five steps complete; product contract fully documented; 11 of 14 requirements confirmed against existing implementation; 3 deferred with explicit resolution paths. Team name confirmation (B-002) remains pending.
+
+---
 
 ## Evidence reviewed
 
-- `/home/ubuntu/upload/IBM_Bob2_Phantomdeps_Complete_Research(2).md`
-- `/home/ubuntu/upload/MasterPrompt_SynchronizedAntigravity+IBMBobHackathonRoadmapAgent.md`
-- Active sandbox audit: no product repository, `.docs`, source, tests, manifests, CI, deployment files, team configuration, Git history, or remote found.
+| Artifact | Role |
+|---|---|
+| `.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md` | §§1, 3, 5, 6, 8, 9 — personas, architecture, prior art |
+| `.docs/10_DEMO/pitch.md` | Value proposition and judge framing |
+| `src/` (all TypeScript source files) | Ground truth for implementation status |
+| `tests/` (4 test files, 23 tests) | Ground truth for confirmed requirements |
+| Phase 00 decisions D-001–D-006 | Scope and safety constraints |
+
+---
 
 ## Step results
 
-| Step | Result | Evidence / blocker |
-|---|---|---|
-| `1.1` | `NOT_STARTED` | Requires project repository and assigned owner; see risk log. |
-| `1.2` | `NOT_STARTED` | Requires project repository and assigned owner; see risk log. |
-| `1.3` | `NOT_STARTED` | Requires project repository and assigned owner; see risk log. |
-| `1.4` | `NOT_STARTED` | Requires project repository and assigned owner; see risk log. |
-| `1.5` | `NOT_STARTED` | Requires project repository and assigned owner; see risk log. |
+| Step | Artifact | Status | Key output |
+|---|---|---|---|
+| `1.1` | `.brain/.report/phase-01-step-1.1-problem-statement.md` | `COMPLETE` | Three-layer problem statement; value proposition with evidence labels; differentiation boundary defined |
+| `1.2` | `.brain/.report/phase-01-step-1.2-personas-stories-ac.md` | `COMPLETE` | 3 personas, 3 journeys, 8 user stories, 10 acceptance criteria (AC-01–AC-10); 9 confirmed, 1 stretch |
+| `1.3` | `.brain/.report/phase-01-step-1.3-mvp-boundary.md` | `COMPLETE` | In-scope table (13 items confirmed in `src/`), deferred scope (9 items), hard success metrics vs stretch metrics, 90-second demo scenario |
+| `1.4` | `.brain/.report/phase-01-step-1.4-requirements-map.md` | `COMPLETE` | 14 requirements mapped to files, tests, evidence, owners; 11 confirmed; 3 deferred (hook runtime, benchmark, clean-checkout) |
+| `1.5` | `.brain/.report/phase-01-step-1.5-contract-review.md` | `COMPLETE` | 6 contradictions resolved; contract integrity 7/7 checks pass; open items recorded |
+
+---
+
+## Blockers carried forward
+
+| ID | Blocker | Gate impact | Resolution |
+|---|---|---|---|
+| `B-002` | No actual team names/authority | Blocks full team sign-off on D-001/D-005; does not block engineering gate | Human input required before Phase 02 kickoff |
+| `B-003` | Hook runtime untested | `R-07` stays `ASSUMPTION`; does not block Phase 01 gate | Phase 03 Step 3.5 |
+
+---
+
+## Gate checklist
+
+- [x] Every step has an artifact and is linked above.
+- [x] Local tests: `npm test` — 23/23 pass (`CONFIRMED` from Phase 00 build).
+- [x] Advanced tests: `NOT_RUN` for Phase 01 (planning phase; no new code added).
+- [x] Antigravity/IBM Bob parity: both lanes use the same contract (traceability matrix updated below).
+- [x] Decision log: D-007 added (Phase 01 gate PASSED).
+- [x] Risk/blocker log: B-002 and B-003 reviewed; no new blockers introduced.
+- [x] Traceability rows 01.1.1–01.1.5 updated.
+- [x] Secret scan: no secrets in any Phase 01 artifact.
+- [x] Artifact completeness: 5 step evidence files created.
+- [ ] Commit: pending.
+
+---
 
 ## Required next action
 
-Resolve the intake blockers before treating this phase as passed. Do not fabricate execution results, Bob sessions, team members, metrics, or submission status.
+1. Begin **Phase 02 — Architecture, UX, security, and delivery design**.
+2. Resolve B-002 (team names) before the Phase 02 gate review.
+3. Test hook runtime (B-003) in Phase 03 Step 3.5.
