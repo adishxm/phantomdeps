@@ -1,8 +1,8 @@
-<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
+<!-- Status: ACTIVE | Last-updated commit: phase-14 -->
 # Risk and Blocker Log
 
 **Status:** `ACTIVE`
-**Last-updated commit:** `phase-09`
+**Last-updated commit:** `phase-14`
 
 | ID | Impact | Evidence | Owner | Next action | Status |
 |---|---|---|---|---|---|
@@ -18,3 +18,5 @@
 | `R-005` | `.gitignore` absent | `node_modules/` could be accidentally staged | Phase 08 step 8.3 scan | Add `.gitignore` before final submission tag | `RESOLVED` — `.gitignore` present at HEAD (`git ls-files .gitignore` confirms); verified Phase 09 baseline |
 | `R-006` | README claims overstated live-mode capability | `install` command described as "drop-in wrapper"; live symbol check implied working; provenance not noted as fixture-only | Phase 09 step 09.3 | Corrected in Phase 09 README update | `RESOLVED` — all 5 claim corrections applied; capability matrix added |
 | `R-007` | Contract ambiguous entering Phase 10 | No frozen contract existed; remediation phases could drift | Phase 09 step 09.2 | `docs/product-contract.md` frozen | `RESOLVED` — v1 contract frozen with 13 statements, 8 non-goals, Bob hook scope |
+| `R-008` | B3 tier missing live Bob session | No live Bob session export captured; hook is documented-payload tested only | Contributor 3 | Label as FR-14-02 accepted limitation in phase-14 reports | `ACCEPTED` — labelled in phase-10-report §10.7, phase-14 step 14.5, README capability matrix; 28 subprocess tests cover payload shape |
+| `R-009` | Submission assets not complete | Video, slides, screenshots, Bob export require human execution | Contributor 4 | Complete 5 remaining submission assets | `OPEN` — 3 human-action items in phase-14-release-checklist.md; all technical gates passed |

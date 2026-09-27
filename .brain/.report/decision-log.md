@@ -1,8 +1,8 @@
-<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
+<!-- Status: ACTIVE | Last-updated commit: phase-14 -->
 # Decision Log
 
 **Status:** `ACTIVE`
-**Last-updated commit:** `phase-09`
+**Last-updated commit:** `phase-14`
 
 | ID | Decision | Basis | Type | Owner | Status |
 |---|---|---|---|---|---|
@@ -27,3 +27,9 @@
 | `D-019` | Phase 10 gate: PASSED — 131/131 tests, argv tokenizer live, strict UNVERIFIED→exit 2, multi-package covered, all 28 subprocess tests pass | Phase 10 report; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 10) | `PASSED` — Phase 11 can begin |
 | `D-020` | Phase 11: Typed registry outcomes (RegistryFailure/RegistryResult). Tarball artifact adapter with integrity verify + traversal guard. resolveClaimsFromArtifact replaces resolveClaimsFromExports. publishedAt now populated from packument time map. | `src/types.ts`, `src/adapters/registry.ts`, `src/adapters/artifact.ts`, `src/checker/static-claim.ts`; Phase 11 report | `EVIDENCE-BASED DESIGN` | Narayan Kumar Jha (Contributor 2) | `IMPLEMENTED` — Phase 11 |
 | `D-021` | Phase 11 gate: PASSED — 155/155 tests, typed registry outcomes, tarball inspection, integrity verify, resolveClaimsFromArtifact, 24 new tests | Phase 11 report; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 11) | `PASSED` — Phase 12 can begin |
+| `D-022` | Phase 12: Five-dimensional EvidenceProvenance added to PackageEvidence. AgentOverrideRecord type and appendAgentOverrideRecord() added. verifyAuditLog() implements schema/hash/chain/ordering/redaction verification. "Artifact integrity unavailable" replaces "no provenance" messaging. | `src/types.ts`, `src/adapters/registry.ts`, `src/checker/risk-signals.ts`, `src/evidence/writer.ts`; Phase 12 report | `EVIDENCE-BASED DESIGN` | Narayan Kumar Jha (Contributor 2) | `IMPLEMENTED` — Phase 12 |
+| `D-023` | Phase 12 gate: PASSED — 205/205 tests (50 new), five-dimensional provenance, audit-log verify, tamper tests (5 mutations all detected), override records | Phase 12 report; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 12) | `PASSED` — Phase 13 can begin |
+| `D-024` | Phase 13: Explicit claim-context contract (--symbols/--diff/--file/missing→UNVERIFIED). extractAddedImports() added. No fixture substitution on live path. verify command added. --json output and width-aware wrapping. | `src/gate.ts`, `src/diff-parser.ts`, `src/parser.ts`, `src/cli.ts`, `src/evidence/writer.ts`; Phase 13 report | `EVIDENCE-BASED DESIGN` | Narayan Kumar Jha (Contributor 2) | `IMPLEMENTED` — Phase 13 |
+| `D-025` | Phase 13 gate: PASSED — 205/205 tests, no fixture substitution on live path, missing context → UNVERIFIED, verify command, --json, 80/120/240 width wrapping | Phase 13 report; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 13) | `PASSED` — Phase 14 can begin |
+| `D-026` | Phase 14: B0/B1/B2 evaluation corpus committed (12 cases). Runner produces TEAM MEASUREMENT results: 12/12 pass, 100% wrong-symbol recall, 0% false-block, 33% abstention/UNVERIFIED. B3 documented-payload only (FR-14-02). | `eval/corpus.json`, `eval/run-evaluation.ts`, `eval/results.json`; Phase 14 step 14.7 | `TEAM MEASUREMENT` | Narayan Kumar Jha (Contributor 2) | `RECORDED` — Phase 14 |
+| `D-027` | Phase 14 gate: PASSED — 8/8 steps complete, all technical/evidence gates satisfied, 3 human actions remain (tag, assets, portal). Stop gate enforced. | Phase 14 report + steps 14.1–14.8; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 14) | `PASSED — stop gate enforced; human authorization required` |

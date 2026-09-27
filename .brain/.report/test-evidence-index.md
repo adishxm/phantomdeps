@@ -1,8 +1,8 @@
-<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
+<!-- Status: ACTIVE | Last-updated commit: phase-14 -->
 # Test Evidence Index
 
 **Status:** `ACTIVE`
-**Last-updated commit:** `phase-09`
+**Last-updated commit:** `phase-14`
 
 | Test ID | Requirement | Command/procedure | Commit | Result | Evidence path | Reviewer |
 |---|---|---|---|---|---|---|
@@ -46,3 +46,16 @@
 | `P11-ARTIFACT-CLAIM` | resolveClaimsFromArtifact SYMBOL_FOUND/MISSING/UNVERIFIED | `tests/artifact-registry.test.ts` | `phase-11` | `24/24 PASS` | `.brain/.report/phase-11-report.md` §11.6 | IBM Bob (Phase 11) |
 | `P11-INTEGRITY` | Integrity not verified note when integrityVerified=false | `tests/artifact-registry.test.ts` | `phase-11` | `PASS` | `.brain/.report/phase-11-report.md` §11.6 | IBM Bob (Phase 11) |
 | `P11-TOTAL` | 155/155 tests pass after Phase 11 | `npm test` | `phase-11` | `155/155 PASS` | `.brain/.report/phase-11-report.md` | IBM Bob (Phase 11) |
+| `P12-PROVENANCE` | Five-dimensional EvidenceProvenance on PackageEvidence | `tests/audit-log.test.ts` — evidenceFromFixture fields | `phase-12` | `PASS` | `.brain/.report/phase-12-report.md` §12.1 | IBM Bob (Phase 12) |
+| `P12-INTEGRITY-MSG` | "Artifact integrity unavailable" replaces "no provenance" | `tests/audit-log.test.ts` — RiskSignals terminology | `phase-12` | `PASS` | `.brain/.report/phase-12-report.md` §12.2 | IBM Bob (Phase 12) |
+| `P12-AUDIT-VERIFY` | verifyAuditLog: clean log ok:true, tamper mutations fail | `tests/audit-log.test.ts` — 6 tamper tests | `phase-12` | `PASS` | `.brain/.report/phase-12-report.md` §12.3–12.4 | IBM Bob (Phase 12) |
+| `P12-OVERRIDE` | AgentOverrideRecord: actor, reason, commandDigest, resultingPolicy | `tests/audit-log.test.ts` — override record tests | `phase-12` | `PASS` | `.brain/.report/phase-12-report.md` §12.5 | IBM Bob (Phase 12) |
+| `P12-TOTAL` | 205/205 tests pass after Phase 12 | `npm test` | `phase-12` | `205/205 PASS` | `.brain/.report/phase-12-report.md` | IBM Bob (Phase 12) |
+| `P13-DIFF-PARSER` | extractAddedImports: +lines only, named/default/namespace | `tests/claim-context.test.ts` — diff parser tests | `phase-13` | `PASS` | `.brain/.report/phase-13-report.md` §13.2 | IBM Bob (Phase 13) |
+| `P13-CONTEXT-MISSING` | Missing context → UNVERIFIED + l2.context_missing finding | `tests/claim-context.test.ts` | `phase-13` | `PASS` | `.brain/.report/phase-13-report.md` §13.1 | IBM Bob (Phase 13) |
+| `P13-WIDTH` | Width-aware card at 80/120/240 columns | `tests/claim-context.test.ts` — width tests | `phase-13` | `PASS` | `.brain/.report/phase-13-report.md` §13.7 | IBM Bob (Phase 13) |
+| `P13-JSON` | --json flag emits GateDecision JSON | `tests/claim-context.test.ts` — JSON contract | `phase-13` | `PASS` | `.brain/.report/phase-13-report.md` §13.7 | IBM Bob (Phase 13) |
+| `P14-CLEAN-CHECKOUT` | build+lint+demo×3+audit-log verify from HEAD | See step 14.1 commands | `phase-14` HEAD | `ALL PASS` | `.brain/.report/phase-14-step-14.1-clean-checkout-validation.md` | IBM Bob (Phase 14) |
+| `P14-CORPUS` | 12/12 B0/B1/B2 corpus cases pass | `npx tsx eval/run-evaluation.ts` | `phase-14` | `12/12 PASS, recall=100%, false-block=0%` | `.brain/.report/phase-14-step-14.7-evaluation-corpus-results.md` | IBM Bob (Phase 14) |
+| `P14-AUDIT` | 0 vulnerabilities at Phase 14 | `npm audit --audit-level=moderate` | `phase-14` HEAD | `0 vulnerabilities` | `.brain/.report/phase-14-step-14.3-security-and-secret-audit.md` | IBM Bob (Phase 14) |
+| `P14-SECRET` | No secrets in tracked files at Phase 14 | Secret pattern grep on `git ls-files` | `phase-14` HEAD | `CLEAN` | `.brain/.report/phase-14-step-14.3-security-and-secret-audit.md` | IBM Bob (Phase 14) |
