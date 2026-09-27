@@ -89,8 +89,8 @@ export async function runDemo(opts: DemoOptions): Promise<void> {
     previousHash,
   });
 
-  // Step 7: Print evidence card
-  printCard(decision);
+  // Step 7: Print evidence card (Phase 13.7: width-aware)
+  printCard(decision, process.stdout.columns);
 
   // Step 8: Append to decision log
   appendDecisionLog(decision);
@@ -116,6 +116,9 @@ export async function runDemo(opts: DemoOptions): Promise<void> {
   }
 
   // Step 10: Verify expected verdict
+  // Phase 13.5: demo exit semantics match documentation
+  //   - On expected verdict match: exit 0 (success)
+  //   - On unexpected verdict: log error and exit 1 (not silently return 0)
   if (decision.action !== fixture.expectedVerdict) {
     console.error(
       `\x1b[31m[DEMO ERROR] Expected verdict ${fixture.expectedVerdict} but got ${decision.action}\x1b[0m`
@@ -124,4 +127,5 @@ export async function runDemo(opts: DemoOptions): Promise<void> {
   }
 
   console.log(`\x1b[32m✔ Demo completed. Verdict: ${decision.action} (expected: ${fixture.expectedVerdict})\x1b[0m\n`);
+  // Demo always exits 0 on success — documented behavior: demo uses fixture exit codes, not scenario exit codes.
 }
