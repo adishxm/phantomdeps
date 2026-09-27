@@ -274,9 +274,9 @@ Hook config (`.bob/settings.json`):
 | Fixture-mode BLOCK / WARN / ALLOW demo | `implemented` | 3 committed fixtures; deterministic; 103/103 tests |
 | npm registry metadata resolution (live mode) | `implemented` | Version pinning, integrity, install-script signal |
 | Static symbol verification — fixture path | `implemented` | Against committed fixture `exports` + `claimedSymbols` |
-| Static symbol verification — live mode | `fixture-only` | Live tarball inspection planned Phase 11 |
+| Static symbol verification — live mode | `implemented` | Phase 11: tarball download + integrity verify + exports_field/declarations inspection; no code execution |
 | `UNVERIFIED` verdict (non-blocking ambiguity) | `implemented` | Never silently converted to ALLOW |
-| Provenance / publish-date risk signal | `fixture-only` | `publishedAt` always `null` in live mode; Phase 12 target |
+| Provenance / publish-date risk signal | `implemented` | Phase 11: `publishedAt` now populated from packument `time` map in live mode |
 | IBM Bob `PreToolUse` hook — fixture + live metadata path | `implemented` | Phase 10: argv tokenizer, multi-package, strict UNVERIFIED→exit 2; 28 subprocess tests |
 | IBM Bob `PreToolUse` hook — live static symbol check | `planned` | Phase 11 target (tarball inspection) |
 | Multi-package command interception | `implemented` | Phase 10: all specs checked; BLOCK propagates fail-closed |

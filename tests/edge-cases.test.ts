@@ -8,7 +8,8 @@
  */
 
 import { parseIntent, parseCheckArgs } from "../src/parser.js";
-import { resolveClaimsFromFixture, resolveClaimsFromExports } from "../src/checker/static-claim.js";
+import { resolveClaimsFromFixture, resolveClaimsFromArtifact } from "../src/checker/static-claim.js";
+import type { ArtifactInspection } from "../src/types.js";
 import { computeRiskSignals } from "../src/checker/risk-signals.js";
 import { applyPolicy } from "../src/engine/policy.js";
 import { loadFixture } from "../src/fixtures/loader.js";
@@ -162,26 +163,39 @@ describe("5.1 — Static claim: empty and partial symbol inputs", () => {
   });
 });
 
-// ── 5.1 resolveClaimsFromExports edge cases ───────────────────────────────────
+// ── 5.1 resolveClaimsFromArtifact edge cases (Phase 11 — replaces resolveClaimsFromExports) ──
 
-describe("5.1 — resolveClaimsFromExports: null/empty exports map", () => {
-  test("null exports map returns UNVERIFIED", () => {
-    const r = resolveClaimsFromExports("pkg", "1.0.0", null, ["fn"]);
+function makeTestInspection(exportedNames: string[]): ArtifactInspection {
+  return {
+    packageName: "pkg",
+    resolvedVersion: "1.0.0",
+    tarballIntegrity: "sha512-test==",
+    integrityVerified: true,
+    method: "exports_field",
+    exportedNames,
+    exportsSource: "package.json#exports",
+    artifactHash: "sha256:test",
+  };
+}
+
+describe("5.1 — resolveClaimsFromArtifact: null/empty inspection", () => {
+  test("null inspection returns UNVERIFIED", () => {
+    const r = resolveClaimsFromArtifact(null, ["fn"]);
     expect(r.verdict).toBe("UNVERIFIED");
   });
 
-  test("empty exports map with requested symbol returns SYMBOL_MISSING", () => {
-    const r = resolveClaimsFromExports("pkg", "1.0.0", {}, ["fn"]);
+  test("empty exported names with requested symbol returns SYMBOL_MISSING", () => {
+    const r = resolveClaimsFromArtifact(makeTestInspection([]), ["fn"]);
     expect(r.verdict).toBe("SYMBOL_MISSING");
   });
 
-  test("exports map with matching key returns SYMBOL_FOUND", () => {
-    const r = resolveClaimsFromExports("pkg", "1.0.0", { fn: "./fn.js" }, ["fn"]);
+  test("inspection with matching export returns SYMBOL_FOUND", () => {
+    const r = resolveClaimsFromArtifact(makeTestInspection(["fn"]), ["fn"]);
     expect(r.verdict).toBe("SYMBOL_FOUND");
   });
 
-  test("empty symbol list with null map returns UNVERIFIED", () => {
-    const r = resolveClaimsFromExports("pkg", "1.0.0", null, []);
+  test("null inspection with empty symbol list returns UNVERIFIED", () => {
+    const r = resolveClaimsFromArtifact(null, []);
     expect(r.verdict).toBe("UNVERIFIED");
   });
 });

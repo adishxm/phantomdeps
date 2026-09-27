@@ -42,3 +42,7 @@
 | `P10-HOOK-UNSUPPORTED` | URL/file/VCS spec → UNVERIFIED → exit 2 | `tests/hook-subprocess.test.ts` | `phase-10` | `PASS` | `.brain/.report/phase-10-report.md` §10.6 | IBM Bob (Phase 10) |
 | `P10-HOOK-UNKNOWN` | Unknown package → NOT_FOUND/UNAVAILABLE → exit 2 | `tests/hook-subprocess.test.ts` | `phase-10` | `PASS` | `.brain/.report/phase-10-report.md` §10.6 | IBM Bob (Phase 10) |
 | `P10-TOTAL` | 131/131 tests pass after Phase 10 | `npm test` | `phase-10` | `131/131 PASS` | `.brain/.report/phase-10-report.md` | IBM Bob (Phase 10) |
+| `P11-TYPED-REGISTRY` | VERSION_NOT_FOUND distinct from PACKAGE_NOT_FOUND | `resolveFromRegistryTyped` type contract | `phase-11` | `PASS` | `.brain/.report/phase-11-report.md` §11.2 | IBM Bob (Phase 11) |
+| `P11-ARTIFACT-CLAIM` | resolveClaimsFromArtifact SYMBOL_FOUND/MISSING/UNVERIFIED | `tests/artifact-registry.test.ts` | `phase-11` | `24/24 PASS` | `.brain/.report/phase-11-report.md` §11.6 | IBM Bob (Phase 11) |
+| `P11-INTEGRITY` | Integrity not verified note when integrityVerified=false | `tests/artifact-registry.test.ts` | `phase-11` | `PASS` | `.brain/.report/phase-11-report.md` §11.6 | IBM Bob (Phase 11) |
+| `P11-TOTAL` | 155/155 tests pass after Phase 11 | `npm test` | `phase-11` | `155/155 PASS` | `.brain/.report/phase-11-report.md` | IBM Bob (Phase 11) |

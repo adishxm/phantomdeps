@@ -1,10 +1,10 @@
 /**
- * phantomdeps — static claim resolver (L2)
+ * phantomdeps — static claim resolver (L2) — Phase 11 update
  * Checks whether requested symbols are present in a package's declared exports.
- * Uses fixture export maps — never executes package code.
+ * Uses fixture export maps OR live artifact inspection — never executes package code.
  */
 
-import type { ClaimFinding, SymbolResult } from "../types.js";
+import type { ClaimFinding, SymbolResult, ArtifactInspection } from "../types.js";
 import type { Fixture } from "../fixtures/loader.js";
 
 /**
@@ -74,55 +74,63 @@ export function resolveClaimsFromFixture(
 }
 
 /**
- * Resolve claims from live package exports map (online mode).
- * v1 only handles packages that include a fixture-like exports manifest.
- * Falls back to UNVERIFIED for dynamic/CommonJS exports.
+ * Resolve claims from a live artifact inspection (Phase 11).
+ * Uses the ArtifactInspection produced by the artifact adapter.
+ * If inspection is null (failed), returns UNVERIFIED with the failure reason.
  */
-export function resolveClaimsFromExports(
-  packageName: string,
-  resolvedVersion: string,
-  exportsMap: Record<string, unknown> | null,
-  requestedSymbols: string[]
+export function resolveClaimsFromArtifact(
+  inspection: ArtifactInspection | null,
+  requestedSymbols: string[],
+  failureReason?: string
 ): ClaimFinding {
-  if (!exportsMap || !requestedSymbols.length) {
+  if (!inspection || inspection.method === "unsupported") {
+    const reason = failureReason
+      ? `Artifact inspection failed: ${failureReason}.`
+      : "Artifact inspection returned unsupported module shape.";
     return {
-      packageName,
-      resolvedVersion,
+      packageName: inspection?.packageName ?? "unknown",
+      resolvedVersion: inspection?.resolvedVersion ?? "unknown",
       requestedSymbols,
       symbolResults: requestedSymbols.map((sym) => ({
         symbol: sym,
         status: "ambiguous" as const,
-        evidence: "Cannot determine export without a static declaration; requires further inspection.",
+        evidence: `${reason} Use --fixture for a deterministic result.`,
       })),
       verdict: "UNVERIFIED",
-      citations: ["No static exports map available; use --fixture for a deterministic result."],
+      citations: [reason, "Use --fixture for deterministic symbol verification."],
       source: "live",
     };
   }
 
-  // Flatten top-level keys from the exports map
-  const topLevelKeys = Object.keys(exportsMap);
+  const exportedSet = new Set(inspection.exportedNames);
   const symbolResults: SymbolResult[] = requestedSymbols.map((sym) => {
-    const found = topLevelKeys.some(
-      (k) => k === sym || k === `./${sym}` || k === `./dist/${sym}`
-    );
+    const found = exportedSet.has(sym);
     return {
       symbol: sym,
       status: found ? ("found" as const) : ("missing" as const),
       evidence: found
-        ? `Symbol '${sym}' appears in exports map of ${packageName}@${resolvedVersion}`
-        : `Symbol '${sym}' absent from exports map of ${packageName}@${resolvedVersion}`,
+        ? `Symbol '${sym}' found in ${inspection.exportsSource} of ${inspection.packageName}@${inspection.resolvedVersion}. Artifact hash: ${inspection.artifactHash}`
+        : `Symbol '${sym}' NOT found in ${inspection.exportsSource} of ${inspection.packageName}@${inspection.resolvedVersion}. Exported names (${inspection.exportedNames.length}): [${inspection.exportedNames.slice(0, 10).join(", ")}]. Artifact hash: ${inspection.artifactHash}`,
     };
   });
 
   const hasMissing = symbolResults.some((r) => r.status === "missing");
+  const integrityNote = inspection.integrityVerified
+    ? `Integrity verified: ${inspection.tarballIntegrity.slice(0, 32)}…`
+    : "Integrity not verified";
+
   return {
-    packageName,
-    resolvedVersion,
+    packageName: inspection.packageName,
+    resolvedVersion: inspection.resolvedVersion,
     requestedSymbols,
     symbolResults,
     verdict: hasMissing ? "SYMBOL_MISSING" : "SYMBOL_FOUND",
-    citations: [`Live exports map from registry; ${topLevelKeys.length} top-level keys`],
+    citations: [
+      `Live artifact inspection via ${inspection.method}`,
+      `Source: ${inspection.exportsSource}`,
+      `Artifact hash: ${inspection.artifactHash}`,
+      integrityNote,
+    ],
     source: "live",
   };
 }

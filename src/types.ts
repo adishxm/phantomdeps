@@ -9,6 +9,51 @@ export type Verdict = "ALLOW" | "WARN" | "BLOCK" | "UNVERIFIED";
 
 export type Origin = "human" | "agent" | "ci" | "fixture";
 
+// ── Phase 11: Typed registry outcomes ────────────────────────────────────────
+
+/**
+ * Typed failure outcomes from the registry adapter.
+ * Each is distinct — never conflate VERSION_NOT_FOUND with PACKAGE_NOT_FOUND.
+ */
+export type RegistryFailure =
+  | "PACKAGE_NOT_FOUND"    // HTTP 404 for the packument (package does not exist)
+  | "VERSION_NOT_FOUND"    // Package exists but the requested version is absent
+  | "REGISTRY_UNAVAILABLE" // Network error, timeout, non-404 HTTP error
+  | "MALFORMED_RESPONSE"   // Response is not valid JSON or missing required fields
+  | "PRIVATE_OR_AUTH_REQUIRED"; // 401/403 — package exists but is private/scoped
+
+/**
+ * Result type for resolveFromRegistry — now typed instead of using null/"UNAVAILABLE".
+ * Callers must pattern-match on the tag field; they may never treat a failure as ALLOW.
+ */
+export type RegistryResult =
+  | { ok: true; evidence: PackageEvidence }
+  | { ok: false; failure: RegistryFailure };
+
+// ── Artifact inspection types (Phase 11) ─────────────────────────────────────
+
+/**
+ * Result of inspecting a tarball's static exports.
+ * Produced by the artifact adapter — never executes package code.
+ */
+export interface ArtifactInspection {
+  /** Package name and version inspected */
+  packageName: string;
+  resolvedVersion: string;
+  /** sha512 integrity of the downloaded tarball, format: sha512-<base64> */
+  tarballIntegrity: string;
+  /** Whether the integrity matches the registry-declared value */
+  integrityVerified: boolean;
+  /** Inspection method used */
+  method: "exports_field" | "declarations" | "entry_scan" | "unsupported";
+  /** Top-level exported names found by static inspection */
+  exportedNames: string[];
+  /** Raw source of the exports declaration (e.g. "package.json#exports") */
+  exportsSource: string;
+  /** Artifact hash of the inspected tarball content */
+  artifactHash: string;
+}
+
 /** A single parsed install intent from argv. */
 export interface InstallIntent {
   ecosystem: Ecosystem;
