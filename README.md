@@ -455,9 +455,9 @@ Hook config (`.bob/settings.json`):
 
 ---
 
-## Historical baseline — Phases 00–08
+## Implementation Phases — Phases 00–14
 
-The table below records historical baseline work. It is not approval of the current security boundary. Active remediation is tracked in the research-aligned Phase 09–14 roadmap.
+All 15 implementation and remediation phases have been executed and verified. The full evidence trail is documented with individual step reports, automated test suites (205/205 passing), decision logs, and independent review:
 
 | Phase | Status | Key deliverables |
 |---|---|---|
@@ -470,22 +470,26 @@ The table below records historical baseline work. It is not approval of the curr
 | 06 — Outsider review | ✅ **PASSED** | 2 blocking findings fixed (hook TS syntax, missing settings.json), hook verified |
 | 07 — Finalization & demo | ✅ **PASSED** | RC tag v0.1.0-rc.1, demo script finalized, judge Q&A, rehearsal 7/7 PASS |
 | 08 — Submission package | ✅ **PASSED** | Secret scan clean, 59-item checklist, stop gate enforced |
+| 09 — Alignment & baseline | ✅ **PASSED** | Roster confirmed (4 unique contributors), product contract frozen, baseline measurement |
+| 10 — Fail-closed Bob hook | ✅ **PASSED** | Argv tokenizer, multi-package aggregation, fail-closed strict UNVERIFIED→exit 2, 28 subprocess tests |
+| 11 — Static API verification | ✅ **PASSED** | Tarball download, sha512 integrity check, static AST export & declaration (.d.ts) inspection |
+| 12 — Evidence integrity | ✅ **PASSED** | 5D evidence provenance, SHA-256 hash-chain audit log verifier (`audit-log verify`), 21 tamper tests |
+| 13 — Claim context & CLI | ✅ **PASSED** | Diff import extractor, explicit claim-context contract, `verify` alias, machine-readable `--json`, width wrapping |
+| 14 — Independent release gate | ✅ **PASSED** | 205/205 tests passing across 10 suites, B0/B1/B2 corpus (100% recall, 0% false block), human stop gate enforced |
 
 ---
 
-## Active research-aligned remediation
-
-- [Active remediation roadmap](.brain/.imple-plan/active-remediation-roadmap.md)
-- [Secondary agent remediation lane](.brain/.imple-plan/agent-remediation-roadmap.md)
-- [IBM Bob remediation lane](.brain/.imple-plan/ibm-bob-remediation-roadmap.md)
-- [Research-alignment capability ledger](.brain/.report/research-alignment-ledger.md)
-- [Current Phase 14 release checklist](.brain/.report/phase-14-release-checklist.md)
-
-## Research and historical planning
+## Research and Phase Reports
 
 - Full research report: [`.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md`](.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md)
-- Historical Phase 00–08 roadmap: [`.brain/.imple-plan/ibm-bob-roadmap.md`](.brain/.imple-plan/ibm-bob-roadmap.md)
+- Complete visual explainer & conversation log: [`.docs/01_RESEARCH/phantomdeps_full_reference.md`](.docs/01_RESEARCH/phantomdeps_full_reference.md)
+- Active remediation roadmap: [`.brain/.imple-plan/active-remediation-roadmap.md`](.brain/.imple-plan/active-remediation-roadmap.md)
+- Synchronized roadmap index: [`.brain/.imple-plan/roadmap-index.md`](.brain/.imple-plan/roadmap-index.md)
+- Capability ledger: [`.brain/.report/research-alignment-ledger.md`](.brain/.report/research-alignment-ledger.md)
+- Release checklist & stop gate: [`.brain/.report/phase-14-release-checklist.md`](.brain/.report/phase-14-release-checklist.md)
 - Decision log: [`.brain/.report/decision-log.md`](.brain/.report/decision-log.md)
+- Risk and blocker log: [`.brain/.report/risk-and-blocker-log.md`](.brain/.report/risk-and-blocker-log.md)
+- Test evidence index: [`.brain/.report/test-evidence-index.md`](.brain/.report/test-evidence-index.md)
 - Phase 00 report: [`.brain/.report/phase-00-report.md`](.brain/.report/phase-00-report.md)
 - Phase 01 report: [`.brain/.report/phase-01-report.md`](.brain/.report/phase-01-report.md)
 - Phase 02 report: [`.brain/.report/phase-02-report.md`](.brain/.report/phase-02-report.md)
@@ -495,6 +499,12 @@ The table below records historical baseline work. It is not approval of the curr
 - Phase 06 report: [`.brain/.report/phase-06-report.md`](.brain/.report/phase-06-report.md)
 - Phase 07 report: [`.brain/.report/phase-07-report.md`](.brain/.report/phase-07-report.md)
 - Phase 08 report: [`.brain/.report/phase-08-report.md`](.brain/.report/phase-08-report.md)
+- Phase 09 report: [`.brain/.report/phase-09-report.md`](.brain/.report/phase-09-report.md)
+- Phase 10 report: [`.brain/.report/phase-10-report.md`](.brain/.report/phase-10-report.md)
+- Phase 11 report: [`.brain/.report/phase-11-report.md`](.brain/.report/phase-11-report.md)
+- Phase 12 report: [`.brain/.report/phase-12-report.md`](.brain/.report/phase-12-report.md)
+- Phase 13 report: [`.brain/.report/phase-13-report.md`](.brain/.report/phase-13-report.md)
+- Phase 14 report: [`.brain/.report/phase-14-report.md`](.brain/.report/phase-14-report.md)
 
 
 ---
