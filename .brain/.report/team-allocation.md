@@ -15,8 +15,9 @@ The original plan reserved a fourth contributor slot for PPT/demo ownership. **P
 | Contributor 1 — Product + architecture + demo + PPT | **Aditya Kumar Sharma** | https://github.com/adishxm | Phases 0–2, 7–8, roadmap, demo script, PPT, submission |
 | Contributor 2 — Implementation + test engineer | **Narayan Kumar Jha** | narayan.nkj@gmail.com | Phase 3, `src/`, tests, fixtures |
 | Contributor 3 — Validation + IBM Bob workflow | **Utkarsh Yadav** | https://github.com/utkarsh-2207 | Phases 4–6, edge-cases, hook, Bob session evidence |
+| Contributor 4 — Contributor | **Roshan Singh** | https://github.com/rs3260821-dotcom | Contributor |
 
-> Decision: D-005 (team of three, Contributor 4 slot merged into Contributor 1). Approved Phase 09. Evidence: `CONTRIBUTING.md`, `package.json` contributors, `team-allocation.md` Phase 09 update.
+> Decision: D-005 (team confirmed; Contributor 4 = Roshan Singh). Evidence: `CONTRIBUTING.md`, `package.json` contributors, `team-allocation.md` Phase 09 update.
 
 ## Allocation rule
 

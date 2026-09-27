@@ -37,12 +37,12 @@ All five steps completed. All four completion-gate checks pass. No code changed.
 
 ## Step 09.1 — Roster
 
-**Decision:** The original four-contributor plan allocated Contributor 4 (PPT/demo/submission) as a separate person. No fourth person exists. Phase 09 formally resolves this as a **three-person team** with PPT/demo ownership held by Contributor 1 (Aditya Kumar Sharma).
+**Decision:** **Roshan Singh** (GitHub: [@rs3260821-dotcom](https://github.com/rs3260821-dotcom)) added as Contributor 4. The team is now four contributors: Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, and Roshan Singh.
 
 **Files changed:**
-- `package.json` — contributor roles added in parentheses
-- `CONTRIBUTING.md` — draft status removed; three-person roster table added; PPT ownership explicit
-- `.brain/.report/team-allocation.md` — Phase 09 roster decision section added; Contributor 4 slot formally merged
+- `package.json` — Roshan Singh added to contributors array
+- `CONTRIBUTING.md` — Roshan Singh added to roster table and contributors list
+- `.brain/.report/team-allocation.md` — Contributor 4 = Roshan Singh recorded
 
 **Decision log entry:** D-015 (recorded below)
 

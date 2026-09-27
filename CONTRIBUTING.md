@@ -13,6 +13,7 @@ This is a **three-person team**. The original four-contributor plan allocation r
 | Product + architecture + demo + PPT | **Aditya Kumar Sharma** | [@adishxm](https://github.com/adishxm) | Phases 0–2, 7–8, roadmap decisions, PPT, timed demo |
 | Implementation + tests | **Narayan Kumar Jha** | [narayan.nkj@gmail.com](mailto:narayan.nkj@gmail.com) | Phase 3, CLI, parser, gate, fixtures |
 | Validation + security + IBM Bob | **Utkarsh Yadav** | [@utkarsh-2207](https://github.com/utkarsh-2207) | Phases 4–6, edge-cases, hook, Bob workflow |
+| Contributor | **Roshan Singh** | [@rs3260821-dotcom](https://github.com/rs3260821-dotcom) | Contributor |
 
 ## Repository
 
@@ -37,5 +38,6 @@ Every commit should cite the phase/step ID, evidence path, and exact commands th
 - **Aditya Kumar Sharma** ([@adishxm](https://github.com/adishxm)) — product, architecture, demo, PPT
 - **Narayan Kumar Jha** ([narayan.nkj@gmail.com](mailto:narayan.nkj@gmail.com)) — implementation, tests
 - **Utkarsh Yadav** ([@utkarsh-2207](https://github.com/utkarsh-2207)) — validation, security, IBM Bob workflow
+- **Roshan Singh** ([@rs3260821-dotcom](https://github.com/rs3260821-dotcom)) — contributor
 
 

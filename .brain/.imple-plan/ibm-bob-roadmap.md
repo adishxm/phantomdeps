@@ -6,6 +6,7 @@
 **Last-updated commit:** `76ecbff`
 **Historical phases:** 00–08 recorded as passed at the time; active remediation is in `ibm-bob-remediation-roadmap.md`.
 **Repository:** https://github.com/adishxm/phantomdeps
+**Contributors:** Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh
 **Release tag:** `v0.1.0` (commit `c31a950`)
 
 This file preserves the Phase 00–08 baseline. It is not evidence that the current Bob hook is fail-closed or that live API inspection is implemented. Use the active synchronized remediation lane for Phases 09–14.

@@ -93,6 +93,7 @@
 | Project description | Aditya Kumar Sharma | ✅ READY | See step 8.2 description draft |
 | Tags | Aditya Kumar Sharma | ✅ READY | `ibm-bob, npm, dependency-security, ai-agents, static-analysis, pre-install, hallucination, supply-chain` |
 | Repository URL | Aditya Kumar Sharma | ✅ DONE | https://github.com/adishxm/phantomdeps |
+| Team details | All | ✅ READY | Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh |
 | Application / demo URL | **Contributor 4** | ⚠️ NEEDS HUMAN DECISION | Confirm acceptable format on live form |
 | Cover image | **Contributor 4** | ⚠️ NEEDS HUMAN ACTION | Capture from demo terminal |
 | Video | **Contributor 4** | ⚠️ NEEDS HUMAN ACTION | Record using demo-script.md |

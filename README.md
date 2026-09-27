@@ -335,11 +335,10 @@ The table below records historical baseline work. It is not approval of the curr
 
 ## Contributors
 
-Three-person team (Phase 09 decision — D-005 resolved as team-of-three; PPT/demo ownership held by Contributor 1):
-
 - [Aditya Kumar Sharma](https://github.com/adishxm) — product, architecture, demo, PPT
 - [Narayan Kumar Jha](mailto:narayan.nkj@gmail.com) — implementation, tests
 - [Utkarsh Yadav](https://github.com/utkarsh-2207) — validation, security, IBM Bob workflow
+- [Roshan Singh](https://github.com/rs3260821-dotcom) — contributor
 
 
 ---

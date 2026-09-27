@@ -102,8 +102,9 @@
 | Aditya Kumar Sharma | Product + architecture lead; primary maintainer | https://github.com/adishxm |
 | Narayan Kumar Jha | Implementation + test engineer | narayan.nkj@gmail.com |
 | Utkarsh Yadav | Validation + IBM Bob workflow lead | https://github.com/utkarsh-2207 |
+| Roshan Singh | Contributor | https://github.com/rs3260821-dotcom |
 
-> Source: `package.json` contributors field + `git log` (commit `3fa529c` adds Utkarsh Yadav).
+> Source: `package.json` contributors field + `git log`.
 
 ---
 

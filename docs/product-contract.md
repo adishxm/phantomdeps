@@ -2,10 +2,11 @@
 
 <!-- Status: FROZEN | Phase: 09 | Last-updated commit: phase-09 -->
 
-**Version:** v1 (Phase 09 freeze)  
-**Status:** `FROZEN` — no modifications without a recorded Phase 09+ decision  
-**Owner:** Aditya Kumar Sharma (Contributor 1)  
-**Approved:** Phase 09 — Truth Reset, Contract Freeze, and Baseline  
+**Version:** v1 (Phase 09 freeze)
+**Status:** `FROZEN` — no modifications without a recorded Phase 09+ decision
+**Owner:** Aditya Kumar Sharma (Contributor 1)
+**Approved:** Phase 09 — Truth Reset, Contract Freeze, and Baseline
+**Contributors:** Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh
 
 ---
 

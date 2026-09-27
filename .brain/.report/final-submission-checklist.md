@@ -15,7 +15,7 @@
 | Screenshots/cover image | Terminal demo output (BLOCK/ALLOW/WARN), hook verification | Contributor 4 | ⚠️ NEEDS HUMAN ACTION |
 | Slides (PDF) | Built from ppt-outline.md; every claim cites evidence; Contributor 3 reviewed | Contributor 4 | ⚠️ NEEDS HUMAN ACTION |
 | Pitch/description/tags | Drafted in phase-08-step-8.2; grounded in measured results | Aditya Kumar Sharma | ✅ READY |
-| Team details | Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav (package.json) | Aditya Kumar Sharma | ✅ READY |
+| Team details | Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh (package.json) | Aditya Kumar Sharma | ✅ READY |
 | Bob-assisted files | `.brain/` plans + reports (00–08) in repository | All | ✅ READY |
 | Bob task-session screenshots | Bob interface export | Contributor 4 | ⚠️ NEEDS HUMAN ACTION |
 | Exported Bob report | Bob interface export | Contributor 4 | ⚠️ NEEDS HUMAN ACTION |

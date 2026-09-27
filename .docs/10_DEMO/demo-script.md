@@ -1,7 +1,8 @@
-<!-- Status: FINAL | Phase: 07 | Last-updated commit: phase-07 -->
+<!-- Status: FINAL | Phase: 07 | Last-updated commit: phase-09 -->
 # `phantomdeps` — Timed Demo Script
 
-**Version:** v0.1.0-rc.1 (commit `7a493ac`)  
+**Version:** v0.1.0-rc.1 (commit `7a493ac`)
+**Contributors:** Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh
 **Target time:** 90 seconds  
 **Environment required:** Node.js ≥18, npm, repo cloned, `npm install` done  
 **All commands use offline fixtures — no network required**

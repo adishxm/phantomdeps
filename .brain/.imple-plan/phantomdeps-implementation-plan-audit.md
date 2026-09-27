@@ -1,8 +1,9 @@
 # phantomdeps `.brain` Implementation-Plan Audit
 
-**Repository:** `https://github.com/adishxm/phantomdeps`  
-**Current main commit reviewed:** `5bade2b` — `docs: add Phase 09-14 implementation plans and updated roadmap index`  
-**Review date:** 27 September 2026  
+**Repository:** `https://github.com/adishxm/phantomdeps`
+**Contributors:** Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh
+**Current main commit reviewed:** `5bade2b` — `docs: add Phase 09-14 implementation plans and updated roadmap index`
+**Review date:** 27 September 2026
 **Comparison baseline:** IBM Bob 2.0 phantomdeps research report and the prior product-accuracy audit.
 
 ## Executive verdict

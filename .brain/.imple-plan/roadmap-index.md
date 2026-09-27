@@ -3,6 +3,7 @@
 
 **Status:** `ACTIVE — research-aligned remediation not yet executed`
 **Repository:** https://github.com/adishxm/phantomdeps
+**Contributors:** Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh
 **Historical baseline:** Phases 00–08 and tag `v0.1.0`
 **Active plan:** Phases 09–14
 

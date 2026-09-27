@@ -5,6 +5,7 @@
 **Last-updated commit:** `76ecbff` (historical Phase 00–08 evidence)
 **Historical phases:** 00 through 08 recorded baseline work; active Phases 09–14 are not complete.
 **Repository:** https://github.com/adishxm/phantomdeps
+**Contributors:** Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh
 **Release tag:** `v0.1.0` (commit `c31a950`)
 **Date:** 2026-09-27
 
