@@ -8,7 +8,7 @@
 ![Version](https://img.shields.io/badge/version-v0.1.0%20historical-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-`phantomdeps` is an npm-first verification prototype. Its offline fixture path demonstrates a pre-install decision when a package exists but a generated symbol is absent. Its current live path resolves npm metadata and returns `UNVERIFIED` when static API evidence is unavailable. The current Bob hook is tested against the documented fixture payload and remains subject to the active fail-closed remediation phases.
+`phantomdeps` is an npm-first, **verification-only** pre-install claim gate. It never installs or executes package code. Its offline fixture path provides a deterministic BLOCK/WARN/ALLOW demo against version-pinned snapshots. In live mode it resolves npm registry metadata and returns `UNVERIFIED` when static API evidence is unavailable. Static symbol verification is implemented only against the committed fixture subset; live-mode symbol checking is a planned Phase 11 target. The IBM Bob `PreToolUse` hook operates on the fixture path only and is an active remediation target for fail-closed behavior.
 
 ---
 
@@ -18,7 +18,12 @@ AI coding agents hallucinate package names and symbols. A [USENIX Security 2025 
 
 Name-existence checks miss the harder case: a real package that simply does not export the symbol the agent's code imports. `phantomdeps` catches that gap.
 
-> **Current limitation:** The committed fixtures provide the strongest API-claim demo. Live npm mode currently returns `UNVERIFIED` when static API evidence is unavailable. The Bob hook is an active remediation target for unknown, unsupported, option-first, and multi-package commands; do not treat it as production-ready fail-closed protection yet.
+> **Current limitations (Phase 09 baseline):**
+> - Fixture mode provides the only deterministic static-symbol demo. Live npm mode returns `UNVERIFIED` when static API evidence is unavailable.
+> - Static symbol verification in live mode is `fixture-only` at HEAD; live tarball inspection is planned for Phase 11.
+> - Provenance (publish date) is always `null` in live mode; provenance risk signals are `fixture-only`.
+> - The Bob `PreToolUse` hook intercepts only single-package `npm install/add/i` commands; multi-package, `npx`, and option-first forms pass through. It is an active remediation target.
+> - The `install`/`add` command aliases perform **verification only** — they do not run `npm install`.
 
 ```
 IBM Bob: "import { isOddBatch } from 'is-odd'"   ← hallucinated symbol
@@ -137,14 +142,15 @@ npx tsx src/cli.ts demo --fixture --offline
 npx tsx src/cli.ts demo --fixture --offline --scenario allow
 npx tsx src/cli.ts demo --fixture --offline --scenario warn
 
-# Check a package against live registry
+# Check a package against live registry (metadata + integrity; symbol check: UNVERIFIED in live mode)
 npx tsx src/cli.ts check lodash@4.17.21 --symbols merge,cloneDeep
 
-# Drop-in install wrapper
+# Verification-only install alias (does NOT run npm install; same as check)
 npx tsx src/cli.ts install is-odd --symbols isOddBatch
 ```
 
-**Exit codes:** `0` = ALLOW · `1` = WARN · `2` = BLOCK · `3` = UNVERIFIED
+**Exit codes (check/install commands):** `0` = ALLOW · `1` = WARN · `2` = BLOCK · `3` = UNVERIFIED
+**Exit code (demo command):** always `0` when the demo verdict matches the expected verdict.
 
 ---
 
@@ -261,6 +267,28 @@ Hook config (`.bob/settings.json`):
 
 ---
 
+## Capability matrix
+
+| Capability | Status | Notes |
+|---|---|---|
+| Fixture-mode BLOCK / WARN / ALLOW demo | `implemented` | 3 committed fixtures; deterministic; 103/103 tests |
+| npm registry metadata resolution (live mode) | `implemented` | Version pinning, integrity, install-script signal |
+| Static symbol verification — fixture path | `implemented` | Against committed fixture `exports` + `claimedSymbols` |
+| Static symbol verification — live mode | `fixture-only` | Live tarball inspection planned Phase 11 |
+| `UNVERIFIED` verdict (non-blocking ambiguity) | `implemented` | Never silently converted to ALLOW |
+| Provenance / publish-date risk signal | `fixture-only` | `publishedAt` always `null` in live mode; Phase 12 target |
+| IBM Bob `PreToolUse` hook — fixture path | `implemented` | Exit 2 = BLOCK, exit 0 = allow; stderr reason visible in Bob UI |
+| IBM Bob `PreToolUse` hook — live path | `planned` | Phase 10 fail-closed remediation target |
+| Multi-package command interception | `planned` | Phase 10 target |
+| Shell-metachar / protocol injection rejection | `implemented` | `PROTOCOL_RE`, 214-char limit, metachar guard |
+| NDJSON hash-chained decision log | `implemented` | `.phantomdeps/decisions.ndjson`; SHA-256 chain |
+| Patch-suggestion remediation | `implemented` | Terminal card only; human approval required; no auto-apply |
+| Non-npm ecosystems (pip, cargo, gem, …) | `unsupported` | npm-first only in v1 |
+| Transitive dependency analysis | `unsupported` | Not in v1 scope |
+| Lock-file / dependency graph analysis | `unsupported` | Not in v1 scope |
+
+---
+
 ## Historical baseline — Phases 00–08
 
 The table below records historical baseline work. It is not approval of the current security boundary. Active remediation is tracked in the research-aligned Phase 09–14 roadmap.
@@ -307,9 +335,11 @@ The table below records historical baseline work. It is not approval of the curr
 
 ## Contributors
 
-- [Aditya Kumar Sharma](https://github.com/adishxm)
-- [Narayan Kumar Jha](mailto:narayan.nkj@gmail.com)
-- [Utkarsh Yadav](https://github.com/utkarsh-2207)
+Three-person team (Phase 09 decision — D-005 resolved as team-of-three; PPT/demo ownership held by Contributor 1):
+
+- [Aditya Kumar Sharma](https://github.com/adishxm) — product, architecture, demo, PPT
+- [Narayan Kumar Jha](mailto:narayan.nkj@gmail.com) — implementation, tests
+- [Utkarsh Yadav](https://github.com/utkarsh-2207) — validation, security, IBM Bob workflow
 
 
 ---

@@ -1,44 +1,41 @@
-<!-- Status: DRAFT | Last-updated commit: 8d9ba18 -->
+<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
 # Contribution Guide
 
-**Status:** `DRAFT`  
-**Last-updated commit:** `PENDING`
+**Status:** `ACTIVE`
+**Last-updated commit:** `phase-09`
 
-## Create the product repository
+## Roster decision (Phase 09)
 
-The current repository is a planning scaffold. Before implementation, create or attach the actual product repository and preserve this `.brain` and `.docs` structure.
+This is a **three-person team**. The original four-contributor plan allocation required a fourth person for PPT/demo ownership. That fourth slot is explicitly reassigned to **Aditya Kumar Sharma** (Contributor 1), who owns both product/architecture and demo/PPT delivery. No external fourth contributor exists.
 
-```bash
-git init -b main
- git add README.md CONTRIBUTING.md .docs .brain .gitignore
- git commit -m "chore: initialize phantomdeps repository"
-```
+| Role | Name | Identity | Owns |
+|---|---|---|---|
+| Product + architecture + demo + PPT | **Aditya Kumar Sharma** | [@adishxm](https://github.com/adishxm) | Phases 0–2, 7–8, roadmap decisions, PPT, timed demo |
+| Implementation + tests | **Narayan Kumar Jha** | [narayan.nkj@gmail.com](mailto:narayan.nkj@gmail.com) | Phase 3, CLI, parser, gate, fixtures |
+| Validation + security + IBM Bob | **Utkarsh Yadav** | [@utkarsh-2207](https://github.com/utkarsh-2207) | Phases 4–6, edge-cases, hook, Bob workflow |
 
-Replace the placeholder roster in `.brain/.report/team-allocation.md` and `.brain/.report/team-knowledge-matrix.md` before assigning tasks.
+## Repository
+
+The live product repository is at **https://github.com/adishxm/phantomdeps**.
 
 ## Branches
 
-- `main` — protected integration branch.
-- `work/contributor-1-product`
-- `work/contributor-2-core`
-- `work/contributor-3-validation`
-- `work/contributor-4-demo-ppt`
+- `main` — integration branch.
 
-Use small, reviewable commits. Never commit secrets, `.repo` material, dependencies, or generated build output.
+Use small, reviewable commits. Never commit secrets, `node_modules`, or generated build output.
 
 ## Ownership
 
-- Contributor 1: product and architecture decisions.
-- Contributor 2: core implementation and tests.
-- Contributor 3: validation/security, IBM Bob evidence, and backup takeover.
-- Contributor 4: PPT/demo/submission package plus demo fixture contribution.
+- **Aditya Kumar Sharma**: product contract, architecture decisions, demo script, PPT, submission package.
+- **Narayan Kumar Jha**: core implementation (`src/`), unit tests, fixtures.
+- **Utkarsh Yadav**: local/advanced validation, edge-case tests, PreToolUse hook, Bob session evidence.
 
-Every pull request should state the phase/step ID, evidence paths, exact tests, and rollback point. No phase is passed from a plan alone.
+Every commit should cite the phase/step ID, evidence path, and exact commands that were run. No phase is marked `PASSED` from a plan alone.
 
 ## Contributors
 
-- **Aditya Kumar Sharma** ([@adishxm](https://github.com/adishxm))
-- **Narayan Kumar Jha** ([narayan.nkj@gmail.com](mailto:narayan.nkj@gmail.com))
-- **Utkarsh Yadav** ([@utkarsh-2207](https://github.com/utkarsh-2207))
+- **Aditya Kumar Sharma** ([@adishxm](https://github.com/adishxm)) — product, architecture, demo, PPT
+- **Narayan Kumar Jha** ([narayan.nkj@gmail.com](mailto:narayan.nkj@gmail.com)) — implementation, tests
+- **Utkarsh Yadav** ([@utkarsh-2207](https://github.com/utkarsh-2207)) — validation, security, IBM Bob workflow
 
 

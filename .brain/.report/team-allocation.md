@@ -1,18 +1,22 @@
-<!-- Status: COMPLETE | Last-updated commit: 76ecbff -->
-# Four-Contributor Work Allocation — `phantomdeps`
+<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
+# Three-Contributor Work Allocation — `phantomdeps`
 
-**Status:** `COMPLETE`
-**Last-updated commit:** `76ecbff`
-**Roster (confirmed — Phase 08):**
+**Status:** `ACTIVE`
+**Last-updated commit:** `phase-09`
 
-| Contributor | Real name | Identity |
-|---|---|---|
-| Contributor 1 (Product + architecture lead) | **Aditya Kumar Sharma** | https://github.com/adishxm |
-| Contributor 2 (Core implementation + test engineer) | **Narayan Kumar Jha** | narayan.nkj@gmail.com |
-| Contributor 3 (Validation + IBM Bob workflow lead) | **Utkarsh Yadav** | https://github.com/utkarsh-2207 |
-| Contributor 4 (Demo + submission lead) | **Aditya Kumar Sharma** (also Contributor 1 — team of 3) | — |
+## Phase 09 roster decision
 
-> Source: `package.json` contributors field; `git log` commit `3fa529c` adds Utkarsh Yadav; commits `987a6b9` and `52c3d65` establish Aditya Kumar Sharma and Narayan Kumar Jha.
+The original plan reserved a fourth contributor slot for PPT/demo ownership. **Phase 09 formally resets the plan to a three-person team.** Contributor 4 responsibilities are merged into Contributor 1 (Aditya Kumar Sharma). No external fourth contributor exists or will be added.
+
+**Roster (confirmed — Phase 09):**
+
+| Role | Real name | Identity | Owns |
+|---|---|---|---|
+| Contributor 1 — Product + architecture + demo + PPT | **Aditya Kumar Sharma** | https://github.com/adishxm | Phases 0–2, 7–8, roadmap, demo script, PPT, submission |
+| Contributor 2 — Implementation + test engineer | **Narayan Kumar Jha** | narayan.nkj@gmail.com | Phase 3, `src/`, tests, fixtures |
+| Contributor 3 — Validation + IBM Bob workflow | **Utkarsh Yadav** | https://github.com/utkarsh-2207 | Phases 4–6, edge-cases, hook, Bob session evidence |
+
+> Decision: D-005 (team of three, Contributor 4 slot merged into Contributor 1). Approved Phase 09. Evidence: `CONTRIBUTING.md`, `package.json` contributors, `team-allocation.md` Phase 09 update.
 
 ## Allocation rule
 

@@ -1,8 +1,8 @@
-<!-- Status: COMPLETE | Last-updated commit: phase-08 -->
+<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
 # Risk and Blocker Log
 
-**Status:** `COMPLETE`  
-**Last-updated commit:** `phase-08`
+**Status:** `ACTIVE`
+**Last-updated commit:** `phase-09`
 
 | ID | Impact | Evidence | Owner | Next action | Status |
 |---|---|---|---|---|---|
@@ -14,4 +14,6 @@
 | `R-002` | Unsafe install path | npm lifecycle scripts and arbitrary source forms can execute code | Contributor 2 | Fake package manager, argv parsing, no execution, adversarial tests | `MITIGATED` — PROTOCOL_RE guard (Phase 05), shell metachar rejection, 13 adversarial tests; no package ever installed in demo or tests |
 | `R-003` | Single-person dependency during absence | Contributor 1/2 workstreams could stall without handoff | Contributor 3 | Maintain current checkout and takeover notes | `ACCEPTED/OPEN` — Contributor 3 backup role defined in team-allocation.md; phases 00–08 complete |
 | `R-004` | PPT claims diverge from implementation evidence | Presentation owner may work ahead of measured results | Contributor 4 | Every slide claim cites artifact/test; Contributor 3 reviews | `OPEN` — PPT not yet produced; reminder in Phase 08 step 8.5 checklist item #12 |
-| `R-005` | `.gitignore` absent | `node_modules/` could be accidentally staged | Phase 08 Phase 08 step 8.3 scan | Add `.gitignore` before final submission tag | `OPEN` — new risk identified in Phase 08; see step 8.3 recommendation |
+| `R-005` | `.gitignore` absent | `node_modules/` could be accidentally staged | Phase 08 step 8.3 scan | Add `.gitignore` before final submission tag | `RESOLVED` — `.gitignore` present at HEAD (`git ls-files .gitignore` confirms); verified Phase 09 baseline |
+| `R-006` | README claims overstated live-mode capability | `install` command described as "drop-in wrapper"; live symbol check implied working; provenance not noted as fixture-only | Phase 09 step 09.3 | Corrected in Phase 09 README update | `RESOLVED` — all 5 claim corrections applied; capability matrix added |
+| `R-007` | Contract ambiguous entering Phase 10 | No frozen contract existed; remediation phases could drift | Phase 09 step 09.2 | `docs/product-contract.md` frozen | `RESOLVED` — v1 contract frozen with 13 statements, 8 non-goals, Bob hook scope |

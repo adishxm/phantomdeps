@@ -1,8 +1,8 @@
-<!-- Status: COMPLETE | Last-updated commit: phase-08 -->
+<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
 # Test Evidence Index
 
-**Status:** `COMPLETE`  
-**Last-updated commit:** `phase-08`
+**Status:** `ACTIVE`
+**Last-updated commit:** `phase-09`
 
 | Test ID | Requirement | Command/procedure | Commit | Result | Evidence path | Reviewer |
 |---|---|---|---|---|---|---|
@@ -28,3 +28,12 @@
 | `P08-TEST` | 103/103 pass at Phase 08 session | `npm test` | `phase-08` HEAD | `103/103 PASS (0.594s)` | Phase 08 report | IBM Bob (Phase 08) |
 | `P08-AUDIT` | 0 vulnerabilities at Phase 08 | `npm audit --audit-level=moderate` | `phase-08` HEAD | `0 vulnerabilities` | Phase 08 step 8.3 | IBM Bob (Phase 08) |
 | `P08-SECRET` | No secrets in tracked files | Keyword grep on `git ls-files` | `phase-08` HEAD | `CLEAN` | Phase 08 step 8.3 | IBM Bob (Phase 08) |
+| `P09-BUILD` | `tsc` build passes at Phase 09 baseline | `npm run build` | `phase-09` HEAD | `BUILD_EXIT:0` | `.brain/.report/phase-09-baseline.md` §1 | IBM Bob (Phase 09) |
+| `P09-LINT` | `tsc --noEmit` clean at Phase 09 baseline | `npm run lint` | `phase-09` HEAD | `LINT_EXIT:0` | `.brain/.report/phase-09-baseline.md` §2 | IBM Bob (Phase 09) |
+| `P09-TEST` | 103/103 tests pass at Phase 09 baseline | `npm test` | `phase-09` HEAD | `103/103 PASS (~1.2s)` | `.brain/.report/phase-09-baseline.md` §3 | IBM Bob (Phase 09) |
+| `P09-DEMO-BLOCK` | Fixture BLOCK demo exits 0, verdict BLOCK | `npx tsx src/cli.ts demo --fixture --offline --scenario block` | `phase-09` HEAD | `BLOCK/exit:0` | `.brain/.report/phase-09-baseline.md` §4 | IBM Bob (Phase 09) |
+| `P09-DEMO-ALLOW` | Fixture ALLOW demo exits 0, verdict ALLOW | `npx tsx src/cli.ts demo --fixture --offline --scenario allow` | `phase-09` HEAD | `ALLOW/exit:0` | `.brain/.report/phase-09-baseline.md` §5 | IBM Bob (Phase 09) |
+| `P09-DEMO-WARN` | Fixture WARN demo exits 0, verdict WARN | `npx tsx src/cli.ts demo --fixture --offline --scenario warn` | `phase-09` HEAD | `WARN/exit:0` | `.brain/.report/phase-09-baseline.md` §6 | IBM Bob (Phase 09) |
+| `P09-HOOK-BLOCK` | Hook exits 2 on `npm install is-odd` | `echo '{...}' \| npx tsx .bob/hooks/PreToolUse.mjs` | `phase-09` HEAD | `exit 2 BLOCK` | `.brain/.report/phase-09-baseline.md` §7 | IBM Bob (Phase 09) |
+| `P09-HOOK-ALLOW` | Hook exits 0 on `npm install lodash` | `echo '{...}' \| npx tsx .bob/hooks/PreToolUse.mjs` | `phase-09` HEAD | `exit 0 ALLOW` | `.brain/.report/phase-09-baseline.md` §8 | IBM Bob (Phase 09) |
+| `P09-HOOK-PASSTHRU` | Hook exits 0 on non-npm command | `echo '{...,"ls -la"}' \| npx tsx .bob/hooks/PreToolUse.mjs` | `phase-09` HEAD | `exit 0` | `.brain/.report/phase-09-baseline.md` §9 | IBM Bob (Phase 09) |

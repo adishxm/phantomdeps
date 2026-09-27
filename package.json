@@ -4,9 +4,9 @@
   "description": "Pre-install AI dependency claim gate for IBM Bob — verifies ecosystem, artifact, and static API before npm install executes.",
   "license": "MIT",
   "contributors": [
-    "Aditya Kumar Sharma <https://github.com/adishxm>",
-    "Narayan Kumar Jha <narayan.nkj@gmail.com>",
-    "Utkarsh Yadav <https://github.com/utkarsh-2207>"
+    "Aditya Kumar Sharma <https://github.com/adishxm> (product, architecture, demo, PPT)",
+    "Narayan Kumar Jha <narayan.nkj@gmail.com> (implementation, tests)",
+    "Utkarsh Yadav <https://github.com/utkarsh-2207> (validation, security, IBM Bob workflow)"
   ],
   "type": "module",
   "bin": {

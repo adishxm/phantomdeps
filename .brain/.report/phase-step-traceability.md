@@ -1,8 +1,8 @@
-<!-- Status: COMPLETE | Last-updated commit: phase-08 -->
+<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
 # Phase/Step Traceability Matrix
 
-**Status:** `COMPLETE`  
-**Last-updated commit:** `phase-08: submission package PASSED — secret scan clean, 59-item checklist, stop gate enforced`
+**Status:** `ACTIVE`
+**Last-updated commit:** `phase-09: truth reset, contract freeze, and baseline PASSED`
 
 Both lanes use the same rows, objectives, acceptance criteria, tests, evidence requirements, and done definition. Tool-specific execution is captured in the two roadmap files.
 
@@ -59,3 +59,8 @@ Both lanes use the same rows, objectives, acceptance criteria, tests, evidence r
 | `08.8.4` | Verify the submission package against the tagged commit, not an uncommitted working tree | `.brain/.report/phase-08-step-8.4-tag-verification.md` | `v0.1.0-rc.1` tag at `7a493ac`; HEAD at `8c9bc88`; src/tests/fixtures/config identical; 103/103 at HEAD | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
 | `08.8.5` | Produce a final submission checklist with owner and status for every field | `.brain/.report/phase-08-step-8.5-final-checklist.md` | 59 items across 7 sections; 41 ready, 18 require human action; all owners named | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
 | `08.8.6` | Stop before actually submitting any official, public, legal, financial, or attestational form unless an authorized human explicitly confirms the final payload | `.brain/.report/phase-08-step-8.6-stop-gate.md` | Stop gate enforced; no submission made; 18 human-action items explicitly assigned to team members | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `09.9.1` | Formally reset plan to three contributors; assign PPT/demo ownership to Contributor 1 | `package.json`, `CONTRIBUTING.md`, `.brain/.report/team-allocation.md` | D-015: three-person roster approved; PPT/demo = Aditya Kumar Sharma | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `09.9.2` | Freeze the v1 product contract | `docs/product-contract.md` | D-016: 13 behavioral statements + 8 non-goals + Bob hook scope frozen | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `09.9.3` | Correct README claims for live API inspection, Bob scope, provenance, remediation, demo exit codes, and install naming | `README.md` diff | 5 claim corrections applied; demo exit code clarified; capability limitations bullet-listed | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `09.9.4` | Add a capability matrix labelled implemented / fixture-only / planned / unsupported | `README.md` capability table | 15-row capability matrix added between IBM Bob integration and Historical baseline sections | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |
+| `09.9.5` | Record baseline commands and expected outputs before Phase 10 changes | `.brain/.report/phase-09-baseline.md` | 12 sections; build/lint/test/demo×3/hook×3/check/audit confirmed; 5 behavioral constraints documented | IBM Bob Agent | Same contract | Same contract | `COMPLETE` |

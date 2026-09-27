@@ -1,8 +1,8 @@
-<!-- Status: COMPLETE | Last-updated commit: phase-08 -->
+<!-- Status: ACTIVE | Last-updated commit: phase-09 -->
 # Decision Log
 
-**Status:** `COMPLETE`
-**Last-updated commit:** `phase-08`
+**Status:** `ACTIVE`
+**Last-updated commit:** `phase-09`
 
 | ID | Decision | Basis | Type | Owner | Status |
 |---|---|---|---|---|---|
@@ -20,3 +20,6 @@
 | `D-012` | Phase 06 gate: PASSED — 2 blocking findings fixed (hook TS syntax + missing settings.json), hook verified exit 2/0 | Phase 06 report; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 06) | `PASSED` — Phase 07 can begin |
 | `D-013` | Phase 07 gate: PASSED — RC tag v0.1.0-rc.1 pushed, demo script finalized, judge Q&A final, rehearsal 7/7 PASS | Phase 07 report; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 07) | `PASSED` — Phase 08 can begin |
 | `D-014` | Phase 08 gate: PASSED — secret scan CLEAN, 59-item checklist 41/59 ready, 18 human-action items documented, stop gate enforced | Phase 08 report + steps 8.1–8.6; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 08) | `PASSED` — human team executes submission |
+| `D-015` | Phase 09: Team formally reset to three contributors. Contributor 4 slot merged into Contributor 1 (Aditya Kumar Sharma). PPT/demo ownership assigned to Contributor 1. No external fourth contributor added. | `CONTRIBUTING.md`, `package.json`, `team-allocation.md` Phase 09 update; Phase 09 step 09.1 | `TEAM OPERATING DECISION` | IBM Bob Agent (Phase 09) | `APPROVED` — Phase 09 |
+| `D-016` | Phase 09: v1 product contract frozen in `docs/product-contract.md`. 13 behavioral statements (C-01–C-13), 8 non-goals, Bob hook scope. No code changes begin while contract is ambiguous. | `docs/product-contract.md`; Phase 09 step 09.2 | `EVIDENCE-BASED DESIGN` | Aditya Kumar Sharma (Contributor 1) | `FROZEN` — amendments require new decision ID |
+| `D-017` | Phase 09 gate: PASSED — roster frozen (3-person), contract frozen, README corrected (5 claim corrections), capability matrix added (15 rows), baseline recorded (103/103, build/lint clean, demo 3/3, hook 3/3) | Phase 09 report + steps 09.1–09.5; executed by IBM Bob Agent mode | `GATE DECISION` | IBM Bob Agent (Phase 09) | `PASSED` — Phase 10 can begin |
