@@ -55,6 +55,9 @@ export async function inspectTarball(
     const downloadedBytes = readFileSync(tarballPath);
     const actualSha512 = "sha512-" + createHash("sha512").update(downloadedBytes).digest("base64");
     const tarballIntegrity = actualSha512;
+    // Phase 12: distinguish verified / unavailable (missing hash) / mismatch
+    const integrityVerified: boolean =
+      expectedIntegrity ? expectedIntegrity === actualSha512 : false;
 
     if (expectedIntegrity && expectedIntegrity !== actualSha512) {
       return { ok: false, reason: "INTEGRITY_MISMATCH" };
@@ -86,7 +89,11 @@ export async function inspectTarball(
     }
 
     // ── Static exports inspection ────────────────────────────────────────────
-    const inspection = inspectExports(packageName, resolvedVersion, pkgJson, extractDir, tarballIntegrity, artifactHash);
+    const inspection = inspectExports(
+      packageName, resolvedVersion, pkgJson, extractDir,
+      tarballIntegrity, artifactHash,
+      expectedIntegrity ? integrityVerified : null  // null = no expected hash (unavailable)
+    );
     return { ok: true, inspection };
 
   } finally {
@@ -198,14 +205,23 @@ async function extractTarball(tarballPath: string, destDir: string): Promise<voi
 
 // ── Static exports inspection ─────────────────────────────────────────────────
 
+/**
+ * Phase 12: integrityStatus:
+ *   true  = verified (hash matched)
+ *   false = mismatch (we would have returned early, so this means "checked but no expected hash" — treat as unavailable)
+ *   null  = no expected integrity hash was provided (unavailable)
+ */
 function inspectExports(
   packageName: string,
   resolvedVersion: string,
   pkgJson: Record<string, unknown>,
   extractDir: string,
   tarballIntegrity: string,
-  artifactHash: string
+  artifactHash: string,
+  integrityStatus: boolean | null
 ): ArtifactInspection {
+  // Phase 12: integrityVerified reflects actual integrity outcome
+  const integrityVerified = integrityStatus === true;
 
   // Try package.json#exports (ESM exports map)
   if (pkgJson.exports && typeof pkgJson.exports === "object" && !Array.isArray(pkgJson.exports)) {
@@ -215,7 +231,7 @@ function inspectExports(
       packageName,
       resolvedVersion,
       tarballIntegrity,
-      integrityVerified: true,
+      integrityVerified,
       method: "exports_field",
       exportedNames: names,
       exportsSource: "package.json#exports",
@@ -229,7 +245,7 @@ function inspectExports(
       packageName,
       resolvedVersion,
       tarballIntegrity,
-      integrityVerified: true,
+      integrityVerified,
       method: "exports_field",
       exportedNames: ["default"],
       exportsSource: "package.json#exports (string entry)",
@@ -248,7 +264,7 @@ function inspectExports(
           packageName,
           resolvedVersion,
           tarballIntegrity,
-          integrityVerified: true,
+          integrityVerified,
           method: "declarations",
           exportedNames: names,
           exportsSource: `package.json#types → ${typesEntry}`,
@@ -263,7 +279,7 @@ function inspectExports(
     packageName,
     resolvedVersion,
     tarballIntegrity,
-    integrityVerified: true,
+    integrityVerified,
     method: "unsupported",
     exportedNames: [],
     exportsSource: "no static exports declaration found",
