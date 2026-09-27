@@ -142,15 +142,30 @@ npx tsx src/cli.ts demo --fixture --offline
 npx tsx src/cli.ts demo --fixture --offline --scenario allow
 npx tsx src/cli.ts demo --fixture --offline --scenario warn
 
-# Check a package against live registry (metadata + integrity; symbol check: UNVERIFIED in live mode)
-npx tsx src/cli.ts check lodash@4.17.21 --symbols merge,cloneDeep
+# Check / verify a package against live registry
+npx tsx src/cli.ts verify lodash@4.17.21 --symbols merge,cloneDeep
 
-# Verification-only install alias (does NOT run npm install; same as check)
+# Machine-readable JSON output (Phase 13)
+npx tsx src/cli.ts verify lodash@4.17.21 --symbols merge --json
+
+# Verify from diff context — only newly added imports are checked (Phase 13)
+npx tsx src/cli.ts verify lodash@4.17.21 --symbols merge --diff changes.diff
+
+# Verify the tamper-evident audit log (Phase 12)
+npx tsx src/cli.ts audit-log verify
+npx tsx src/cli.ts audit-log verify /path/to/decisions.ndjson
+
+# 'install' and 'add' are verification-only aliases (Phase 13 — do NOT run npm install)
 npx tsx src/cli.ts install is-odd --symbols isOddBatch
 ```
 
-**Exit codes (check/install commands):** `0` = ALLOW · `1` = WARN · `2` = BLOCK · `3` = UNVERIFIED
+**Exit codes (check/verify/install commands):** `0` = ALLOW · `1` = WARN · `2` = BLOCK · `3` = UNVERIFIED
 **Exit code (demo command):** always `0` when the demo verdict matches the expected verdict.
+**Exit code (audit-log verify):** `0` = clean · `2` = violations detected.
+
+> **Phase 12 note:** The decision log is **tamper-evident after verification**, not immutable.
+> Run `audit-log verify` to validate hash chain integrity, record hashes, ordering, and schema.
+> A passing verification means no detectable tampering occurred — it does not make the log append-only.
 
 ---
 
@@ -165,7 +180,7 @@ RegistryAdapter    — resolves exact version + integrity from npm registry (L1)
     ↓
 StaticClaimChecker — checks declared exports against imported symbols (L2)
     ↓
-RiskSignals        — warning-only: install scripts, young package, no provenance (L3)
+RiskSignals        — warning-only: install scripts, young package, artifact integrity unavailable (L3)
     ↓
 PolicyEngine       — rule-first ALLOW / WARN / BLOCK / UNVERIFIED
     ↓
@@ -282,7 +297,14 @@ Hook config (`.bob/settings.json`):
 | Multi-package command interception | `implemented` | Phase 10: all specs checked; BLOCK propagates fail-closed |
 | Option-first installs (`-D`, `--save`, etc.) | `implemented` | Phase 10: flags stripped before spec extraction |
 | Shell-metachar / protocol injection rejection | `implemented` | `PROTOCOL_RE`, 214-char limit, metachar guard |
-| NDJSON hash-chained decision log | `implemented` | `.phantomdeps/decisions.ndjson`; SHA-256 chain |
+| NDJSON hash-chained decision log | `implemented` | `.phantomdeps/decisions.ndjson`; SHA-256 chain; tamper-evident after `audit-log verify` |
+| `audit-log verify` tamper-evidence check | `implemented` | Phase 12: schema, hash, chain, ordering, redaction validation |
+| Agent override records | `implemented` | Phase 12: actor, reason, timestamp, commandDigest, resultingPolicy — hash-chained |
+| Five-dimensional evidence provenance | `implemented` | Phase 12: artifactIntegrity / registrySignature / provenanceAttestation / publisherIdentity / sourceRepository |
+| Claim-context contract (--symbols / diff / file) | `implemented` | Phase 13: missing context → UNVERIFIED; no fixture substitution on live path |
+| Import diff parser | `implemented` | Phase 13: only newly added imports parsed from diff/file context |
+| Machine-readable --json output | `implemented` | Phase 13: structured JSON output for all check/verify commands |
+| Width-aware terminal wrapping | `implemented` | Phase 13: 80/120/240 column-aware output |
 | Patch-suggestion remediation | `implemented` | Terminal card only; human approval required; no auto-apply |
 | Non-npm ecosystems (pip, cargo, gem, …) | `unsupported` | npm-first only in v1 |
 | Transitive dependency analysis | `unsupported` | Not in v1 scope |
