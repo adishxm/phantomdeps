@@ -11,12 +11,12 @@
 
 The `phantomdeps` engineering team is a verified **four-person team**. Each contributor has dedicated leadership responsibilities, code ownership areas, and delivery milestones traced directly to the repository git history.
 
-| Contributor | Real Name | Git Identity & Contact | Assigned Role | Primary Phase Ownership |
+| Contributor | Real Name | GitHub Username | Assigned Role | Primary Phase Ownership |
 |---|---|---|---|---|
-| **Contributor 1** | **Aditya Kumar Sharma** | [@adishxm](https://github.com/adishxm)<br>`topasingh903811@gmail.com` | **Product Lead & System Architect** | Phases 00–02, MVP Phase 03, Roadmap/Remediation Planning (Phases 09–14), Visual Architecture |
-| **Contributor 2** | **Narayan Kumar Jha** | `narayan.nkj@gmail.com`<br>`IBM Bob` | **Core Implementation & Test Automation Lead** | Phases 04, 08, 09, 12, 13, 14, Evidence Provenance, Release Gates |
-| **Contributor 3** | **Utkarsh Yadav** | [@utkarsh-2207](https://github.com/utkarsh-2207)<br>`utkarshyadav220704@gmail.com` | **Validation, Security & IBM Bob Workflow Lead** | Phases 05, 06, 07, PreToolUse Bob Hook Config, RC Release Candidate |
-| **Contributor 4** | **Roshan Singh** | [@rs3260821-dotcom](https://github.com/rs3260821-dotcom)<br>`rs3260821@gmail.com` | **Security Enforcement & Live Tarball AST Engineer** | Phases 10, 11, Fail-Closed Argv Tokenizer, Tarball AST Verifier, Demo & Doc |
+| **Contributor 1** | **Aditya Kumar Sharma** | [@adishxm](https://github.com/adishxm) | **Product Lead & System Architect** | Phases 00–02, MVP Phase 03, Roadmap/Remediation Planning (Phases 09–14), Visual Architecture |
+| **Contributor 2** | **Narayan Kumar Jha** | [narayan-nkj (Narayan Kumar Jha)](https://github.com/narayan-nkj) | **Core Implementation & Test Automation Lead** | Phases 04, 08, 09, 12, 13, 14, Evidence Provenance, Release Gates |
+| **Contributor 3** | **Utkarsh Yadav** | [@utkarsh-2207](https://github.com/utkarsh-2207) | **Validation, Security & IBM Bob Workflow Lead** | Phases 05, 06, 07, PreToolUse Bob Hook Config, RC Release Candidate |
+| **Contributor 4** | **Roshan Singh** | [@rs3260821-dotcom](https://github.com/rs3260821-dotcom) | **Security Enforcement & Live Tarball AST Engineer** | Phases 10, 11, Fail-Closed Argv Tokenizer, Tarball AST Verifier, Demo & Doc |
 
 ---
 
@@ -24,19 +24,19 @@ The `phantomdeps` engineering team is a verified **four-person team**. Each cont
 
 All 71 commits on `main` trace directly to verified team members. Below is the distribution across commits and project milestones:
 
-| Contributor | Total Commits | Primary Phases | Key Modules & Deliverables Contributed |
-|---|:---:|---|---|
-| **Aditya Kumar Sharma** | **13** | Phases 00–03, 09–14 (Gov/Docs) | Project initialization, PRD, error taxonomy, initial typed contracts & baseline orchestrator, Phase 09–14 remediation roadmap synchronization and deduplication, Mermaid visual explainer architecture (Diagrams 2.1–2.4). |
-| **Narayan Kumar Jha** | **51** | Phases 04, 08, 09, 12–14 | Local validation & NDJSON logging fixes, Phase 08 submission package, hash-chained evidence provenance (`audit-log verify`), unified diff parser & claim-context contract, B0/B1/B2 benchmark corpus, release gate verification runner, Phase 14 closeout reports. |
-| **Utkarsh Yadav** | **4** | Phases 05–07 | Advanced validation test suite (103 tests baseline), coverage enforcement, outsider review fixes (`.bob/settings.json`, TypeScript syntax fixes), release candidate tag (`v0.1.0-rc.1`), 7/7 timed demo rehearsals. |
-| **Roshan Singh** | **3** | Phases 10–11 | Contributor 4 onboarding & roster verification, fail-closed command tokenizer & policy hook (`PreToolUse.mjs`), live npm registry exact-version & pure-Node static AST tarball verification (`src/adapters/artifact.ts`, `src/adapters/registry.ts`), live fixture capture CLI. |
-| **Total** | **71** | **Phases 00–14** | **Complete end-to-end phantom dependency detection pipeline, proof ledger, and benchmark suite** |
+| Contributor | GitHub Profile | Total Commits | Primary Phases | Key Modules & Deliverables Contributed |
+|---|---|:---:|---|---|
+| **Aditya Kumar Sharma** | [@adishxm](https://github.com/adishxm) | **13** | Phases 00–03, 09–14 (Gov/Docs) | Project initialization, PRD, error taxonomy, initial typed contracts & baseline orchestrator, Phase 09–14 remediation roadmap synchronization and deduplication, Mermaid visual explainer architecture (Diagrams 2.1–2.4). |
+| **Narayan Kumar Jha** | [narayan-nkj (Narayan Kumar Jha)](https://github.com/narayan-nkj) | **51** | Phases 04, 08, 09, 12–14 | Local validation & NDJSON logging fixes, Phase 08 submission package, hash-chained evidence provenance (`audit-log verify`), unified diff parser & claim-context contract, B0/B1/B2 benchmark corpus, release gate verification runner, Phase 14 closeout reports. |
+| **Utkarsh Yadav** | [@utkarsh-2207](https://github.com/utkarsh-2207) | **4** | Phases 05–07 | Advanced validation test suite (103 tests baseline), coverage enforcement, outsider review fixes (`.bob/settings.json`, TypeScript syntax fixes), release candidate tag (`v0.1.0-rc.1`), 7/7 timed demo rehearsals. |
+| **Roshan Singh** | [@rs3260821-dotcom](https://github.com/rs3260821-dotcom) | **3** | Phases 10–11 | Contributor 4 onboarding & roster verification, fail-closed command tokenizer & policy hook (`PreToolUse.mjs`), live npm registry exact-version & pure-Node static AST tarball verification (`src/adapters/artifact.ts`, `src/adapters/registry.ts`), live fixture capture CLI. |
+| **Total** | — | **71** | **Phases 00–14** | **Complete end-to-end phantom dependency detection pipeline, proof ledger, and benchmark suite** |
 
 ---
 
 ## 3. Detailed Commit Log by Contributor
 
-### 3.1 Aditya Kumar Sharma (`@adishxm` — 13 Commits)
+### 3.1 Aditya Kumar Sharma ([@adishxm](https://github.com/adishxm) — 13 Commits)
 
 | Commit Hash | Phase / Scope | Commit Message & Deliverable |
 |---|---|---|
@@ -56,7 +56,7 @@ All 71 commits on `main` trace directly to verified team members. Below is the d
 
 ---
 
-### 3.2 Narayan Kumar Jha (`narayan.nkj@gmail.com` / `IBM Bob` — 51 Commits)
+### 3.2 Narayan Kumar Jha ([narayan-nkj (Narayan Kumar Jha)](https://github.com/narayan-nkj) — 51 Commits)
 
 | Commit Hash | Phase / Scope | Commit Message & Deliverable |
 |---|---|---|
@@ -114,7 +114,7 @@ All 71 commits on `main` trace directly to verified team members. Below is the d
 
 ---
 
-### 3.3 Utkarsh Yadav (`@utkarsh-2207` — 4 Commits)
+### 3.3 Utkarsh Yadav ([@utkarsh-2207](https://github.com/utkarsh-2207) — 4 Commits)
 
 | Commit Hash | Phase / Scope | Commit Message & Deliverable |
 |---|---|---|
@@ -125,7 +125,7 @@ All 71 commits on `main` trace directly to verified team members. Below is the d
 
 ---
 
-### 3.4 Roshan Singh (`@rs3260821-dotcom` — 3 Commits)
+### 3.4 Roshan Singh ([@rs3260821-dotcom](https://github.com/rs3260821-dotcom) — 3 Commits)
 
 | Commit Hash | Phase / Scope | Commit Message & Deliverable |
 |---|---|---|
