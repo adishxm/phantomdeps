@@ -68,27 +68,34 @@ For developers and non-technical readers, `phantomdeps` acts as an automated saf
 
 ```mermaid
 flowchart TD
-    classDef agent fill:#3b82f6,stroke:#1d4ed8,color:#ffffff
-    classDef gate fill:#6366f1,stroke:#4338ca,color:#ffffff
-    classDef block fill:#ef4444,stroke:#b91c1c,color:#ffffff
-    classDef warn fill:#f59e0b,stroke:#b45309,color:#ffffff
-    classDef allow fill:#10b981,stroke:#047857,color:#ffffff
-    classDef human fill:#8b5cf6,stroke:#6d28d9,color:#ffffff
-
-    A["AI Assistant writes code & generates install command"] :::agent --> B["phantomdeps checks whether package exists on npm"] :::gate
-    B --> C["phantomdeps verifies imported symbols in package tarball"] :::gate
+    A["AI Assistant writes code & generates install command"] --> B["phantomdeps checks whether package exists on npm"]
+    B --> C["phantomdeps verifies imported symbols in package tarball"]
     
-    C -- "Fake package or missing symbol" --> D["BLOCK: Installation intercepted before execution"] :::block
-    C -- "Risky signal (e.g. install scripts)" --> E["WARN: Flagged for human review"] :::warn
-    C -- "Package & symbols confirmed" --> F["ALLOW: Safe to install"] :::allow
+    C -- "Fake package or missing symbol" --> D["BLOCK: Installation intercepted before execution"]
+    C -- "Risky signal (e.g. install scripts)" --> E["WARN: Flagged for human review"]
+    C -- "Package & symbols confirmed" --> F["ALLOW: Safe to install"]
     
-    D --> G["Bob proposes cited repair patch"] :::agent
-    E --> H["Human reviews risk signals"] :::human
-    G --> I["Human approves repair patch"] :::human
+    D --> G["Bob proposes cited repair patch"]
+    E --> H["Human reviews risk signals"]
+    G --> I["Human approves repair patch"]
     
     H -- "Approved" --> F
-    I --> J["Bob applies patch & re-verifies"] :::agent
-    J --> K["Tests pass & work continues safely"] :::allow
+    I --> J["Bob applies patch & re-verifies"]
+    J --> K["Tests pass & work continues safely"]
+
+    classDef agent fill:#3b82f6,stroke:#1d4ed8,color:#ffffff;
+    classDef gate fill:#6366f1,stroke:#4338ca,color:#ffffff;
+    classDef block fill:#ef4444,stroke:#b91c1c,color:#ffffff;
+    classDef warn fill:#f59e0b,stroke:#b45309,color:#ffffff;
+    classDef allow fill:#10b981,stroke:#047857,color:#ffffff;
+    classDef human fill:#8b5cf6,stroke:#6d28d9,color:#ffffff;
+
+    class A,G,J agent;
+    class B,C gate;
+    class D block;
+    class E warn;
+    class F,K allow;
+    class H,I human;
 ```
 
 > *"The package exists, but the function the AI wrote doesn't — so we catch that before anything installs, and Bob fixes it for you."*
@@ -101,30 +108,39 @@ How `phantomdeps` evaluates AI tool invocations, returns deterministic policy de
 
 ```mermaid
 flowchart TD
-    classDef dev fill:#3b82f6,stroke:#1d4ed8,color:#ffffff
-    classDef bob fill:#6366f1,stroke:#4338ca,color:#ffffff
-    classDef gate fill:#0284c7,stroke:#0369a1,color:#ffffff
-    classDef allow fill:#10b981,stroke:#047857,color:#ffffff
-    classDef warn fill:#f59e0b,stroke:#b45309,color:#ffffff
-    classDef block fill:#ef4444,stroke:#b91c1c,color:#ffffff
-    classDef unverified fill:#6b7280,stroke:#374151,color:#ffffff
-    classDef human fill:#8b5cf6,stroke:#6d28d9,color:#ffffff
-
-    A["Developer Task"] :::dev --> B["IBM Bob generates code & npm install command"] :::bob
-    B --> C["phantomdeps Pre-Install Gate"] :::gate
+    A["Developer Task"] --> B["IBM Bob generates code & npm install command"]
+    B --> C["phantomdeps Pre-Install Gate"]
     
     C --> D{"Verdict Evaluation"}
-    D -- "ALLOW" --> E["Installation Proceeds"] :::allow
-    D -- "WARN" --> F["Flagged for Human Review"] :::warn
-    D -- "BLOCK" --> G["Evidence Card & Revalidated Repair Plan"] :::block
-    D -- "UNVERIFIED" --> H["Fails Closed (Never Guesses)"] :::unverified
+    D -- "ALLOW" --> E["Installation Proceeds"]
+    D -- "WARN" --> F["Flagged for Human Review"]
+    D -- "BLOCK" --> G["Evidence Card & Revalidated Repair Plan"]
+    D -- "UNVERIFIED" --> H["Fails Closed (Never Guesses)"]
     
-    G --> I["Human Approves Patch"] :::human
+    G --> I["Human Approves Patch"]
     F -- "Approved" --> E
     H -- "Manual Verification" --> I
-    I --> J["Bob Agent Applies Patch"] :::bob
-    J --> K["Safe Build & Tests Run"] :::bob
-    K --> L["Gate Re-Checks & Decision Recorded"] :::gate
+    I --> J["Bob Agent Applies Patch"]
+    J --> K["Safe Build & Tests Run"]
+    K --> L["Gate Re-Checks & Decision Recorded"]
+
+    classDef dev fill:#3b82f6,stroke:#1d4ed8,color:#ffffff;
+    classDef bob fill:#6366f1,stroke:#4338ca,color:#ffffff;
+    classDef gate fill:#0284c7,stroke:#0369a1,color:#ffffff;
+    classDef allow fill:#10b981,stroke:#047857,color:#ffffff;
+    classDef warn fill:#f59e0b,stroke:#b45309,color:#ffffff;
+    classDef block fill:#ef4444,stroke:#b91c1c,color:#ffffff;
+    classDef unverified fill:#6b7280,stroke:#374151,color:#ffffff;
+    classDef human fill:#8b5cf6,stroke:#6d28d9,color:#ffffff;
+
+    class A dev;
+    class B,J,K bob;
+    class C,L gate;
+    class E allow;
+    class F warn;
+    class G block;
+    class H unverified;
+    class I human;
 ```
 
 > *"phantomdeps is a deterministic-first claim gate — it verifies the package and the exact API an agent's code claims to use, before install, then hands IBM Bob a cited, reviewable repair."*
@@ -137,42 +153,35 @@ The multi-layered verification pipeline architecture powering `phantomdeps`.
 
 ```mermaid
 flowchart TD
-    classDef layer0 fill:#1e293b,stroke:#475569,color:#f8fafc
-    classDef layer1 fill:#0f766e,stroke:#115e59,color:#ffffff
-    classDef layer2 fill:#1d4ed8,stroke:#1e40af,color:#ffffff
-    classDef layer3 fill:#b45309,stroke:#78350f,color:#ffffff
-    classDef layer4 fill:#4c1d95,stroke:#3b0764,color:#ffffff
-    classDef policy fill:#4338ca,stroke:#3730a3,color:#ffffff
-
     subgraph Interception ["Interception Layer (L0)"]
-        A1["Bob PreToolUse Hook (.bob/hooks/PreToolUse.mjs)"] :::layer0
-        A2["CLI Wrapper Fallback (src/cli.ts)"] :::layer0
-        A3["Command Adapter & Argv Parser (src/parser.ts)"] :::layer0
+        A1["Bob PreToolUse Hook (.bob/hooks/PreToolUse.mjs)"]
+        A2["CLI Wrapper Fallback (src/cli.ts)"]
+        A3["Command Adapter & Argv Parser (src/parser.ts)"]
     end
 
     subgraph Identity ["L1 — Identity & Registry"]
-        B1["Registry Adapter (src/adapters/registry.ts)"] :::layer1
-        B2["Non-executing Archive Inspector (src/adapters/artifact.ts)"] :::layer1
+        B1["Registry Adapter (src/adapters/registry.ts)"]
+        B2["Non-executing Archive Inspector (src/adapters/artifact.ts)"]
     end
 
     subgraph StaticResolver ["L2 — Static Claim Resolver"]
-        C1["Changed-import Diff Parser (src/adapters/diff-parser.ts)"] :::layer2
-        C2["Exports & Types AST Resolver (src/checker/static-claim.ts)"] :::layer2
+        C1["Changed-import Diff Parser (src/adapters/diff-parser.ts)"]
+        C2["Exports & Types AST Resolver (src/checker/static-claim.ts)"]
     end
 
     subgraph RiskSignals ["L3 — Risk Signals (Warn-Only)"]
-        D1["Install Scripts & Package Age (src/checker/risk-signals.ts)"] :::layer3
+        D1["Install Scripts & Package Age (src/checker/risk-signals.ts)"]
     end
 
     subgraph BoundedFit ["L4 — Bounded Task Fit (Optional)"]
-        E1["Bob Subagent (Sandboxed & Cited)"] :::layer4
+        E1["Bob Subagent (Sandboxed & Cited)"]
     end
 
     subgraph PolicyEngine ["Policy & Output Engine"]
-        F1["Rule-First Policy Engine (src/engine/policy.ts)"] :::policy
-        F2["Evidence Writer Card / JSON / SARIF (src/evidence/writer.ts)"] :::policy
-        F3["SHA-256 Hash-Chained Audit Log (.phantomdeps/decisions.ndjson)"] :::policy
-        F4["Remediation Planner (src/remediation/engine.ts)"] :::policy
+        F1["Rule-First Policy Engine (src/engine/policy.ts)"]
+        F2["Evidence Writer Card / JSON / SARIF (src/evidence/writer.ts)"]
+        F3["SHA-256 Hash-Chained Audit Log (.phantomdeps/decisions.ndjson)"]
+        F4["Remediation Planner (src/remediation/engine.ts)"]
     end
 
     Interception --> Identity
@@ -181,6 +190,20 @@ flowchart TD
     RiskSignals --> BoundedFit
     BoundedFit --> PolicyEngine
     PolicyEngine -- "Human Approved Patch" --> G["Bob Agent Applies Patch -> Safe Build & Tests"]
+
+    classDef layer0 fill:#1e293b,stroke:#475569,color:#f8fafc;
+    classDef layer1 fill:#0f766e,stroke:#115e59,color:#ffffff;
+    classDef layer2 fill:#1d4ed8,stroke:#1e40af,color:#ffffff;
+    classDef layer3 fill:#b45309,stroke:#78350f,color:#ffffff;
+    classDef layer4 fill:#4c1d95,stroke:#3b0764,color:#ffffff;
+    classDef policy fill:#4338ca,stroke:#3730a3,color:#ffffff;
+
+    class A1,A2,A3 layer0;
+    class B1,B2 layer1;
+    class C1,C2 layer2;
+    class D1 layer3;
+    class E1 layer4;
+    class F1,F2,F3,F4 policy;
 ```
 
 > *"TypeScript/Node CLI, npm registry adapter (PyPI is L1-only in v1), no code execution anywhere — only byte-level archive inspection and static parsing."*
