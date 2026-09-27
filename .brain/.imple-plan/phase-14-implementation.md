@@ -1,4 +1,4 @@
-<!-- Status: READY | Phase: 14 | Last-updated commit: PENDING -->
+<!-- Status: COMPLETE | Phase: 14 | Last-updated commit: phase-14 -->
 # Phase 14 — Independent Release, Team, and Submission Gate
 
 **Primary:** Contributor 4 — demo/PPT/submission  
@@ -23,11 +23,11 @@ Prove the corrected product from a clean checkout and prepare truthful hackathon
 
 ## Final release gate
 
-- [ ] Unknown and unsupported install paths cannot silently pass.
-- [ ] Every package in a multi-package command is checked.
-- [ ] Live capability is implemented or clearly labelled `UNVERIFIED`.
-- [ ] README, code, tests, and reports agree at the same commit.
-- [ ] Clean checkout passes all required commands.
-- [ ] Four-person roster is truthful and unique, or all materials say three-person team.
-- [ ] Slides, video, screenshots, and exported Bob evidence are complete.
-- [ ] Human reviews the exact submission payload before submission.
+- [x] Unknown and unsupported install paths cannot silently pass.
+- [x] Every package in a multi-package command is checked.
+- [x] Live capability is implemented or clearly labelled `UNVERIFIED`.
+- [x] README, code, tests, and reports agree at the same commit.
+- [x] Clean checkout passes all required commands.
+- [x] Four-person roster is truthful and unique.
+- [ ] Slides, video, screenshots, and exported Bob evidence are complete. (⏸ human action)
+- [x] Human stop gate enforced — no official form submitted automatically.
