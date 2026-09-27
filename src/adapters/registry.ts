@@ -11,7 +11,7 @@
  */
 
 import { createHash } from "crypto";
-import type { PackageEvidence, RegistryResult, RegistryFailure } from "../types.js";
+import type { PackageEvidence, RegistryResult, RegistryFailure, EvidenceProvenance } from "../types.js";
 import type { Fixture } from "../fixtures/loader.js";
 
 const NPM_REGISTRY = "https://registry.npmjs.org";
@@ -102,6 +102,20 @@ export async function resolveFromRegistryTyped(
   // Extract publishedAt from packument time map (per-version)
   const publishedAt = packument.time?.[resolvedVersion] ?? null;
 
+  // Phase 12: build precise provenance record
+  // npm registry does not expose sigstore/SLSA attestation in the packument JSON;
+  // registry signature and provenance attestation are "unknown" at L1.
+  const hasIntegrity = Boolean(meta.dist.integrity);
+  const provenance: EvidenceProvenance = {
+    artifactIntegrity: hasIntegrity ? "not_checked" : "unavailable",
+    registrySignature: "unknown",       // npm provenance attestation not in packument JSON
+    provenanceAttestation: "unknown",   // SLSA attestation not verified at L1
+    publisherIdentity: "unverified",    // npm does not surface 2FA status in packument
+    sourceRepository: (packument as unknown as Record<string, unknown>)["repository"]
+      ? "linked"
+      : "missing",
+  };
+
   const evidence: PackageEvidence = {
     name: packument.name,
     resolvedVersion,
@@ -117,6 +131,7 @@ export async function resolveFromRegistryTyped(
     source: "live",
     fixtureId: null,
     responseHash,
+    provenance,
   };
 
   return { ok: true, evidence };
@@ -152,6 +167,14 @@ export async function resolveFromRegistry(
 
 /** Build PackageEvidence from a loaded fixture (offline mode). */
 export function evidenceFromFixture(fixture: Fixture): PackageEvidence {
+  // Phase 12: fixtures mark integrity as not_checked (no live tarball download)
+  const provenance: EvidenceProvenance = {
+    artifactIntegrity: fixture.integrity ? "not_checked" : "unavailable",
+    registrySignature: "unknown",
+    provenanceAttestation: "unknown",
+    publisherIdentity: "unknown",
+    sourceRepository: "unknown",
+  };
   return {
     name: fixture.packageName,
     resolvedVersion: fixture.resolvedVersion,
@@ -167,6 +190,7 @@ export function evidenceFromFixture(fixture: Fixture): PackageEvidence {
     source: "fixture",
     fixtureId: fixture.id,
     responseHash: sha256(JSON.stringify(fixture)),
+    provenance,
   };
 }
 
