@@ -160,7 +160,38 @@ flowchart TD
     PolicyEngine -- "Human Approved Patch" --> G["Bob Agent Applies Patch -> Safe Build & Tests"]
 ```
 
-> *"TypeScript/Node CLI, npm registry adapter (PyPI is L1-only in v1), no code execution anywhere — only byte-level archive inspection and static parsing."*
+> **Stack Notes:** Pure TypeScript/Node.js CLI (native ESM), npm registry adapter (PyPI is L1-identity only in v1), zero code execution anywhere — byte-level archive inspection, traversal-guarded tarball unpacking, and static AST parsing. See complete reference in [`docs/architecture.md`](docs/architecture.md).
+
+### Architectural Layers & Subsystems
+
+| Layer | Component | Implementation | Responsibility & Security Boundary |
+|---|---|---|---|
+| **Interception (L0)** | Hook & Command Adapter | `.bob/hooks/PreToolUse.mjs`<br>`src/parser.ts` | Intercepts agent tool invocations before execution. Safe argv tokenizer (`parseHookCommand`) skips flags, handles option-first and multi-package commands, and enforces fail-closed exit code 2 on `BLOCK` / `UNVERIFIED`. Shell metacharacters are rejected without shell evaluation. |
+| **L1 — Identity** | Registry & Fixture Adapters | `src/adapters/registry.ts`<br>`src/adapters/fixture.ts` | Queries authoritative npm/PyPI metadata or offline test fixtures (`fixture://`). Distinguishes 404 (Not Found) from 401/403 (Auth Required) and network failure. Validates tarball SHA-512 integrity digests against registry packuments. |
+| **L2 — Claim Resolver** | Diff Parser & AST Resolver | `src/parsers/diff-parser.ts`<br>`src/adapters/artifact.ts`<br>`src/checker/static-claim.ts` | Extracts imported symbols from git diffs (`--diff`) or modified files (`--file`). Downloads and extracts tarball streams in-memory with strict `package/` path traversal protection. Resolves `package.json` export maps and TypeScript `.d.ts` symbol tables without executing any package code. |
+| **L3 — Risk Signals** | Heuristic Threat Scanners | `src/gate.ts`<br>`src/checker/risk-signals.ts` | Scans for package youth (<7 days), lifecycle install scripts (`hasInstallScript: true`), and name proximity. Emits non-blocking `WARN` findings to preserve developer velocity without false-positive blocks. |
+| **L4 — Task Fit** | Sandboxed Agent Review | `src/types.ts` | Optional subagent validation for high-ambiguity packages. Analyzes untrusted README documentation in a read-only sandbox with no tool access. |
+| **Policy & Ledger** | Policy Engine & Audit Chain | `src/gate.ts`<br>`src/provenance.ts` | Enforces deterministic rule priority (`BLOCK > UNVERIFIED > WARN > ALLOW`). Writes tamper-evident SHA-256 hash-chained decision records to `.phantomdeps/decisions.ndjson`, cryptographically verifiable via `phantomdeps audit-log verify`. Proposes patch-only remediation. |
+
+### Dual-Path Execution & Recovery Architecture
+
+```mermaid
+flowchart TD
+    S["Start: Install Command Proposed"] --> CA["Command Adapter (argv parser)"]
+    CA --> HK{"Interception Mechanism"}
+    HK -->|"Native Bob Hook"| BH[".bob/hooks/PreToolUse.mjs<br/>exit code 2 on BLOCK / UNVERIFIED"]
+    HK -->|"CLI Wrapper"| WR["phantomdeps install / check<br/>direct CLI invocation"]
+    BH --> GP["Deterministic Claim Gate Pipeline (L1–L3)"]
+    WR --> GP
+    GP --> PE["Policy Engine Decision Matrix"]
+    PE -->|"BLOCK"| RP["Evidence Card + Patch-Only Repair"]
+    PE -->|"ALLOW"| IP["Execute npm install"]
+    PE -->|"WARN"| WN["Emit Warning & Proceed"]
+    PE -->|"UNVERIFIED"| FC["Fail Closed (Requires Human Override)"]
+    RP --> HA["Human Review & Approval"]
+    HA --> BA["Bob Agent applies patch"]
+    BA --> ST["Safe Tests & Gate Re-check"]
+```
 
 ---
 
