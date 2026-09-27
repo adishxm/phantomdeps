@@ -33,6 +33,13 @@ const baseEvidence: PackageEvidence = {
   source: "fixture",
   fixtureId: "test",
   responseHash: "sha256:abc",
+  provenance: {
+    artifactIntegrity: "not_checked",
+    registrySignature: "unknown",
+    provenanceAttestation: "unknown",
+    publisherIdentity: "unverified",
+    sourceRepository: "linked",
+  },
 };
 
 // ── 5.1 Parser edge cases ─────────────────────────────────────────────────────

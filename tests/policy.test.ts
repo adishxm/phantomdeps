@@ -22,6 +22,13 @@ const baseEvidence: PackageEvidence = {
   source: "fixture",
   fixtureId: "is-odd-demo",
   responseHash: "sha256:abc",
+  provenance: {
+    artifactIntegrity: "not_checked",
+    registrySignature: "unknown",
+    provenanceAttestation: "unknown",
+    publisherIdentity: "unverified",
+    sourceRepository: "linked",
+  },
 };
 
 const missingClaim: ClaimFinding = {
