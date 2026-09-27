@@ -171,7 +171,7 @@ Sequence diagram demonstrating real-time interception, tarball inspection, evide
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Dev as Developer
+    participant Dev as Developer
     participant Bob as IBM Bob Agent
     participant Gate as phantomdeps Gate
     participant Reg as npm Registry
