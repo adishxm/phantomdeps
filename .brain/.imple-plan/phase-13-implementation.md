@@ -1,4 +1,4 @@
-<!-- Status: READY | Phase: 13 | Last-updated commit: PENDING -->
+<!-- Status: COMPLETE | Phase: 13 | Last-updated commit: phase-13 -->
 # Phase 13 — Claim Context, Repair Workflow, and Command Semantics
 
 **Primary:** Contributor 1 — product contract  
@@ -22,8 +22,8 @@ Stop using hard-coded fixture symbols as a proxy for agent-generated code. Make 
 
 ## Completion gate
 
-- [ ] No live or Bob path invents claim context from a fixture.
-- [ ] Missing claim context is visible as `UNVERIFIED`.
-- [ ] README command names and exit codes match actual behavior.
-- [ ] Suggested patches are never auto-applied.
-- [ ] Output is readable at 80, 120, and 240 terminal columns.
+- [x] No live or Bob path invents claim context from a fixture.
+- [x] Missing claim context is visible as `UNVERIFIED`.
+- [x] README command names and exit codes match actual behavior.
+- [x] Suggested patches are never auto-applied.
+- [x] Output is readable at 80, 120, and 240 terminal columns.

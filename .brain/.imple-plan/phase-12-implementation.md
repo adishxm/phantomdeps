@@ -1,4 +1,4 @@
-<!-- Status: READY | Phase: 12 | Last-updated commit: PENDING -->
+<!-- Status: COMPLETE | Phase: 12 | Last-updated commit: phase-12 -->
 # Phase 12 — Evidence Integrity and Provenance Semantics
 
 **Primary:** Contributor 3 — security/evidence  
@@ -21,8 +21,8 @@ Make evidence precise and verifiable. Do not call a missing npm integrity hash �
 
 ## Completion gate
 
-- [ ] A clean log verifies successfully.
-- [ ] Every listed tamper mutation fails verification.
-- [ ] Evidence terminology distinguishes integrity from provenance.
-- [ ] Every strict override is attributable and logged.
-- [ ] No secret or credential is written into evidence records.
+- [x] A clean log verifies successfully.
+- [x] Every listed tamper mutation fails verification.
+- [x] Evidence terminology distinguishes integrity from provenance.
+- [x] Every strict override is attributable and logged.
+- [x] No secret or credential is written into evidence records.
