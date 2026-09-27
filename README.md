@@ -514,7 +514,7 @@ All 15 implementation and remediation phases have been executed and verified. Th
 - [Aditya Kumar Sharma](https://github.com/adishxm) — product, architecture, demo, PPT
 - [Narayan Kumar Jha](mailto:narayan.nkj@gmail.com) — implementation, tests
 - [Utkarsh Yadav](https://github.com/utkarsh-2207) — validation, security, IBM Bob workflow
-- [Roshan Singh](https://github.com/rs3260821-dotcom) — contributor
+- [Roshan Singh](https://github.com/rs3260821-dotcom) — security enforcement, live AST verification, demo/PPT
 
 
 ---

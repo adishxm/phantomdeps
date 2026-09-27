@@ -7,7 +7,7 @@
     "Aditya Kumar Sharma <https://github.com/adishxm> (product, architecture, demo, PPT)",
     "Narayan Kumar Jha <narayan.nkj@gmail.com> (implementation, tests)",
     "Utkarsh Yadav <https://github.com/utkarsh-2207> (validation, security, IBM Bob workflow)",
-    "Roshan Singh <https://github.com/rs3260821-dotcom> (contributor)"
+    "Roshan Singh <https://github.com/rs3260821-dotcom> (security enforcement, live AST verification, demo/PPT)"
   ],
   "type": "module",
   "bin": {
