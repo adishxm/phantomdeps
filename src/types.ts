@@ -54,6 +54,89 @@ export interface ArtifactInspection {
   artifactHash: string;
 }
 
+// ── Phase 12: Precise evidence provenance types ───────────────────────────────
+
+/**
+ * Artifact integrity: was the downloaded tarball's hash verified against the registry?
+ * This is distinct from provenance attestation (sigstore/SLSA) and registry signature status.
+ */
+export type ArtifactIntegrityStatus =
+  | "verified"           // sha512 matched registry-declared value
+  | "mismatch"           // sha512 did NOT match registry-declared value
+  | "unavailable"        // registry did not declare an integrity hash
+  | "not_checked";       // integrity check was skipped (fixture / offline mode)
+
+/**
+ * Registry signature status: whether the registry provides a cryptographic signature
+ * (npm provenance attestation via sigstore, etc.).
+ * NOT the same as whether an integrity hash was present.
+ */
+export type RegistrySignatureStatus =
+  | "present"            // registry returned a signature/provenance attestation
+  | "absent"             // no signature/attestation present for this version
+  | "unknown";           // status could not be determined
+
+/**
+ * Provenance attestation: SLSA/sigstore-style supply-chain attestation.
+ * absent ≠ no integrity hash. These are distinct evidence dimensions.
+ */
+export type ProvenanceAttestationStatus =
+  | "attested"           // a SLSA or sigstore attestation is present
+  | "not_attested"       // no attestation; does not imply integrity failure
+  | "unknown";           // attestation status could not be determined
+
+/**
+ * Publisher identity: degree to which the publisher can be attributed.
+ */
+export type PublisherIdentityStatus =
+  | "known"              // npm account with 2FA or verified identity
+  | "unverified"         // package exists but publisher identity unverified
+  | "unknown";           // identity check was not performed
+
+/**
+ * Source repository status: whether a repository link is present and accessible.
+ */
+export type SourceRepositoryStatus =
+  | "linked"             // package.json#repository is present
+  | "missing"            // no repository field
+  | "unknown";           // status was not checked
+
+/**
+ * Consolidated evidence provenance record.
+ * Phase 12: replaces the single `noProvenance` boolean with five distinct dimensions.
+ */
+export interface EvidenceProvenance {
+  artifactIntegrity: ArtifactIntegrityStatus;
+  registrySignature: RegistrySignatureStatus;
+  provenanceAttestation: ProvenanceAttestationStatus;
+  publisherIdentity: PublisherIdentityStatus;
+  sourceRepository: SourceRepositoryStatus;
+}
+
+/**
+ * A strict-agent override record written when an agent invocation overrides the gate.
+ * Phase 12.5: every override must be attributable — actor, reason, timestamp, command digest.
+ */
+export interface AgentOverrideRecord {
+  recordType: "agent_override";
+  decisionId: string;
+  previousHash: string;
+  recordHash: string;
+  timestamp: string;
+  /** Identity of the actor authorizing the override (session, agent id, or "human") */
+  actor: string;
+  /** Human-readable justification for the override */
+  reason: string;
+  /** SHA-256 of the command / argv that triggered the override */
+  commandDigest: string;
+  /** The original gate verdict before override */
+  originalVerdict: string;
+  /** The resulting policy after override (must not be ALLOW for a BLOCK without documented reason) */
+  resultingPolicy: string;
+  /** Bob session identifier, if available */
+  bobSessionId: string | null;
+}
+
 /** A single parsed install intent from argv. */
 export interface InstallIntent {
   ecosystem: Ecosystem;
@@ -82,6 +165,11 @@ export interface PackageEvidence {
   fixtureId: string | null;
   /** SHA-256 of the raw registry response */
   responseHash: string;
+  /**
+   * Phase 12: five-dimensional provenance record.
+   * Distinguishes artifact integrity from registry signature, attestation, publisher identity, and source repo.
+   */
+  provenance: EvidenceProvenance;
 }
 
 /** L2 static claim finding */
@@ -109,6 +197,13 @@ export interface RiskSignals {
   crossEcosystemHit: boolean;
   youngPackage: boolean;
   hasInstallScript: boolean;
+  /**
+   * Phase 12: precise provenance — replaces raw noProvenance boolean.
+   * noArtifactIntegrity = registry did not declare an integrity hash (was formerly "noProvenance").
+   * noProvenance is kept as a backward-compat alias (= noArtifactIntegrity).
+   */
+  noArtifactIntegrity: boolean;
+  /** @deprecated use noArtifactIntegrity — kept for backward compat */
   noProvenance: boolean;
   warnings: string[];
 }
