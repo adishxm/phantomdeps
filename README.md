@@ -563,9 +563,52 @@ npx tsx src/cli.ts audit-log verify .phantomdeps/decisions.ndjson
 
 ### 5. Real-Time Validation Target (TaskForge)
 
-TaskForge (`.docs/02_TEST/Tested_project_antigravity/`) is a controlled, real-world TypeScript project used to prove that `phantomdeps` blocks hallucinated dependencies **before** `npm install` executes.
+TaskForge is a controlled, real-world TypeScript project used to prove that `phantomdeps` blocks hallucinated dependencies **before** `npm install` executes. Both **IBM Bob** and **Antigravity** validation environments have been thoroughly exercised with full test suites, implementation plans, and reports:
 
-#### Running on Linux / macOS / Bash:
+- **IBM Bob Target:** [`.docs/02_TEST/Tested_project_ibm-bob/`](.docs/02_TEST/Tested_project_ibm-bob/) | Reports: [`.docs/02_TEST/Tested_report_ibm-bob/`](.docs/02_TEST/Tested_report_ibm-bob/)
+- **Antigravity Target:** [`.docs/02_TEST/Tested_project_antigravity/`](.docs/02_TEST/Tested_project_antigravity/) | Reports: [`.docs/02_TEST/Tested_report_antigravity/`](.docs/02_TEST/Tested_report_antigravity/)
+
+---
+
+#### A. IBM Bob Lane (`Tested_project_ibm-bob`)
+
+##### Running on Linux / macOS / Bash:
+
+```bash
+# Step 1: Run TaskForge clean baseline tests (26 tests pass)
+cd .docs/02_TEST/Tested_project_ibm-bob && npm test
+
+# Step 2: Simulate AI proposing 'npm install is-odd' claiming absent 'isOddBatch'
+# Intercepted via the IBM Bob PreToolUse hook (Exits with code 2: BLOCK)
+node ../../../node_modules/tsx/dist/cli.mjs ../../../.bob/hooks/PreToolUse.mjs <<EOF
+{"tool":"execute_command","input":{"command":"npm install is-odd"}}
+EOF
+
+# Step 3: Rebuild and test clean TaskForge
+npm run build && npm test
+cd ../../..
+```
+
+##### Running on Windows (PowerShell):
+
+```powershell
+# Step 1: Run TaskForge clean baseline tests (26 tests pass)
+Set-Location .docs\02_TEST\Tested_project_ibm-bob; npm test
+
+# Step 2: Simulate AI proposing 'npm install is-odd' claiming absent 'isOddBatch'
+# Intercepted via the IBM Bob PreToolUse hook (Exits with code 2: BLOCK)
+'{"tool":"execute_command","input":{"command":"npm install is-odd"}}' | node ..\..\..\node_modules\tsx\dist\cli.mjs ..\..\..\.bob\hooks\PreToolUse.mjs
+
+# Step 3: Rebuild and test clean TaskForge
+npm run build; npm test
+Set-Location ..\..\..
+```
+
+---
+
+#### B. Antigravity Lane (`Tested_project_antigravity`)
+
+##### Running on Linux / macOS / Bash:
 
 ```bash
 # Step 1: Run TaskForge clean baseline tests (16 tests pass)
@@ -582,7 +625,7 @@ npm run build && npm test
 cd ../../..
 ```
 
-#### Running on Windows (PowerShell):
+##### Running on Windows (PowerShell):
 
 ```powershell
 # Step 1: Run TaskForge clean baseline tests (16 tests pass)
