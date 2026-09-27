@@ -82,20 +82,6 @@ flowchart TD
     H -- "Approved" --> F
     I --> J["Bob applies patch & re-verifies"]
     J --> K["Tests pass & work continues safely"]
-
-    classDef agent fill:#3b82f6,stroke:#1d4ed8,color:#ffffff;
-    classDef gate fill:#6366f1,stroke:#4338ca,color:#ffffff;
-    classDef block fill:#ef4444,stroke:#b91c1c,color:#ffffff;
-    classDef warn fill:#f59e0b,stroke:#b45309,color:#ffffff;
-    classDef allow fill:#10b981,stroke:#047857,color:#ffffff;
-    classDef human fill:#8b5cf6,stroke:#6d28d9,color:#ffffff;
-
-    class A,G,J agent;
-    class B,C gate;
-    class D block;
-    class E warn;
-    class F,K allow;
-    class H,I human;
 ```
 
 > *"The package exists, but the function the AI wrote doesn't — so we catch that before anything installs, and Bob fixes it for you."*
@@ -123,24 +109,6 @@ flowchart TD
     I --> J["Bob Agent Applies Patch"]
     J --> K["Safe Build & Tests Run"]
     K --> L["Gate Re-Checks & Decision Recorded"]
-
-    classDef dev fill:#3b82f6,stroke:#1d4ed8,color:#ffffff;
-    classDef bob fill:#6366f1,stroke:#4338ca,color:#ffffff;
-    classDef gate fill:#0284c7,stroke:#0369a1,color:#ffffff;
-    classDef allow fill:#10b981,stroke:#047857,color:#ffffff;
-    classDef warn fill:#f59e0b,stroke:#b45309,color:#ffffff;
-    classDef block fill:#ef4444,stroke:#b91c1c,color:#ffffff;
-    classDef unverified fill:#6b7280,stroke:#374151,color:#ffffff;
-    classDef human fill:#8b5cf6,stroke:#6d28d9,color:#ffffff;
-
-    class A dev;
-    class B,J,K bob;
-    class C,L gate;
-    class E allow;
-    class F warn;
-    class G block;
-    class H unverified;
-    class I human;
 ```
 
 > *"phantomdeps is a deterministic-first claim gate — it verifies the package and the exact API an agent's code claims to use, before install, then hands IBM Bob a cited, reviewable repair."*
@@ -190,20 +158,6 @@ flowchart TD
     RiskSignals --> BoundedFit
     BoundedFit --> PolicyEngine
     PolicyEngine -- "Human Approved Patch" --> G["Bob Agent Applies Patch -> Safe Build & Tests"]
-
-    classDef layer0 fill:#1e293b,stroke:#475569,color:#f8fafc;
-    classDef layer1 fill:#0f766e,stroke:#115e59,color:#ffffff;
-    classDef layer2 fill:#1d4ed8,stroke:#1e40af,color:#ffffff;
-    classDef layer3 fill:#b45309,stroke:#78350f,color:#ffffff;
-    classDef layer4 fill:#4c1d95,stroke:#3b0764,color:#ffffff;
-    classDef policy fill:#4338ca,stroke:#3730a3,color:#ffffff;
-
-    class A1,A2,A3 layer0;
-    class B1,B2 layer1;
-    class C1,C2 layer2;
-    class D1 layer3;
-    class E1 layer4;
-    class F1,F2,F3,F4 policy;
 ```
 
 > *"TypeScript/Node CLI, npm registry adapter (PyPI is L1-only in v1), no code execution anywhere — only byte-level archive inspection and static parsing."*
