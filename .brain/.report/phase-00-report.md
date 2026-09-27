@@ -62,7 +62,7 @@ All five steps are `COMPLETE`. Two blockers (`B-001` no source code yet, `B-002`
 - [x] Evidence artifacts exist and are linked above.
 - [x] Blocker `B-001`: local tests cannot run (no source); recorded, not hidden.
 - [x] Advanced tests: `NOT_RUN` — no source exists; recorded.
-- [x] Antigravity/IBM Bob parity table: confirmed consistent in step 0.5.
+- [x] Secondary agent/IBM Bob parity table: confirmed consistent in step 0.5.
 - [x] Decision log updated (D-001–D-005 reviewed; no new decisions added).
 - [x] Risk/blocker log reviewed (B-001–B-004, R-001–R-004 confirmed current).
 - [x] Traceability rows 00.0.1–00.0.5 updated.

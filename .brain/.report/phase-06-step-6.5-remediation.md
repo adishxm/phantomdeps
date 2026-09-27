@@ -4,7 +4,7 @@
 **Phase:** 06  
 **Step:** 6.5 — Fix all release-blocking findings and document accepted residual risks  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `7a493ac`  
 
 ---

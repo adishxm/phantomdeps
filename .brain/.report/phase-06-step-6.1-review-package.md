@@ -4,7 +4,7 @@
 **Phase:** 06  
 **Step:** 6.1 — Prepare a read-only review package containing the product brief, acceptance criteria, source snapshot, test instructions, and known risks  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `7a493ac`  
 
 ---

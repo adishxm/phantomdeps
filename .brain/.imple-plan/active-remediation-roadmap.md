@@ -73,7 +73,7 @@ Do not publish target numbers as achieved measurements. A benchmark result is va
 
 ## Synchronized lanes
 
-- [Antigravity remediation lane](./antigravity-remediation-roadmap.md)
+- [Secondary agent remediation lane](./agent-remediation-roadmap.md)
 - [IBM Bob remediation lane](./ibm-bob-remediation-roadmap.md)
 
 Both lanes use the same phase IDs, step IDs, objective, acceptance criteria, artifacts, tests, evidence, and definition of done. Only the execution instructions differ.

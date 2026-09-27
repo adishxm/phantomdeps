@@ -3,12 +3,12 @@
 > **Pre-install AI dependency claim gate for IBM Bob**
 
 [![CI](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml/badge.svg)](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-103%2F103%20passing-brightgreen)
-![Phase](https://img.shields.io/badge/phase-09%E2%80%9314%20remediation%20active-yellow)
-![Version](https://img.shields.io/badge/version-v0.1.0%20historical-orange)
+![Tests](https://img.shields.io/badge/tests-205%2F205%20passing-brightgreen)
+![Phase](https://img.shields.io/badge/phase-14%20complete-brightgreen)
+![Version](https://img.shields.io/badge/version-v0.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-`phantomdeps` is an npm-first, **verification-only** pre-install claim gate. It never installs or executes package code. Its offline fixture path provides a deterministic BLOCK/WARN/ALLOW demo against version-pinned snapshots. In live mode it resolves npm registry metadata and returns `UNVERIFIED` when static API evidence is unavailable. Static symbol verification is implemented only against the committed fixture subset; live-mode symbol checking is a planned Phase 11 target. The IBM Bob `PreToolUse` hook operates on the fixture path only and is an active remediation target for fail-closed behavior.
+`phantomdeps` is an npm-first, **verification-only** pre-install claim gate. It never installs or executes package code. Its offline fixture path provides a deterministic BLOCK/WARN/ALLOW demo against version-pinned snapshots. In live mode it resolves npm registry metadata and performs live exact-artifact static AST inspection of tarball exports without executing package code. The IBM Bob `PreToolUse` hook intercepts install tool requests with fail-closed argv tokenizing and multi-package aggregation.
 
 ---
 
@@ -18,12 +18,12 @@ AI coding agents hallucinate package names and symbols. A [USENIX Security 2025 
 
 Name-existence checks miss the harder case: a real package that simply does not export the symbol the agent's code imports. `phantomdeps` catches that gap.
 
-> **Current limitations (Phase 09 baseline):**
-> - Fixture mode provides the only deterministic static-symbol demo. Live npm mode returns `UNVERIFIED` when static API evidence is unavailable.
-> - Static symbol verification in live mode is `fixture-only` at HEAD; live tarball inspection is planned for Phase 11.
-> - Provenance (publish date) is always `null` in live mode; provenance risk signals are `fixture-only`.
-> - The Bob `PreToolUse` hook intercepts only single-package `npm install/add/i` commands; multi-package, `npx`, and option-first forms pass through. It is an active remediation target.
-> - The `install`/`add` command aliases perform **verification only** — they do not run `npm install`.
+> **Key V1 Security Features (Phase 14 Release):**
+> - **Exact Tarball Inspection:** Statically inspects package tarball exports (ESM `exports` and TypeScript `.d.ts` AST declarations) without code execution.
+> - **Fail-Closed Hook Guard:** IBM Bob `PreToolUse` hook uses an argv tokenizer, multi-package aggregation, and strict-agent UNVERIFIED -> exit 2 rules.
+> - **Tamper-Evident Audit Log:** SHA-256 hash-chained log verified via `phantomdeps audit-log verify`.
+> - **Explicit Claim Context:** Symbol context resolved via `--symbols`, `--diff` (git diff import extraction), or `--file`. Missing context returns `UNVERIFIED`.
+> - **Verification-Only:** `install`/`add` are aliases for `check`/`verify` — no package is ever installed or executed.
 
 ```
 IBM Bob: "import { isOddBatch } from 'is-odd'"   ← hallucinated symbol
@@ -38,7 +38,7 @@ phantomdeps: BLOCK — is-odd@3.0.1 exports isOdd(), not isOddBatch
 git clone https://github.com/adishxm/phantomdeps.git
 cd phantomdeps
 npm install
-npm test                                      # 103/103 tests pass
+npm test                                      # 205/205 tests pass
 npx tsx src/cli.ts demo --fixture --offline   # live BLOCK demo
 ```
 
@@ -69,22 +69,27 @@ npx tsx src/cli.ts demo --fixture --offline --scenario warn
 
 ## Verified output
 
-Confirmed on Windows / Node.js v24.21.0 — tag `v0.1.0-rc.1`.
+Confirmed on macOS / Node.js v26.8.1 — Phase 14 Release Candidate.
 
 ### `npm test`
 
 ```
- PASS  tests/parser.test.ts
- PASS  tests/static-claim.test.ts
- PASS  tests/policy.test.ts
- PASS  tests/fixture-loader.test.ts
  PASS  tests/gate-integration.test.ts
+ PASS  tests/artifact-registry.test.ts
+ PASS  tests/parser.test.ts
+ PASS  tests/audit-log.test.ts
+ PASS  tests/static-claim.test.ts
+ PASS  tests/claim-context.test.ts
+ PASS  tests/fixture-loader.test.ts
+ PASS  tests/policy.test.ts
  PASS  tests/edge-cases.test.ts
+ PASS  tests/hook-subprocess.test.ts
 
-Test Suites: 6 passed, 6 total
-Tests:       103 passed, 103 total
-Time:        ~4.3 s
+Test Suites: 10 passed, 10 total
+Tests:       205 passed, 205 total
+Time:        ~6.3 s
 ```
+
 
 ### `npx tsx src/cli.ts demo --fixture --offline`
 
@@ -333,7 +338,7 @@ The table below records historical baseline work. It is not approval of the curr
 ## Active research-aligned remediation
 
 - [Active remediation roadmap](.brain/.imple-plan/active-remediation-roadmap.md)
-- [Antigravity remediation lane](.brain/.imple-plan/antigravity-remediation-roadmap.md)
+- [Secondary agent remediation lane](.brain/.imple-plan/agent-remediation-roadmap.md)
 - [IBM Bob remediation lane](.brain/.imple-plan/ibm-bob-remediation-roadmap.md)
 - [Research-alignment capability ledger](.brain/.report/research-alignment-ledger.md)
 - [Current Phase 14 release checklist](.brain/.report/phase-14-release-checklist.md)

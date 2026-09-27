@@ -55,7 +55,7 @@
 - [x] Every step has an artifact and is linked above.
 - [x] Local tests: `npm test` — 23/23 pass (unchanged from Phase 00 build).
 - [x] Advanced tests: `NOT_RUN` — Phase 02 is design-only; no new executable code.
-- [x] Antigravity/IBM Bob parity: traceability rows 02.2.1–02.2.5 updated.
+- [x] Secondary agent/IBM Bob parity: traceability rows 02.2.1–02.2.5 updated.
 - [x] Decision log: D-008 added (Phase 02 gate PASSED).
 - [x] Risk/blocker log: no new blockers; CI-001 noted as design item for Phase 03.
 - [x] Secret scan: no secrets in any Phase 02 artifact.

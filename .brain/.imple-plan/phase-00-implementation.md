@@ -6,7 +6,7 @@
 
 ## Scope
 
-This plan executes steps `0.1, 0.2, 0.3, 0.4, 0.5` in both synchronized lanes. The detailed step contract is in `../.imple-plan/antigravity-roadmap.md ` and `ibm-bob-roadmap.md`; objectives, acceptance criteria, tests, evidence, and definition of done must remain equal.
+This plan executes steps `0.1, 0.2, 0.3, 0.4, 0.5` in both synchronized lanes. The detailed step contract is in `../.imple-plan/agent-roadmap.md ` and `ibm-bob-roadmap.md`; objectives, acceptance criteria, tests, evidence, and definition of done must remain equal.
 
 ## Phase outcome
 
@@ -25,7 +25,7 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 - [x] Every step has an artifact or an explicit blocker recorded.
 - [x] Local tests: `NOT_RUN` — no source exists; blocker `B-001` recorded, not hidden.
 - [x] Advanced tests: `NOT_RUN` — no source exists; recorded.
-- [x] Antigravity/IBM Bob parity confirmed consistent (step 0.5).
+- [x] Secondary agent/IBM Bob parity confirmed consistent (step 0.5).
 - [x] Decision log reviewed (D-001–D-005); risk/blocker log reviewed (B-001–B-004, R-001–R-004); traceability rows 00.0.1–00.0.5 updated.
 - [x] Secret scan: no secrets or credentials found in inventory.
 - [x] Artifact completeness: 5 step evidence files created under `.brain/.report/`.

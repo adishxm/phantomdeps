@@ -10,7 +10,7 @@
 ## Read these first
 
 1. [Active research-aligned remediation roadmap](./active-remediation-roadmap.md)
-2. [Antigravity remediation lane](./antigravity-remediation-roadmap.md)
+2. [Secondary agent remediation lane](./agent-remediation-roadmap.md)
 3. [IBM Bob remediation lane](./ibm-bob-remediation-roadmap.md)
 4. [Research-alignment capability ledger](../.report/research-alignment-ledger.md)
 5. [Current Phase 14 release checklist](../.report/phase-14-release-checklist.md)

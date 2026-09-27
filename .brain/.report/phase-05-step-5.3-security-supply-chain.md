@@ -4,7 +4,7 @@
 **Phase:** 05  
 **Step:** 5.3 — Run dependency, secret, permission, privacy, and basic supply-chain checks  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `61569ea`  
 
 ---

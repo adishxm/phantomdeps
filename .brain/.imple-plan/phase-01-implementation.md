@@ -6,7 +6,7 @@
 
 ## Scope
 
-This plan executes steps `1.1, 1.2, 1.3, 1.4, 1.5` in both synchronized lanes. The detailed step contract is in `../.imple-plan/antigravity-roadmap.md ` and `ibm-bob-roadmap.md`; objectives, acceptance criteria, tests, evidence, and definition of done must remain equal.
+This plan executes steps `1.1, 1.2, 1.3, 1.4, 1.5` in both synchronized lanes. The detailed step contract is in `../.imple-plan/agent-roadmap.md ` and `ibm-bob-roadmap.md`; objectives, acceptance criteria, tests, evidence, and definition of done must remain equal.
 
 ## Phase outcome
 
@@ -25,7 +25,7 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 - [x] Every step has an artifact or an explicit blocker.
 - [x] Local tests: `npm test` — 23/23 pass (Phase 00 build; no new code in Phase 01).
 - [x] Advanced tests: `NOT_RUN` — Phase 01 is a planning phase; no new executable code.
-- [x] Antigravity/IBM Bob parity: traceability rows 01.1.1–01.1.5 updated.
+- [x] Secondary agent/IBM Bob parity: traceability rows 01.1.1–01.1.5 updated.
 - [x] Decision log: D-007 (Phase 01 gate PASSED) added.
 - [x] Risk/blocker log: B-002, B-003 reviewed; no new blockers.
 - [x] Secret scan: no secrets in Phase 01 artifacts.

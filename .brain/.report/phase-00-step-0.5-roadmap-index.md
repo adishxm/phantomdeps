@@ -43,7 +43,7 @@ The synchronized roadmap exists across three files:
 
 ## Parity confirmation — both lanes synchronized
 
-Both the IBM Bob lane (`ibm-bob-roadmap.md`) and Antigravity lane share:
+Both the IBM Bob lane (`ibm-bob-roadmap.md`) and Secondary agent lane share:
 - Identical step IDs and names
 - Identical objectives, acceptance criteria, evidence requirements, and definition of done
 - Tool-specific execution instructions differ per lane; the traceability matrix uses "Same contract" for both lanes at intake

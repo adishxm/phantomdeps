@@ -6,7 +6,7 @@
 
 ## Scope
 
-This plan executes steps `8.1, 8.2, 8.3, 8.4, 8.5, 8.6` in both synchronized lanes. The detailed step contract is in `../.imple-plan/antigravity-roadmap.md ` and `ibm-bob-roadmap.md`; objectives, acceptance criteria, tests, evidence, and definition of done must remain equal.
+This plan executes steps `8.1, 8.2, 8.3, 8.4, 8.5, 8.6` in both synchronized lanes. The detailed step contract is in `../.imple-plan/agent-roadmap.md ` and `ibm-bob-roadmap.md`; objectives, acceptance criteria, tests, evidence, and definition of done must remain equal.
 
 ## Phase outcome
 
@@ -26,7 +26,7 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 - [x] Every step has an owner or an explicit blocker.
 - [x] Local tests run and exact evidence is saved.
 - [x] Advanced tests run after local pass.
-- [x] Antigravity/Bob parity table updated.
+- [x] Secondary agent/Bob parity table updated.
 - [x] Decision, risk/blocker, and test evidence indexes updated.
 - [x] Secret scan and artifact completeness check pass.
 - [x] Commit created only after the gate passes.

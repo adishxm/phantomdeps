@@ -4,7 +4,7 @@
 **Phase:** 07  
 **Step:** 7.5 — Run a full rehearsal from a clean environment and record the result  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `8c9bc88`  
 
 ---

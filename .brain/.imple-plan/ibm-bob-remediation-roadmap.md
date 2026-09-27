@@ -2,7 +2,7 @@
 # IBM Bob Remediation Roadmap — `phantomdeps`
 
 **Status:** `ACTIVE — NOT_STARTED`
-**Synchronized companion:** `antigravity-remediation-roadmap.md`
+**Synchronized companion:** `agent-remediation-roadmap.md`
 **Execution rule:** objectives, acceptance criteria, artifacts, tests, evidence, dependencies, and status are identical across lanes. Only tool execution differs.
 
 ## IBM Bob operating protocol
@@ -16,7 +16,7 @@
 
 ## Synchronized step map
 
-The following step IDs are identical to the Antigravity lane. Use the same acceptance contract and report files.
+The following step IDs are identical to the Secondary agent lane. Use the same acceptance contract and report files.
 
 | Step | IBM Bob execution difference | Shared status |
 |---|---|---|
@@ -30,7 +30,7 @@ The following step IDs are identical to the Antigravity lane. Use the same accep
 
 ## Step 09.1 — Truthful capability and team contract
 
-Use Plan → Ask → Agent. Capture the exact prompts, answers, changed files, and review. The shared objective, acceptance criteria, tests, evidence, checkpoint, report, and failure handling are defined in the Antigravity lane’s Step 09.1. Do not mark this step passed until the README and `.brain` summaries are corrected and the roster is truthful.
+Use Plan → Ask → Agent. Capture the exact prompts, answers, changed files, and review. The shared objective, acceptance criteria, tests, evidence, checkpoint, report, and failure handling are defined in the Secondary agent lane’s Step 09.1. Do not mark this step passed until the README and `.brain` summaries are corrected and the roster is truthful.
 
 ## Step 09.2 — B0/B1/B2/B3 evaluation
 

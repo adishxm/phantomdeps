@@ -4,7 +4,7 @@
 **Phase:** 05  
 **Step:** 5.4 — Test reproducibility from a clean checkout and verify no hidden local dependency exists  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `61569ea`  
 
 ---

@@ -63,7 +63,7 @@ git status
 | Path | Description |
 |---|---|
 | `.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md` | Full research report (Manus AI, cut-off 20 Sep 2026) |
-| `.docs/01_RESEARCH/MasterPrompt.md` | Master prompt — synchronized Antigravity + IBM Bob roadmap |
+| `.docs/01_RESEARCH/MasterPrompt.md` | Master prompt — synchronized Secondary agent + IBM Bob roadmap |
 | `.docs/10_DEMO/demo-data.md` | Demo fixture data |
 | `.docs/10_DEMO/demo-script.md` | Timed demo script |
 | `.docs/10_DEMO/judge-qa.md` | Judge Q&A prep |

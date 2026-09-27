@@ -2,9 +2,9 @@
 # Step 7.3 — Timed Demo Script Creation
 
 **Phase:** 07  
-**Step:** 7.3 — Create the timed demo script: problem, before state, Bob/Antigravity workflow, evidence, result, and impact  
+**Step:** 7.3 — Create the timed demo script: problem, before state, Bob/Secondary agent workflow, evidence, result, and impact  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `8c9bc88`  
 
 ---

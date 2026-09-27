@@ -1,5 +1,5 @@
 <!-- Status: ACTIVE | Last-updated commit: PENDING -->
-# Antigravity Remediation Roadmap — `phantomdeps`
+# Secondary agent Remediation Roadmap — `phantomdeps`
 
 **Status:** `ACTIVE — NOT_STARTED`
 **Synchronized companion:** `ibm-bob-remediation-roadmap.md`
@@ -10,7 +10,7 @@
 ### Step 09.1 — Freeze truthful capability and team contract
 
 **Objective:** Label every capability `implemented`, `fixture-only`, `planned`, `unsupported`, or `unknown`; resolve three-versus-four contributors; and correct README/.brain claims.
-**Antigravity execution:** Inspect source, tests, Git history, research, and audit; draft the contract; use repository-grounded edits and review.
+**Secondary agent execution:** Inspect source, tests, Git history, research, and audit; draft the contract; use repository-grounded edits and review.
 **IBM Bob execution:** Use Bob Plan/Ask to challenge each claim, then Agent mode to apply the same edits.
 **Inputs:** Research report, accuracy audit, implementation-plan audit, current source.
 **Outputs/artifacts:** `docs/product-contract.md`, capability matrix, roster decision, README corrections.
@@ -29,7 +29,7 @@
 ### Step 09.2 — Define B0/B1/B2/B3 corpus and metrics
 
 **Objective:** Turn research measurement validity into a reproducible benchmark design.
-**Antigravity execution:** Create labelled JSON cases and a deterministic runner; review labels against fixtures and exact artifacts.
+**Secondary agent execution:** Create labelled JSON cases and a deterministic runner; review labels against fixtures and exact artifacts.
 **IBM Bob execution:** Use Bob Plan for corpus design, Agent for runner, Ask for evidence-grounded metric explanations.
 **Inputs:** Research §decision gates and attack classes.
 **Outputs/artifacts:** `evaluation/corpus-v1.json`, runner, metric schema, baseline report.
@@ -50,7 +50,7 @@
 ### Step 10.1 — Parse and aggregate every intercepted install
 
 **Objective:** Reject or verify option-first, scoped, quoted, unsupported, and multi-package commands without shell execution.
-**Antigravity execution:** Implement conservative argv tokenization and subprocess tests for the real hook.
+**Secondary agent execution:** Implement conservative argv tokenization and subprocess tests for the real hook.
 **IBM Bob execution:** Same contract; use Bob Agent for code and Ask to inspect the actual payload shape.
 **Inputs:** npm install syntax, research bypass classes, current hook.
 **Outputs/artifacts:** parser, hook subprocess suite, structured decision records.
@@ -71,7 +71,7 @@
 ### Step 11.1 — Implement or explicitly de-scope narrow live inspection
 
 **Objective:** Satisfy technical validity with one version-pinned real-package/wrong-symbol case without executing package code, or clearly mark the capability deferred.
-**Antigravity execution:** Build bounded download, integrity check, safe extraction, and supported export/declaration inspection.
+**Secondary agent execution:** Build bounded download, integrity check, safe extraction, and supported export/declaration inspection.
 **IBM Bob execution:** Use Bob Agent for implementation and Ask to challenge archive safety and evidence claims.
 **Inputs:** npm packument, tarball, integrity, static claim contract.
 **Outputs/artifacts:** typed outcomes, artifact adapter, static inspector, tests, or a signed de-scope decision.
@@ -92,7 +92,7 @@
 ### Step 12.1 — Verify the decision chain and separate trust signals
 
 **Objective:** Make records tamper-evident after verification and distinguish integrity from provenance.
-**Antigravity execution:** Implement verifier, types, tamper tests, and terminology edits.
+**Secondary agent execution:** Implement verifier, types, tamper tests, and terminology edits.
 **IBM Bob execution:** Use Bob Agent for code, Ask for evidence-language review.
 **Inputs:** Existing NDJSON writer and research evidence rules.
 **Outputs/artifacts:** `audit-log verify`, updated types, tamper suite, provenance fields.
@@ -113,7 +113,7 @@
 ### Step 13.1 — Use explicit generated-code context and human-approved repair
 
 **Objective:** Never substitute fixture symbols for actual agent claims; make repair patch-only and revalidated.
-**Antigravity execution:** Implement explicit `--symbols`/changed-file input, import extraction, JSON output, width wrapping, and CLI contract fixes.
+**Secondary agent execution:** Implement explicit `--symbols`/changed-file input, import extraction, JSON output, width wrapping, and CLI contract fixes.
 **IBM Bob execution:** Test documented payload and wrapper fallback; use Ask/Agent for repair explanation without auto-application.
 **Inputs:** Changed files/diff or explicit symbols, gate decision, candidate patch.
 **Outputs/artifacts:** import extractor, remediation validator, CLI tests, JSON/width snapshots.
@@ -134,7 +134,7 @@
 ### Step 14.1 — Prove B0/B2/B3, Bob/wrapper workflow, and clean demo
 
 **Objective:** Pass research technical, workflow, measurement, and demo gates from a clean reviewed commit.
-**Antigravity execution:** Run clean checkout, network-disabled fixture demo, benchmark, full tests, independent review, and produce submission assets.
+**Secondary agent execution:** Run clean checkout, network-disabled fixture demo, benchmark, full tests, independent review, and produce submission assets.
 **IBM Bob execution:** Rehearse Plan/Ask/Agent workflow, capture Bob session export, and if hook behavior is unavailable use the labelled wrapper fallback.
 **Inputs:** Completed Phase 09–13 reports and source.
 **Outputs/artifacts:** Phase 14 checklist/report, benchmark raw results, Bob session or fallback proof, PPT/PDF, video, screenshots, release-state file.

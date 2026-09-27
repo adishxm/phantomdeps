@@ -4,7 +4,7 @@
 **Phase:** 05  
 **Step:** 5.6 — Validate generated outputs against repository evidence; reject hallucinated claims  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `61569ea`  
 
 ---

@@ -15,7 +15,7 @@
 - `.brain/.report/phase-03-step-3.3-ux-evidence.md` — terminal card, remediation block, NDJSON log
 - `.brain/.report/phase-03-step-3.4-tests-fixtures.md` — 35 tests, 5 suites, 3 fixture files
 - `.brain/.report/phase-03-step-3.5-hook-integration.md` — PreToolUse hook confirmed; stdout-ignored caveat documented
-- `.brain/.report/phase-03-step-3.6-parity.md` — IBM Bob and Antigravity behaviorally equivalent
+- `.brain/.report/phase-03-step-3.6-parity.md` — IBM Bob and Secondary agent behaviorally equivalent
 
 ## Step results
 
@@ -26,14 +26,14 @@
 | `3.3` | `COMPLETE` | Terminal card, remediation block, citation strings, NDJSON evidence log all confirmed |
 | `3.4` | `COMPLETE` | 5 test suites, 35 tests; 3 fixtures (is-odd-demo, lodash-allow-demo, risky-new-pkg-warn-demo) |
 | `3.5` | `COMPLETE` | Bob PreToolUse hook live; offline fixture mode verified; no suspect packages installed (D-004) |
-| `3.6` | `COMPLETE` | IBM Bob and Antigravity use identical source, fixtures, and test suite; tool-specific differences documented |
+| `3.6` | `COMPLETE` | IBM Bob and Secondary agent use identical source, fixtures, and test suite; tool-specific differences documented |
 
 ## Gate checklist
 
 - [x] Every step has an owner or an explicit blocker.
 - [x] Local tests run and exact evidence is saved — `npm test` → 5 suites, 35 tests, 0 failures.
 - [x] Advanced tests deferred to Phase 04 (edge-cases, mutation, security scan).
-- [x] Antigravity/Bob parity table updated — step-3.6 evidence file.
+- [x] Secondary agent/Bob parity table updated — step-3.6 evidence file.
 - [x] Decision, risk/blocker, and test evidence indexes updated — D-009 appended.
 - [x] Secret scan: no credentials, tokens, or `.repo` data in committed files.
 - [x] Commit created after gate passes.

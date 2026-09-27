@@ -52,7 +52,7 @@
 - [x] Every step has an artifact and is linked above.
 - [x] Local tests: `npm test` — 23/23 pass (`CONFIRMED` from Phase 00 build).
 - [x] Advanced tests: `NOT_RUN` for Phase 01 (planning phase; no new code added).
-- [x] Antigravity/IBM Bob parity: both lanes use the same contract (traceability matrix updated below).
+- [x] Secondary agent/IBM Bob parity: both lanes use the same contract (traceability matrix updated below).
 - [x] Decision log: D-007 added (Phase 01 gate PASSED).
 - [x] Risk/blocker log: B-002 and B-003 reviewed; no new blockers introduced.
 - [x] Traceability rows 01.1.1–01.1.5 updated.

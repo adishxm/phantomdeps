@@ -25,9 +25,9 @@ Complete **0.1 — Inventory `.docs`, `.repo`, `.brain`, source, tests, CI, and 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -63,7 +63,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -92,9 +92,9 @@ Complete **0.2 — Identify team roster, tool ownership, skills, availability, a
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -130,7 +130,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -159,9 +159,9 @@ Complete **0.3 — Extract the user problem, target users, constraints, and hack
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -197,7 +197,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -226,9 +226,9 @@ Complete **0.4 — Select the MVP, define non-goals, and record assumptions/bloc
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -264,7 +264,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -293,9 +293,9 @@ Complete **0.5 — Create the synchronized roadmap index and traceability matrix
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -331,7 +331,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -366,9 +366,9 @@ Complete **1.1 — Convert research into a concise problem statement and value p
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -404,7 +404,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -433,9 +433,9 @@ Complete **1.2 — Define personas, user journeys, user stories, and measurable 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -471,7 +471,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -500,9 +500,9 @@ Complete **1.3 — Define the MVP boundary, success metrics, demo scenario, and 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -538,7 +538,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -567,9 +567,9 @@ Complete **1.4 — Map each requirement to implementation, test, evidence, and o
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -605,7 +605,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -634,9 +634,9 @@ Complete **1.5 — Review the product contract with the team and resolve contrad
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -672,7 +672,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -707,9 +707,9 @@ Complete **2.1 — Produce or validate system architecture and repository struct
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -745,7 +745,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -774,9 +774,9 @@ Complete **2.2 — Define data model, API contracts, integrations, and error beh
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -812,7 +812,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -841,9 +841,9 @@ Complete **2.3 — Define UX flows, screens, accessibility requirements, and dem
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -879,7 +879,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -908,9 +908,9 @@ Complete **2.4 — Create threat model, privacy boundary, authentication/authori
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -946,7 +946,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -975,9 +975,9 @@ Complete **2.5 — Define local setup, CI, deployment, backup/recovery, observab
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1013,7 +1013,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1048,9 +1048,9 @@ Complete **3.1 — Create or repair the local development environment** for the 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1086,7 +1086,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1115,9 +1115,9 @@ Complete **3.2 — Implement the highest-value vertical slice end to end** for t
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1153,7 +1153,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1182,9 +1182,9 @@ Complete **3.3 — Add user-visible progress, errors, citations/evidence, and sa
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1220,7 +1220,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1249,9 +1249,9 @@ Complete **3.4 — Add unit tests and fixtures while implementing each slice** f
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1287,7 +1287,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1316,9 +1316,9 @@ Complete **3.5 — Integrate only the minimum external services required for the
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1354,7 +1354,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1373,19 +1373,19 @@ Planned: `phase-03: complete step 3.5 and record evidence`; commit only after th
 `NOT_STARTED`
 
 
-### Step 3.6 — Keep Antigravity and IBM Bob outputs behaviorally equivalent; document tool-specific differences
+### Step 3.6 — Keep Secondary agent and IBM Bob outputs behaviorally equivalent; document tool-specific differences
 
 **Objective:**
 
-Complete **3.6 — Keep Antigravity and IBM Bob outputs behaviorally equivalent; document tool-specific differences** for the focused npm-first `phantomdeps` MVP. The objective, quality bar, and definition of done are identical in both lanes.
+Complete **3.6 — Keep Secondary agent and IBM Bob outputs behaviorally equivalent; document tool-specific differences** for the focused npm-first `phantomdeps` MVP. The objective, quality bar, and definition of done are identical in both lanes.
 
 **IBM Bob execution:**
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1421,7 +1421,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1456,9 +1456,9 @@ Complete **4.1 — Run formatting, linting, type checks, static analysis, and un
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1494,7 +1494,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1523,9 +1523,9 @@ Complete **4.2 — Run integration, API, database, and contract tests where appl
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1561,7 +1561,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1590,9 +1590,9 @@ Complete **4.3 — Run end-to-end happy-path and critical failure-path tests** f
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1628,7 +1628,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1657,9 +1657,9 @@ Complete **4.4 — Test each acceptance criterion against the actual product** f
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1695,7 +1695,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1724,9 +1724,9 @@ Complete **4.5 — Record exact commands, environment, commit, duration, output,
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1762,7 +1762,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1791,9 +1791,9 @@ Complete **4.6 — Conduct a human team review using a clean checkout or clean e
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1829,7 +1829,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1864,9 +1864,9 @@ Complete **5.1 — Test edge cases, malformed inputs, timeouts, retries, empty s
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1902,7 +1902,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1931,9 +1931,9 @@ Complete **5.2 — Run regression, mutation/property/fuzz testing where practica
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -1969,7 +1969,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -1998,9 +1998,9 @@ Complete **5.3 — Run dependency, secret, permission, privacy, and basic supply
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2036,7 +2036,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2065,9 +2065,9 @@ Complete **5.4 — Test reproducibility from a clean checkout and verify no hidd
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2103,7 +2103,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2132,9 +2132,9 @@ Complete **5.5 — Test performance against an explicitly stated small-hackathon
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2170,7 +2170,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2199,9 +2199,9 @@ Complete **5.6 — Validate generated outputs against repository evidence; rejec
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2237,7 +2237,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2272,9 +2272,9 @@ Complete **6.1 — Prepare a read-only review package containing the product bri
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2310,7 +2310,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2339,9 +2339,9 @@ Complete **6.2 — Ask an independent agent with no implementation context to in
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2377,7 +2377,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2406,9 +2406,9 @@ Complete **6.3 — Ask a second independent reviewer to challenge usability, sec
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2444,7 +2444,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2473,9 +2473,9 @@ Complete **6.4 — Compare outsider findings with team findings; classify each a
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2511,7 +2511,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2540,9 +2540,9 @@ Complete **6.5 — Fix all release-blocking findings and document accepted resid
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2578,7 +2578,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2607,9 +2607,9 @@ Complete **6.6 — Re-run the affected tests after every fix** for the focused n
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2645,7 +2645,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2680,9 +2680,9 @@ Complete **7.1 — Freeze scope and create a release-candidate branch or tag** f
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2718,7 +2718,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2747,9 +2747,9 @@ Complete **7.2 — Verify README, setup instructions, architecture explanation, 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2785,7 +2785,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2804,19 +2804,19 @@ Planned: `phase-07: complete step 7.2 and record evidence`; commit only after th
 `NOT_STARTED`
 
 
-### Step 7.3 — Create the timed demo script: problem, before state, Bob/Antigravity workflow, evidence, result, and impact
+### Step 7.3 — Create the timed demo script: problem, before state, Bob/Secondary agent workflow, evidence, result, and impact
 
 **Objective:**
 
-Complete **7.3 — Create the timed demo script: problem, before state, Bob/Antigravity workflow, evidence, result, and impact** for the focused npm-first `phantomdeps` MVP. The objective, quality bar, and definition of done are identical in both lanes.
+Complete **7.3 — Create the timed demo script: problem, before state, Bob/Secondary agent workflow, evidence, result, and impact** for the focused npm-first `phantomdeps` MVP. The objective, quality bar, and definition of done are identical in both lanes.
 
 **IBM Bob execution:**
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2852,7 +2852,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2881,9 +2881,9 @@ Complete **7.4 — Prepare judge/client questions and concise answers grounded i
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2919,7 +2919,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -2948,9 +2948,9 @@ Complete **7.5 — Run a full rehearsal from a clean environment and record the 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -2986,7 +2986,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -3015,9 +3015,9 @@ Complete **7.6 — Create the final release checklist and explicitly document an
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -3053,7 +3053,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -3088,9 +3088,9 @@ Complete **8.1 — Verify the exact hackathon portal requirements from authorita
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -3126,7 +3126,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -3155,9 +3155,9 @@ Complete **8.2 — Prepare repository URL, demo URL, video, screenshots, pitch, 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -3193,7 +3193,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -3222,9 +3222,9 @@ Complete **8.3 — Run a final secret scan and verify that no `.repo` or private
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -3260,7 +3260,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -3289,9 +3289,9 @@ Complete **8.4 — Verify the submission package against the tagged commit, not 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -3327,7 +3327,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -3356,9 +3356,9 @@ Complete **8.5 — Produce a final submission checklist with owner and status fo
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -3394,7 +3394,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 
@@ -3423,9 +3423,9 @@ Complete **8.6 — Stop before actually submitting any official, public, legal, 
 
 Use IBM Bob deliberately: Plan mode for decomposition, Ask mode for repository-grounded explanation, Agent mode for implementation, and isolated/parallel agents only with explicit boundaries and verification. Capture Bob prompts, outputs, tool calls, corrections, and session artifacts. Test `PreToolUse`; if unavailable or unsuitable, use the labelled `phantomdeps install` wrapper fallback.
 
-**Antigravity execution:**
+**Secondary agent execution:**
 
-In the parallel lane, use the team Antigravity workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
+In the parallel lane, use the team Secondary agent workflow with repository inspection, planned changes, captured prompts/outputs where permitted, and command/test/human verification; this field is included to make the contract explicit even when executing in IBM Bob.
 
 **Inputs:**
 
@@ -3461,7 +3461,7 @@ Run adversarial, reproducibility, security, or outsider checks appropriate to th
 
 **Evidence to capture:**
 
-Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Antigravity session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
+Capture file paths, command output, commit ID, timestamp, environment, reviewer, Bob/Secondary agent session evidence where applicable, and exact fixture/source citations. For unknowns, capture the discovery task and owner.
 
 **Failure handling:**
 

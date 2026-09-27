@@ -4,7 +4,7 @@
 **Phase:** 06  
 **Step:** 6.6 — Re-run the affected tests after every fix  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `7a493ac`  
 
 ---

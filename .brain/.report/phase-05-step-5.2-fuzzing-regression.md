@@ -4,7 +4,7 @@
 **Phase:** 05  
 **Step:** 5.2 — Run regression, mutation/property/fuzz testing where practical  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `61569ea`  
 
 ---

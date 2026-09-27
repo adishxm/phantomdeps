@@ -6,7 +6,7 @@
 
 ## Scope
 
-This plan executes steps `3.1, 3.2, 3.3, 3.4, 3.5, 3.6` in both synchronized lanes. The detailed step contract is in `../.imple-plan/antigravity-roadmap.md` and `ibm-bob-roadmap.md`; objectives, acceptance criteria, tests, evidence, and definition of done must remain equal.
+This plan executes steps `3.1, 3.2, 3.3, 3.4, 3.5, 3.6` in both synchronized lanes. The detailed step contract is in `../.imple-plan/agent-roadmap.md` and `ibm-bob-roadmap.md`; objectives, acceptance criteria, tests, evidence, and definition of done must remain equal.
 
 ## Phase outcome
 
@@ -19,14 +19,14 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 - `3.3` — Add user-visible progress, errors, citations/evidence, and safe defaults
 - `3.4` — Add unit tests and fixtures while implementing each slice
 - `3.5` — Integrate only the minimum external services required for the demo
-- `3.6` — Keep Antigravity and IBM Bob outputs behaviorally equivalent; document tool-specific differences
+- `3.6` — Keep Secondary agent and IBM Bob outputs behaviorally equivalent; document tool-specific differences
 
 ## Gate checklist
 
 - [x] Every step has an owner or an explicit blocker.
 - [x] Local tests run and exact evidence is saved.
 - [x] Advanced tests run after local pass.
-- [x] Antigravity/Bob parity table updated.
+- [x] Secondary agent/Bob parity table updated.
 - [x] Decision, risk/blocker, and test evidence indexes updated.
 - [x] Secret scan and artifact completeness check pass.
 - [x] Commit created only after the gate passes.
@@ -42,4 +42,4 @@ Produce phase-specific artifacts, evidence, test records, and a gate decision fo
 | `3.3` | `src/evidence/writer.ts`, `src/demo/runner.ts` | Terminal card + NDJSON log verified in demo output | `COMPLETE` |
 | `3.4` | `tests/gate-integration.test.ts`, `fixtures/lodash-allow-demo.json`, `fixtures/risky-new-pkg-warn-demo.json` | 5 suites, 35 tests, 0 failures | `COMPLETE` |
 | `3.5` | `.bob/hooks/PreToolUse.mjs` | Hook wired; stdout-ignored caveat documented (D-003, D-009) | `COMPLETE` |
-| `3.6` | `.brain/.report/phase-03-step-3.6-parity.md` | IBM Bob and Antigravity behaviorally equivalent | `COMPLETE` |
+| `3.6` | `.brain/.report/phase-03-step-3.6-parity.md` | IBM Bob and Secondary agent behaviorally equivalent | `COMPLETE` |

@@ -1,8 +1,8 @@
 <!-- Status: COMPLETE | Phase: 03 | Step: 3.6 -->
-# Step 3.6 — Behavioral Parity: IBM Bob vs Antigravity Lane
+# Step 3.6 — Behavioral Parity: IBM Bob vs Secondary agent Lane
 
 **Phase:** 03  
-**Step:** 3.6 — Keep Antigravity and IBM Bob outputs behaviorally equivalent; document tool-specific differences  
+**Step:** 3.6 — Keep Secondary agent and IBM Bob outputs behaviorally equivalent; document tool-specific differences  
 **Status:** `COMPLETE`  
 **Executed by:** IBM Bob (Agent mode) — this session
 
@@ -23,7 +23,7 @@ Tool-specific execution differs only in **how** the work is performed, not **wha
 
 ## Behavioral equivalence table
 
-| Behavior | IBM Bob lane | Antigravity lane | Parity |
+| Behavior | IBM Bob lane | Secondary agent lane | Parity |
 |---|---|---|---|
 | BLOCK on absent symbol | `demo --fixture --offline` → BLOCK, `l2.symbol_missing`, exit 2 | Same command, same fixture, same output | ✅ Identical |
 | ALLOW on present symbol | `demo --fixture --offline --scenario allow` → ALLOW, exit 0 | Same | ✅ Identical |
@@ -36,13 +36,13 @@ Tool-specific execution differs only in **how** the work is performed, not **wha
 
 ## Tool-specific differences (non-behavioral)
 
-| Aspect | IBM Bob | Antigravity | Impact |
+| Aspect | IBM Bob | Secondary agent | Impact |
 |---|---|---|---|
 | **Mode used for architecture** | Plan mode (structured phase plans in `.brain/`) | Direct code planning | No behavioral difference |
 | **Mode used for implementation** | Agent mode (this session) | Pair-programming / agentic flow | Same code produced |
-| **Hook integration** | `PreToolUse.mjs` for Bob `execute_command` interception | No native hook — CLI wrapper only | Bob gets automatic interception; Antigravity must call `phantomdeps install` explicitly |
-| **Session evidence** | Bob session summaries, task screenshots (to be captured in Phase 07) | Antigravity session logs | Evidence artifacts differ; behavioral output identical |
-| **Subagent usage** | L4 task-fit via Bob focused subagent (deferred to post-hackathon) | Antigravity parallel agent | Both deferred; no current difference |
+| **Hook integration** | `PreToolUse.mjs` for Bob `execute_command` interception | No native hook — CLI wrapper only | Bob gets automatic interception; Secondary agent must call `phantomdeps install` explicitly |
+| **Session evidence** | Bob session summaries, task screenshots (to be captured in Phase 07) | Secondary agent session logs | Evidence artifacts differ; behavioral output identical |
+| **Subagent usage** | L4 task-fit via Bob focused subagent (deferred to post-hackathon) | Secondary agent parallel agent | Both deferred; no current difference |
 
 ---
 

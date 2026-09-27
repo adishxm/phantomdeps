@@ -4,7 +4,7 @@
 **Phase:** 05  
 **Step:** 5.1 — Test edge cases, malformed inputs, timeouts, retries, empty states, and partial failures  
 **Status:** `COMPLETE`  
-**Executed by:** IBM Bob / Antigravity Agent  
+**Executed by:** IBM Bob / Secondary Agent  
 **Commit:** `61569ea`  
 
 ---
