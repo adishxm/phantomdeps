@@ -2,7 +2,7 @@
 # Contribution Guide & Contributor Attribution Matrix
 
 **Status:** `ACTIVE`  
-**Git Baseline:** 71 commits across Phases 00–14 on branch `main`  
+**Git Baseline:** 86 commits across Phases 00–14 on branch `main`  
 **Live Repository:** [https://github.com/adishxm/phantomdeps](https://github.com/adishxm/phantomdeps)
 
 ---
@@ -22,21 +22,21 @@ The `phantomdeps` engineering team is a verified **four-person team**. Each cont
 
 ## 2. Commit & Phase Attribution Summary
 
-All 71 commits on `main` trace directly to verified team members. Below is the distribution across commits and project milestones:
+All 86 commits on `main` trace directly to verified team members. Below is the distribution across commits and project milestones:
 
 | Contributor | GitHub Profile | Total Commits | Primary Phases | Key Modules & Deliverables Contributed |
 |---|---|:---:|---|---|
-| **Aditya Kumar Sharma** | [@adishxm](https://github.com/adishxm) | **13** | Phases 00–03, 09–14 (Gov/Docs) | Project initialization, PRD, error taxonomy, initial typed contracts & baseline orchestrator, Phase 09–14 remediation roadmap synchronization and deduplication, Mermaid visual explainer architecture (Diagrams 2.1–2.4). |
-| **Narayan Kumar Jha** | [narayan-nkj (Narayan Kumar Jha)](https://github.com/narayan-nkj) | **51** | Phases 04, 08, 09, 12–14 | Local validation & NDJSON logging fixes, Phase 08 submission package, hash-chained evidence provenance (`audit-log verify`), unified diff parser & claim-context contract, B0/B1/B2 benchmark corpus, release gate verification runner, Phase 14 closeout reports. |
+| **Aditya Kumar Sharma** | [@adishxm](https://github.com/adishxm) | **16** | Phases 00–03, 09–14 (Gov/Docs) | Project initialization, PRD, error taxonomy, initial typed contracts & baseline orchestrator, Phase 09–14 remediation roadmap synchronization and deduplication, Mermaid visual explainer architecture (Diagrams 2.1–2.4). |
+| **Narayan Kumar Jha** | [narayan-nkj (Narayan Kumar Jha)](https://github.com/narayan-nkj) | **63** | Phases 04, 08, 09, 12–14 | Local validation & NDJSON logging fixes, Phase 08 submission package, hash-chained evidence provenance (`audit-log verify`), unified diff parser & claim-context contract, B0/B1/B2 benchmark corpus, release gate verification runner, Phase 14 closeout reports. |
 | **Utkarsh Yadav** | [@utkarsh-2207](https://github.com/utkarsh-2207) | **4** | Phases 05–07 | Advanced validation test suite (103 tests baseline), coverage enforcement, outsider review fixes (`.bob/settings.json`, TypeScript syntax fixes), release candidate tag (`v0.1.0-rc.1`), 7/7 timed demo rehearsals. |
 | **Roshan Singh** | [@rs3260821-dotcom](https://github.com/rs3260821-dotcom) | **3** | Phases 10–11 | Contributor 4 onboarding & roster verification, fail-closed command tokenizer & policy hook (`PreToolUse.mjs`), live npm registry exact-version & pure-Node static AST tarball verification (`src/adapters/artifact.ts`, `src/adapters/registry.ts`), live fixture capture CLI. |
-| **Total** | — | **71** | **Phases 00–14** | **Complete end-to-end phantom dependency detection pipeline, proof ledger, and benchmark suite** |
+| **Total** | — | **86** | **Phases 00–14** | **Complete end-to-end phantom dependency detection pipeline, proof ledger, and benchmark suite** |
 
 ---
 
 ## 3. Detailed Commit Log by Contributor
 
-### 3.1 Aditya Kumar Sharma ([@adishxm](https://github.com/adishxm) — 13 Commits)
+### 3.1 Aditya Kumar Sharma ([@adishxm](https://github.com/adishxm) — 16 Commits)
 
 | Commit Hash | Phase / Scope | Commit Message & Deliverable |
 |---|---|---|
@@ -53,10 +53,13 @@ All 71 commits on `main` trace directly to verified team members. Below is the d
 | `54083c9` | Planning | `chore: remove duplicate phase-XX-<name>.md files in favor of phase-XX-implementation.md` |
 | `7368d61` | Architecture | `docs: add Mermaid visual explainer diagrams and update project structure in README` (Diagrams 2.1–2.4) |
 | `e8f764d` | Architecture | `docs: update Implementation Phases table and report links in README to cover Phases 00-14` |
+| `4b12c66` | Architecture | `docs: professionally redesign README with centered hero section and 4 Mermaid flowcharts` |
+| `3f94d77` | Architecture | `docs: fix Mermaid diagram class syntax for 100% GitHub rendering compatibility` |
+| `9296c9f` | Architecture | `docs: expand .docs tree architecture with tests, research and demo details` |
 
 ---
 
-### 3.2 Narayan Kumar Jha ([narayan-nkj (Narayan Kumar Jha)](https://github.com/narayan-nkj) — 51 Commits)
+### 3.2 Narayan Kumar Jha ([narayan-nkj (Narayan Kumar Jha)](https://github.com/narayan-nkj) — 63 Commits)
 
 | Commit Hash | Phase / Scope | Commit Message & Deliverable |
 |---|---|---|
