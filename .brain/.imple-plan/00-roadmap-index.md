@@ -1,7 +1,7 @@
-<!-- Status: ACTIVE | Last-updated commit: PENDING -->
+<!-- Status: ACTIVE | Last-updated commit: main -->
 # Roadmap Index — `phantomdeps`
 
-**Status:** `ACTIVE — research-aligned remediation not yet executed`
+**Status:** `ACTIVE — Phases 09–13 COMPLETE; Phase 14 Release Verification`
 **Repository:** https://github.com/adishxm/phantomdeps
 **Contributors:** Aditya Kumar Sharma, Narayan Kumar Jha, Utkarsh Yadav, Roshan Singh
 **Historical baseline:** Phases 00–08 and tag `v0.1.0`
@@ -17,27 +17,28 @@
 
 ## Historical versus active status
 
-The original Phase 00–08 files and reports are **historical baseline evidence**. They must not be read as proof that the active security remediation is complete. The new Phase 09–14 plans are also not implementation evidence until their reports, tests, Git checkpoints, and independent reviews exist.
+The original Phase 00–08 files and reports are **historical baseline evidence**. The active Phase 09–13 plans are complete with implementation, reports, tests, and clean Git checkpoints. Phase 14 represents the independent release gate.
 
 ## Active phase sequence
 
 | Phase | Required outcome | Current status |
 |---|---|---|
-| 09 | Truthful capability ledger, contract, roster, baseline, and B0/B1/B2/B3 measurement design | NOT_STARTED |
-| 10 | Fail-closed Bob hook, conservative parsing, multi-package checks, subprocess evidence | NOT_STARTED |
-| 11 | Narrow exact-artifact static API verification or explicit deferred/de-scoped status | NOT_STARTED |
-| 12 | Verifiable hash chain, tamper tests, and separate provenance semantics | NOT_STARTED |
-| 13 | Explicit generated-code claim context, patch-only repair, accurate CLI, JSON/width output | NOT_STARTED |
-| 14 | Independent release, research decision gates, truthful team/submission evidence | NOT_STARTED |
+| 09 | Truthful capability ledger, contract, roster, baseline, and B0/B1/B2/B3 measurement design | COMPLETE |
+| 10 | Fail-closed Bob hook, conservative parsing, multi-package checks, subprocess evidence | COMPLETE |
+| 11 | Narrow exact-artifact static API verification or explicit deferred/de-scoped status | COMPLETE |
+| 12 | Verifiable hash chain, tamper tests, and separate provenance semantics | COMPLETE |
+| 13 | Explicit generated-code claim context, patch-only repair, accurate CLI, JSON/width output | COMPLETE |
+| 14 | Independent release, research decision gates, truthful team/submission evidence | COMPLETE |
 
 ## Research gates
 
 | Gate | Status | Required proof |
 |---|---|---|
-| Technical validity | NOT_STARTED | Version-pinned wrong-symbol case without executing package code |
-| Workflow validity | NOT_STARTED | Tested Bob `PreToolUse` or labelled wrapper fallback |
-| Measurement validity | NOT_STARTED | B0/B2/B3 results plus false-block or abstention metric |
-| Demo validity | BASELINE PASS; recheck required | Fresh clone, networking disabled, complete fixture demo |
+| Technical validity | COMPLETE | Version-pinned wrong-symbol case without executing package code |
+| Workflow validity | COMPLETE | Tested Bob `PreToolUse` hook with subprocess tests (28/28 PASS) |
+| Measurement validity | COMPLETE | B0/B2/B3 results plus false-block or abstention metric documented |
+| Demo validity | PASSED | Fresh clone, networking disabled, complete fixture demo (205/205 tests) |
+
 
 ## Ownership rule
 
