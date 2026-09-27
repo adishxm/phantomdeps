@@ -1,6 +1,8 @@
-# `phantomdeps`
+<div align="center">
 
-> **Pre-install AI dependency claim gate for IBM Bob**
+# phantomdeps
+
+### Pre-install AI dependency claim gate for IBM Bob
 
 [![CI](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml/badge.svg)](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml)
 ![Tests](https://img.shields.io/badge/tests-205%2F205%20passing-brightgreen)
@@ -10,34 +12,42 @@
 ![Node](https://img.shields.io/badge/node-%3E%3D20-green?logo=node.js)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-`phantomdeps` is an npm-first, **verification-only** pre-install claim gate designed to prevent AI coding agent package hallucinations. It never installs or executes package code. Its offline fixture path provides deterministic BLOCK/WARN/ALLOW decisions against version-pinned snapshots. In live mode, it resolves npm registry metadata and performs exact-artifact static AST inspection of tarball exports without executing package code. The IBM Bob `PreToolUse` hook intercepts install requests with fail-closed argv tokenizing and multi-package aggregation.
+<p align="center">
+  <b>phantomdeps</b> is an npm-first, <b>verification-only</b> pre-install claim gate designed to prevent AI coding agent package and symbol hallucinations. It statically verifies exported AST declarations from npm tarballs without executing target package code.
+</p>
+
+</div>
 
 ---
 
 ## Table of Contents
 
-- [Why It Exists](#why-it-exists)
+- [Overview](#overview)
+- [Plain-Language Workflow](#plain-language-workflow)
+- [Product Workflow & Explainer](#product-workflow--explainer)
+- [Technical Architecture](#technical-architecture)
+- [End-to-End Sequence Flow](#end-to-end-sequence-flow)
 - [Key Features](#key-features)
-- [System Architecture](#system-architecture)
 - [Quick Start](#quick-start)
 - [Demo Scenarios](#demo-scenarios)
-- [Usage & Commands](#usage--commands)
+- [Verified Output Example](#verified-output-example)
+- [Usage & CLI Commands](#usage--cli-commands)
 - [Project Structure](#project-structure)
 - [IBM Bob Integration](#ibm-bob-integration)
 - [Security, Provenance & Audit Logging](#security-provenance--audit-logging)
 - [Testing & Quality Assurance](#testing--quality-assurance)
 - [Git History & Milestone Timeline](#git-history--milestone-timeline)
-- [Team & Contribution](#team--contribution)
 - [Product Contract & Scope Boundaries](#product-contract--scope-boundaries)
+- [Team & Contribution](#team--contribution)
 - [License & Acknowledgments](#license--acknowledgments)
 
 ---
 
-## Why It Exists
+## Overview
 
 AI coding agents frequently recommend non-existent packages or hallucinate function exports from real packages. A [USENIX Security 2025 study](https://www.usenix.org/conference/usenixsecurity25) found a **19.7% package-level hallucination rate** across 2.23 million recommendations from 16 popular LLMs.
 
-Standard name-existence checks miss the critical gap: a real package that exists on npm, but does **not** export the specific function or symbol claimed in the AI-generated import. `phantomdeps` bridges this gap before `npm install` runs.
+Standard name-existence checks miss the critical gap: a real package that exists on npm, but does **not** export the specific function or symbol claimed in the AI-generated import. `phantomdeps` bridges this gap before `npm install` executes.
 
 ```typescript
 // AI Agent generates:
@@ -52,6 +62,172 @@ import { isOddBatch } from 'is-odd'; // Hallucinated symbol!
 
 ---
 
+## Plain-Language Workflow
+
+For developers and non-technical readers, `phantomdeps` acts as an automated safety check between an AI assistant and package installation.
+
+```mermaid
+flowchart TD
+    classDef agent fill:#3b82f6,stroke:#1d4ed8,color:#ffffff
+    classDef gate fill:#6366f1,stroke:#4338ca,color:#ffffff
+    classDef block fill:#ef4444,stroke:#b91c1c,color:#ffffff
+    classDef warn fill:#f59e0b,stroke:#b45309,color:#ffffff
+    classDef allow fill:#10b981,stroke:#047857,color:#ffffff
+    classDef human fill:#8b5cf6,stroke:#6d28d9,color:#ffffff
+
+    A["AI Assistant writes code & generates install command"] :::agent --> B["phantomdeps checks whether package exists on npm"] :::gate
+    B --> C["phantomdeps verifies imported symbols in package tarball"] :::gate
+    
+    C -- "Fake package or missing symbol" --> D["BLOCK: Installation intercepted before execution"] :::block
+    C -- "Risky signal (e.g. install scripts)" --> E["WARN: Flagged for human review"] :::warn
+    C -- "Package & symbols confirmed" --> F["ALLOW: Safe to install"] :::allow
+    
+    D --> G["Bob proposes cited repair patch"] :::agent
+    E --> H["Human reviews risk signals"] :::human
+    G --> I["Human approves repair patch"] :::human
+    
+    H -- "Approved" --> F
+    I --> J["Bob applies patch & re-verifies"] :::agent
+    J --> K["Tests pass & work continues safely"] :::allow
+```
+
+> *"The package exists, but the function the AI wrote doesn't — so we catch that before anything installs, and Bob fixes it for you."*
+
+---
+
+## Product Workflow & Explainer
+
+How `phantomdeps` evaluates AI tool invocations, returns deterministic policy decisions, and integrates into agent workflows.
+
+```mermaid
+flowchart TD
+    classDef dev fill:#3b82f6,stroke:#1d4ed8,color:#ffffff
+    classDef bob fill:#6366f1,stroke:#4338ca,color:#ffffff
+    classDef gate fill:#0284c7,stroke:#0369a1,color:#ffffff
+    classDef allow fill:#10b981,stroke:#047857,color:#ffffff
+    classDef warn fill:#f59e0b,stroke:#b45309,color:#ffffff
+    classDef block fill:#ef4444,stroke:#b91c1c,color:#ffffff
+    classDef unverified fill:#6b7280,stroke:#374151,color:#ffffff
+    classDef human fill:#8b5cf6,stroke:#6d28d9,color:#ffffff
+
+    A["Developer Task"] :::dev --> B["IBM Bob generates code & npm install command"] :::bob
+    B --> C["phantomdeps Pre-Install Gate"] :::gate
+    
+    C --> D{"Verdict Evaluation"}
+    D -- "ALLOW" --> E["Installation Proceeds"] :::allow
+    D -- "WARN" --> F["Flagged for Human Review"] :::warn
+    D -- "BLOCK" --> G["Evidence Card & Revalidated Repair Plan"] :::block
+    D -- "UNVERIFIED" --> H["Fails Closed (Never Guesses)"] :::unverified
+    
+    G --> I["Human Approves Patch"] :::human
+    F -- "Approved" --> E
+    H -- "Manual Verification" --> I
+    I --> J["Bob Agent Applies Patch"] :::bob
+    J --> K["Safe Build & Tests Run"] :::bob
+    K --> L["Gate Re-Checks & Decision Recorded"] :::gate
+```
+
+> *"phantomdeps is a deterministic-first claim gate — it verifies the package and the exact API an agent's code claims to use, before install, then hands IBM Bob a cited, reviewable repair."*
+
+---
+
+## Technical Architecture
+
+The multi-layered verification pipeline architecture powering `phantomdeps`.
+
+```mermaid
+flowchart TD
+    classDef layer0 fill:#1e293b,stroke:#475569,color:#f8fafc
+    classDef layer1 fill:#0f766e,stroke:#115e59,color:#ffffff
+    classDef layer2 fill:#1d4ed8,stroke:#1e40af,color:#ffffff
+    classDef layer3 fill:#b45309,stroke:#78350f,color:#ffffff
+    classDef layer4 fill:#4c1d95,stroke:#3b0764,color:#ffffff
+    classDef policy fill:#4338ca,stroke:#3730a3,color:#ffffff
+
+    subgraph Interception ["Interception Layer (L0)"]
+        A1["Bob PreToolUse Hook (.bob/hooks/PreToolUse.mjs)"] :::layer0
+        A2["CLI Wrapper Fallback (src/cli.ts)"] :::layer0
+        A3["Command Adapter & Argv Parser (src/parser.ts)"] :::layer0
+    end
+
+    subgraph Identity ["L1 — Identity & Registry"]
+        B1["Registry Adapter (src/adapters/registry.ts)"] :::layer1
+        B2["Non-executing Archive Inspector (src/adapters/artifact.ts)"] :::layer1
+    end
+
+    subgraph StaticResolver ["L2 — Static Claim Resolver"]
+        C1["Changed-import Diff Parser (src/adapters/diff-parser.ts)"] :::layer2
+        C2["Exports & Types AST Resolver (src/checker/static-claim.ts)"] :::layer2
+    end
+
+    subgraph RiskSignals ["L3 — Risk Signals (Warn-Only)"]
+        D1["Install Scripts & Package Age (src/checker/risk-signals.ts)"] :::layer3
+    end
+
+    subgraph BoundedFit ["L4 — Bounded Task Fit (Optional)"]
+        E1["Bob Subagent (Sandboxed & Cited)"] :::layer4
+    end
+
+    subgraph PolicyEngine ["Policy & Output Engine"]
+        F1["Rule-First Policy Engine (src/engine/policy.ts)"] :::policy
+        F2["Evidence Writer Card / JSON / SARIF (src/evidence/writer.ts)"] :::policy
+        F3["SHA-256 Hash-Chained Audit Log (.phantomdeps/decisions.ndjson)"] :::policy
+        F4["Remediation Planner (src/remediation/engine.ts)"] :::policy
+    end
+
+    Interception --> Identity
+    Identity --> StaticResolver
+    StaticResolver --> RiskSignals
+    RiskSignals --> BoundedFit
+    BoundedFit --> PolicyEngine
+    PolicyEngine -- "Human Approved Patch" --> G["Bob Agent Applies Patch -> Safe Build & Tests"]
+```
+
+> *"TypeScript/Node CLI, npm registry adapter (PyPI is L1-only in v1), no code execution anywhere — only byte-level archive inspection and static parsing."*
+
+---
+
+## End-to-End Sequence Flow
+
+Sequence diagram demonstrating real-time interception, tarball inspection, evidence card generation, and repair approval.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Dev as Developer
+    participant Bob as IBM Bob Agent
+    participant Gate as phantomdeps Gate
+    participant Reg as npm Registry
+
+    Dev->>Bob: Gives coding task
+    Bob->>Bob: Generates code & npm install command
+    Bob->>Gate: Trigger npm install (PreToolUse Hook)
+    
+    Gate->>Reg: Resolve package metadata & tarball URL (L1)
+    Reg-->>Gate: Return packument, sha512 integrity & tarball
+
+    Gate->>Gate: Extract tarball in memory & parse AST exports (L2)
+
+    alt Symbol Missing or Package Hallucinated (BLOCK)
+        Gate-->>Bob: Exit Code 2 (BLOCK) & write Evidence Card to stderr
+        Gate->>Gate: Log decision to .phantomdeps/decisions.ndjson
+        Bob->>Dev: Present Evidence Card & proposed repair patch
+        Dev->>Bob: Human approves repair patch
+        Bob->>Bob: Apply reviewed patch to code
+        Bob->>Bob: Run safe local build & unit tests
+        Bob->>Gate: Re-verify install command with gate
+        Gate-->>Bob: Exit Code 0 (ALLOW)
+        Gate->>Gate: Log updated decision
+        Bob->>Dev: Work completed safely
+    else Symbol Verified & Package Valid (ALLOW)
+        Gate-->>Bob: Exit Code 0 (ALLOW)
+        Gate->>Gate: Log decision to .phantomdeps/decisions.ndjson
+        Bob->>Dev: Installation proceeds & task completes
+    end
+```
+
+---
+
 ## Key Features
 
 - **Static Tarball AST Inspection**: Inspects package tarball exports (`package.json#exports` ESM maps and TypeScript `.d.ts` AST declarations) without executing code.
@@ -60,38 +236,6 @@ import { isOddBatch } from 'is-odd'; // Hallucinated symbol!
 - **Explicit Claim-Context Contract**: Accepts symbol context via `--symbols`, git diff import extraction (`--diff <file>`), or source file inspection (`--file <path>`). Missing context safely returns `UNVERIFIED`.
 - **Machine-Readable Output**: Emits structured JSON via `--json` and responsive terminal cards formatted dynamically for 80, 120, or 240 column displays.
 - **Human-Approved Remediation**: Suggests import fixes (e.g. replacing `isOddBatch` with `isOdd`) as terminal suggestions requiring explicit human confirmation.
-
----
-
-## System Architecture
-
-```mermaid
-flowchart TD
-    A["IBM Bob Agent / Developer CLI"] --> B["CommandAdapter / parser.ts"]
-    B -- Tokenizes argv & rejects metachars --> C{"Execution Mode"}
-    C -- Offline Fixture Mode --> D["FixtureLoader / fixtures/"]
-    C -- Live Registry Mode --> E["RegistryAdapter / adapters/registry.ts"]
-    
-    D --> H["PolicyEngine / policy.ts"]
-    E -- Tarball Download & AST Inspection --> F["StaticClaimChecker / static-claim.ts"]
-    E -- Script & Metadata Analysis --> G["RiskSignals / risk-signals.ts"]
-    
-    F --> H
-    G --> H
-    
-    H -- Decision & Findings --> I["EvidenceWriter / writer.ts"]
-    I --> J["Terminal Card / stdout"]
-    I --> K[".phantomdeps/decisions.ndjson (SHA-256 Chain)"]
-```
-
-### Verification Pipeline Layers
-
-1. **L0 Parser**: Tokenizes command line, strips flags (`-D`, `--save`), rejects shell metacharacters (`&`, `;`, `|`, `>`, `<`), and checks name constraints.
-2. **L1 Registry**: Resolves exact package version, tarball URL, publish timestamp, and `sha512` integrity hash.
-3. **L2 Static Claim Checker**: Downloads tarball (max 50 MB), verifies `sha512` hash, extracts via pure POSIX parser, and parses ESM/TypeScript declarations.
-4. **L3 Risk Signals**: Identifies install scripts (`preinstall`/`postinstall`), young packages (<30 days), or unverified integrity.
-5. **L4 Policy Engine**: Evaluates rule priority to issue `ALLOW`, `WARN`, `BLOCK`, or `UNVERIFIED`.
-6. **L5 Evidence Writer**: Formats CLI output and writes SHA-256 hash-chained NDJSON decision records.
 
 ---
 
@@ -184,7 +328,7 @@ Findings:
 
 ---
 
-## Usage & Commands
+## Usage & CLI Commands
 
 ```bash
 # Verify a package against the live npm registry
@@ -365,19 +509,6 @@ Chronological milestones extracted from verified repository Git commits:
 
 ---
 
-## Team & Contribution
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution guidelines.
-
-### Team Roster
-
-- **[Aditya Kumar Sharma](https://github.com/adishxm)** — Product & Architecture Lead
-- **[Narayan Kumar Jha](mailto:narayan.nkj@gmail.com)** — Core Implementation & Test Engineer
-- **[Utkarsh Yadav](https://github.com/utkarsh-2207)** — Validation, Security & IBM Bob Workflow Lead
-- **[Roshan Singh](https://github.com/rs3260821-dotcom)** — Demo, Documentation & Presentation Lead
-
----
-
 ## Product Contract & Scope Boundaries
 
 Grounded in frozen product specification [`docs/product-contract.md`](docs/product-contract.md):
@@ -394,6 +525,19 @@ Grounded in frozen product specification [`docs/product-contract.md`](docs/produ
 - Automatic code patching without human approval.
 - Non-npm ecosystems (Python PyPI, Rust Crates, Go Modules).
 - Transitive dependency tree or lock-file graph scanning.
+
+---
+
+## Team & Contribution
+
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution guidelines.
+
+### Team Roster
+
+- **[Aditya Kumar Sharma](https://github.com/adishxm)** — Product & Architecture Lead
+- **[Narayan Kumar Jha](mailto:narayan.nkj@gmail.com)** — Core Implementation & Test Engineer
+- **[Utkarsh Yadav](https://github.com/utkarsh-2207)** — Validation, Security & IBM Bob Workflow Lead
+- **[Roshan Singh](https://github.com/rs3260821-dotcom)** — Demo, Documentation & Presentation Lead
 
 ---
 
