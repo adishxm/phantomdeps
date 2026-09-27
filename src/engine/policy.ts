@@ -22,13 +22,34 @@ export interface PolicyInput {
   risk: RiskSignals | null;
   origin: Origin;
   previousHash: string;
+  /**
+   * Phase 13: describes how claim context was supplied.
+   * "missing" means no symbols/diff/file were given — claim context is absent.
+   */
+  claimContextKind?: "symbols" | "diff" | "file" | "missing";
 }
 
 export function applyPolicy(input: PolicyInput): GateDecision {
   const findings: Finding[] = [];
   let verdict: Verdict = "ALLOW";
 
-  const { intent, evidence, claim, risk } = input;
+  const { intent, evidence, claim, risk, claimContextKind } = input;
+
+  // ── Phase 13: claim context status ─────────────────────────────────────────
+  // If claim context is explicitly "missing" (no --symbols/--diff/--file), emit an info finding.
+  // This makes UNVERIFIED visible and prevents silent ALLOW when no symbols were checked.
+  if (claimContextKind === "missing" && !claim) {
+    findings.push({
+      id: "l2.context_missing",
+      severity: "info",
+      message:
+        `No claim context provided for '${intent.name}'. ` +
+        `Provide --symbols, --diff <path>, or --file <path> to enable static symbol verification. ` +
+        `Without claim context, symbol claims are UNVERIFIED.`,
+      evidenceRefs: ["L2:no_claim_context"],
+    });
+    if (verdict === "ALLOW") verdict = "UNVERIFIED";
+  }
 
   // ── L1 hard blocks ─────────────────────────────────────────────────────────
   if (evidence === null || evidence === "NOT_FOUND") {
