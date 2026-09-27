@@ -31,6 +31,12 @@ export interface CheckOptions {
   packageSpec: string;
   symbols: string[];
   offline: boolean;
+  /** Phase 13: path to a unified diff file for import extraction */
+  diffPath: string | null;
+  /** Phase 13: path to a source file for import extraction */
+  filePath: string | null;
+  /** Phase 13: emit machine-readable JSON output */
+  jsonOutput: boolean;
 }
 
 // ── Hook command tokenizer ────────────────────────────────────────────────────
@@ -116,7 +122,14 @@ export function classifySpec(spec: string): "registry" | "unsupported" | "unsafe
 }
 
 export function parseCheckArgs(args: string[]): CheckOptions {
-  const opts: CheckOptions = { packageSpec: "", symbols: [], offline: false };
+  const opts: CheckOptions = {
+    packageSpec: "",
+    symbols: [],
+    offline: false,
+    diffPath: null,
+    filePath: null,
+    jsonOutput: false,
+  };
   let i = 0;
   while (i < args.length) {
     const arg = args[i];
@@ -125,6 +138,12 @@ export function parseCheckArgs(args: string[]): CheckOptions {
       opts.symbols = raw.split(",").map((s) => s.trim()).filter(Boolean);
     } else if (arg === "--offline") {
       opts.offline = true;
+    } else if (arg === "--diff") {
+      opts.diffPath = args[++i] ?? null;
+    } else if (arg === "--file") {
+      opts.filePath = args[++i] ?? null;
+    } else if (arg === "--json") {
+      opts.jsonOutput = true;
     } else if (!arg.startsWith("--")) {
       opts.packageSpec = arg;
     }
