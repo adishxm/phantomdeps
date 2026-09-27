@@ -1,9 +1,9 @@
-<!-- Status: COMPLETE | Last-updated commit: 76ecbff -->
+<!-- Status: HISTORICAL BASELINE | Last-updated commit: PENDING -->
 # Executive Summary — `phantomdeps`
 
-**Status:** `COMPLETE`
-**Last-updated commit:** `76ecbff` (chore: update phase-step-traceability matrix — all 51 steps COMPLETE)
-**Phases completed:** 00 through 08 — ALL PASSED
+**Status:** `HISTORICAL BASELINE — NOT CURRENT RELEASE APPROVAL`
+**Last-updated commit:** `76ecbff` (historical Phase 00–08 evidence)
+**Historical phases:** 00 through 08 recorded baseline work; active Phases 09–14 are not complete.
 **Repository:** https://github.com/adishxm/phantomdeps
 **Release tag:** `v0.1.0` (commit `c31a950`)
 **Date:** 2026-09-27
@@ -12,9 +12,9 @@
 
 ## Product
 
-`phantomdeps` is an npm-first, offline fixture-replayable pre-install claim gate. It intercepts `npm install` before it runs, verifies registry identity, exact package artifact, and a narrow statically provable import/API claim, and returns `BLOCK / WARN / ALLOW / UNVERIFIED` with cited evidence — without ever installing or executing the suspect package.
+`phantomdeps` is an npm-first, offline fixture-replayable verification prototype. The fixture path demonstrates a missing-symbol block without package installation. The current live path resolves npm metadata and returns `UNVERIFIED` when static API evidence is unavailable. Active remediation must complete fail-closed hook enforcement, claim-context handling, exact artifact inspection or explicit de-scope, and independent measurement before broader security claims are made.
 
-IBM Bob is used as a full workflow lane: Plan mode for architecture and policy design, Agent mode for implementation and patch application, Ask mode for explaining blocked decisions. The `PreToolUse` hook (`exit 2` = BLOCK) is tested and registered via `.bob/settings.json`.
+IBM Bob usage is documented and the hook is registered via `.bob/settings.json`, but full workflow validity remains `NOT_STARTED` until a real session or labelled wrapper fallback is captured.
 
 ---
 

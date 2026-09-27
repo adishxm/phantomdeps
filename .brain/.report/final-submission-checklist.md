@@ -1,9 +1,10 @@
-<!-- Status: COMPLETE | Last-updated commit: phase-08 -->
-# Final Submission Checklist
+<!-- Status: HISTORICAL BASELINE | Last-updated commit: phase-08 -->
+# Final Submission Checklist (Phase 08 Baseline)
 
-**Status:** `COMPLETE`  
+**Status:** `HISTORICAL BASELINE — NOT CURRENT RELEASE APPROVAL`  
 **Last-updated commit:** `phase-08`  
-**Tag:** `v0.1.0-rc.1` → recommend `v0.1.0` after Phase 08 commit  
+**Current release checklist:** See [`.brain/.report/phase-14-release-checklist.md`](./phase-14-release-checklist.md) for active Phase 14 gate.  
+**Historical tag:** `v0.1.0` (commit `c31a950`)  
 **Full detail:** `.brain/.report/phase-08-step-8.5-final-checklist.md`
 
 | Field | Required evidence | Owner | Status |

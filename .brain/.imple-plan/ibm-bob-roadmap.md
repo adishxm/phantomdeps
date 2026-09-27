@@ -1,14 +1,14 @@
-<!-- Status: COMPLETE | Last-updated commit: 76ecbff -->
+<!-- Status: HISTORICAL BASELINE | Last-updated commit: 76ecbff -->
 
 # Synchronized IBM Bob Roadmap — `phantomdeps`
 
-**Status:** `COMPLETE`
+**Status:** `HISTORICAL BASELINE — NOT CURRENT RELEASE APPROVAL`
 **Last-updated commit:** `76ecbff`
-**All phases:** 00–08 PASSED
+**Historical phases:** 00–08 recorded as passed at the time; active remediation is in `ibm-bob-remediation-roadmap.md`.
 **Repository:** https://github.com/adishxm/phantomdeps
 **Release tag:** `v0.1.0` (commit `c31a950`)
 
-This lane is synchronized with the other lane. Objective, acceptance criteria, tests, evidence, and definition of done are intentionally identical; only execution instructions differ. All 51 steps across phases 00–08 are COMPLETE — see `.brain/.report/phase-step-traceability.md` for full evidence mapping.
+This file preserves the Phase 00–08 baseline. It is not evidence that the current Bob hook is fail-closed or that live API inspection is implemented. Use the active synchronized remediation lane for Phases 09–14.
 
 
 ## Phase 00 — Intake, repository audit, and operating agreement

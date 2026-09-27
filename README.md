@@ -4,11 +4,11 @@
 
 [![CI](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml/badge.svg)](https://github.com/adishxm/phantomdeps/actions/workflows/ci.yml)
 ![Tests](https://img.shields.io/badge/tests-103%2F103%20passing-brightgreen)
-![Phase](https://img.shields.io/badge/phase-07%20complete-blue)
-![Version](https://img.shields.io/badge/version-v0.1.0--rc.1-orange)
+![Phase](https://img.shields.io/badge/phase-09%E2%80%9314%20remediation%20active-yellow)
+![Version](https://img.shields.io/badge/version-v0.1.0%20historical-orange)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-`phantomdeps` intercepts `npm install` **before it runs**, verifies the exact package artifact and statically provable API against what the AI-generated code actually imports, and returns a `BLOCK / WARN / ALLOW / UNVERIFIED` verdict with cited evidence — **without ever installing or executing the suspect package.**
+`phantomdeps` is an npm-first verification prototype. Its offline fixture path demonstrates a pre-install decision when a package exists but a generated symbol is absent. Its current live path resolves npm metadata and returns `UNVERIFIED` when static API evidence is unavailable. The current Bob hook is tested against the documented fixture payload and remains subject to the active fail-closed remediation phases.
 
 ---
 
@@ -17,6 +17,8 @@
 AI coding agents hallucinate package names and symbols. A [USENIX Security 2025 study](https://www.usenix.org/conference/usenixsecurity25) found a **19.7% package-level hallucination rate** across 2.23 million recommendations from 16 models.
 
 Name-existence checks miss the harder case: a real package that simply does not export the symbol the agent's code imports. `phantomdeps` catches that gap.
+
+> **Current limitation:** The committed fixtures provide the strongest API-claim demo. Live npm mode currently returns `UNVERIFIED` when static API evidence is unavailable. The Bob hook is an active remediation target for unknown, unsupported, option-first, and multi-package commands; do not treat it as production-ready fail-closed protection yet.
 
 ```
 IBM Bob: "import { isOddBatch } from 'is-odd'"   ← hallucinated symbol
@@ -259,7 +261,9 @@ Hook config (`.bob/settings.json`):
 
 ---
 
-## Phases completed
+## Historical baseline — Phases 00–08
+
+The table below records historical baseline work. It is not approval of the current security boundary. Active remediation is tracked in the research-aligned Phase 09–14 roadmap.
 
 | Phase | Status | Key deliverables |
 |---|---|---|
@@ -275,10 +279,18 @@ Hook config (`.bob/settings.json`):
 
 ---
 
-## Research and planning
+## Active research-aligned remediation
+
+- [Active remediation roadmap](.brain/.imple-plan/active-remediation-roadmap.md)
+- [Antigravity remediation lane](.brain/.imple-plan/antigravity-remediation-roadmap.md)
+- [IBM Bob remediation lane](.brain/.imple-plan/ibm-bob-remediation-roadmap.md)
+- [Research-alignment capability ledger](.brain/.report/research-alignment-ledger.md)
+- [Current Phase 14 release checklist](.brain/.report/phase-14-release-checklist.md)
+
+## Research and historical planning
 
 - Full research report: [`.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md`](.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md)
-- Phase roadmap: [`.brain/.imple-plan/ibm-bob-roadmap.md`](.brain/.imple-plan/ibm-bob-roadmap.md)
+- Historical Phase 00–08 roadmap: [`.brain/.imple-plan/ibm-bob-roadmap.md`](.brain/.imple-plan/ibm-bob-roadmap.md)
 - Decision log: [`.brain/.report/decision-log.md`](.brain/.report/decision-log.md)
 - Phase 00 report: [`.brain/.report/phase-00-report.md`](.brain/.report/phase-00-report.md)
 - Phase 01 report: [`.brain/.report/phase-01-report.md`](.brain/.report/phase-01-report.md)
@@ -305,4 +317,3 @@ Hook config (`.bob/settings.json`):
 ## License
 
 MIT — see [LICENSE](LICENSE)
-

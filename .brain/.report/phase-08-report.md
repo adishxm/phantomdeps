@@ -1,17 +1,17 @@
-<!-- Status: PASSED | Last-updated commit: phase-08 -->
+<!-- Status: HISTORICAL BASELINE | Last-updated commit: phase-08 -->
 # Phase 08 Report — Submission Package
 
-**Status:** `PASSED`  
-**Last-updated commit:** `phase-08: submission package PASSED — secret scan clean, checklist complete`  
-**Executed by:** IBM Bob (Agent mode) — Phase 08 session  
-**Environment:** macOS darwin 27.0.0, Node.js v26.8.1, npm 11.19.0  
+**Status:** `HISTORICAL BASELINE — NOT CURRENT RELEASE APPROVAL`
+**Last-updated commit:** `phase-08: submission package PASSED — secret scan clean, checklist complete`
+**Executed by:** IBM Bob (Agent mode) — Phase 08 session
+**Environment:** macOS darwin 27.0.0, Node.js v26.8.1, npm 11.19.0
 **Date:** 2026-09-27
 
 ---
 
 ## Gate result
 
-`PASSED` — all six steps complete, submission package fully documented, secret scan clean, 103/103 tests verified, stop gate enforced (no official submission made by IBM Bob).
+Historical Phase 08 evidence recorded a submission checklist, secret scan, test verification, and stop gate. It does not approve the current release because active Phases 09–14 remain unexecuted.
 
 ---
 
