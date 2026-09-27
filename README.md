@@ -424,11 +424,15 @@ phantomdeps/
 │   │   ├── Tested_report_antigravity/    # 11-phase validation reports for Antigravity
 │   │   ├── phantomdeps_validation_protocol.md
 │   │   └── PhantomDeps Real-Time Validation Report.md
-│   └── 03_DEMO/              # Demo scripts, pitch presentations, judge Q&A & checklists
-│       ├── demo-script.md
-│       ├── pitch.md
-│       ├── ppt-outline.md
-│       └── release-checklist.md
+│   ├── 03_DEMO/              # Demo scripts, pitch presentations, judge Q&A & checklists
+│   │   ├── demo-script.md
+│   │   ├── pitch.md
+│   │   ├── ppt-outline.md
+│   │   └── release-checklist.md
+│   ├── ibm-bob-screenshot/   # Live IBM Bob IDE session UI validation screenshots gallery
+│   ├── ibm-bob-screenshot.zip # Full archive of IBM Bob test evidence screenshots
+│   ├── phantomdeps — Prove the claim before install.pdf   # Official presentation pitch deck (PDF)
+│   └── phantomdeps — Prove the claim before install.pptx  # Official presentation pitch deck (PPTX)
 ├── package.json              # Package metadata, bin routes & dependencies
 ├── tsconfig.json             # TypeScript ES2022 / NodeNext configuration
 ├── jest.config.js            # ESM Jest test runner setup
@@ -582,7 +586,9 @@ npx tsx src/cli.ts audit-log verify .phantomdeps/decisions.ndjson
 TaskForge is a controlled, real-world TypeScript project used to prove that `phantomdeps` blocks hallucinated dependencies **before** `npm install` executes. Both **IBM Bob** and **Antigravity** validation environments have been thoroughly exercised with full test suites, implementation plans, and reports:
 
 - **IBM Bob Target:** [`.docs/02_TEST/Tested_project_ibm-bob/`](.docs/02_TEST/Tested_project_ibm-bob/) | Reports: [`.docs/02_TEST/Tested_report_ibm-bob/`](.docs/02_TEST/Tested_report_ibm-bob/)
+- **IBM Bob Live UI Screenshots:** [`.docs/ibm-bob-screenshot/`](.docs/ibm-bob-screenshot/) (Archive: [`.docs/ibm-bob-screenshot.zip`](.docs/ibm-bob-screenshot.zip))
 - **Antigravity Target:** [`.docs/02_TEST/Tested_project_antigravity/`](.docs/02_TEST/Tested_project_antigravity/) | Reports: [`.docs/02_TEST/Tested_report_antigravity/`](.docs/02_TEST/Tested_report_antigravity/)
+- **Pitch Deck & Presentation:** [`.docs/phantomdeps — Prove the claim before install.pdf`](.docs/phantomdeps%20%E2%80%94%20Prove%20the%20claim%20before%20install.pdf) | [PowerPoint (.pptx)](.docs/phantomdeps%20%E2%80%94%20Prove%20the%20claim%20before%20install.pptx)
 
 ---
 
