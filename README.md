@@ -121,43 +121,41 @@ The multi-layered verification pipeline architecture powering `phantomdeps`.
 
 ```mermaid
 flowchart TD
-    subgraph Interception ["Interception Layer (L0)"]
-        A1["Bob PreToolUse Hook (.bob/hooks/PreToolUse.mjs)"]
-        A2["CLI Wrapper Fallback (src/cli.ts)"]
-        A3["Command Adapter & Argv Parser (src/parser.ts)"]
+    subgraph Client["Interception Layer"]
+        HK["Bob PreToolUse hook<br/>(or CLI wrapper fallback)"]
+        CA["Command Adapter<br/>argv parser, no shell"]
+    end
+    subgraph L1["L1 — Identity & Registry"]
+        RA["Registry Adapter (npm / PyPI)"]
+        AR["Non-executing Archive Inspector"]
+    end
+    subgraph L2["L2 — Static Claim Resolver"]
+        IM["Changed-import Parser"]
+        EX["Exports / Types Resolver"]
+    end
+    subgraph L3["L3 — Risk Signals (warn-only)"]
+        SQ["Proximity / Age / Reputation"]
+    end
+    subgraph L4["L4 — Bounded Task Fit (optional)"]
+        SUB["Bob Subagent<br/>no tools, cited, sandboxed"]
+    end
+    subgraph Core["Policy & Output"]
+        PE["Policy Engine (rule-first)"]
+        EW["Evidence Writer<br/>card / JSON / SARIF"]
+        DL["Hash-chained Decision Log"]
+        RP["Remediation Planner"]
     end
 
-    subgraph Identity ["L1 — Identity & Registry"]
-        B1["Registry Adapter (src/adapters/registry.ts)"]
-        B2["Non-executing Archive Inspector (src/adapters/artifact.ts)"]
-    end
-
-    subgraph StaticResolver ["L2 — Static Claim Resolver"]
-        C1["Changed-import Diff Parser (src/adapters/diff-parser.ts)"]
-        C2["Exports & Types AST Resolver (src/checker/static-claim.ts)"]
-    end
-
-    subgraph RiskSignals ["L3 — Risk Signals (Warn-Only)"]
-        D1["Install Scripts & Package Age (src/checker/risk-signals.ts)"]
-    end
-
-    subgraph BoundedFit ["L4 — Bounded Task Fit (Optional)"]
-        E1["Bob Subagent (Sandboxed & Cited)"]
-    end
-
-    subgraph PolicyEngine ["Policy & Output Engine"]
-        F1["Rule-First Policy Engine (src/engine/policy.ts)"]
-        F2["Evidence Writer Card / JSON / SARIF (src/evidence/writer.ts)"]
-        F3["SHA-256 Hash-Chained Audit Log (.phantomdeps/decisions.ndjson)"]
-        F4["Remediation Planner (src/remediation/engine.ts)"]
-    end
-
-    Interception --> Identity
-    Identity --> StaticResolver
-    StaticResolver --> RiskSignals
-    RiskSignals --> BoundedFit
-    BoundedFit --> PolicyEngine
-    PolicyEngine -- "Human Approved Patch" --> G["Bob Agent Applies Patch -> Safe Build & Tests"]
+    HK --> CA --> RA
+    RA --> AR --> IM --> EX
+    RA --> SQ
+    EX --> PE
+    SQ --> PE
+    PE -->|"ambiguous only"| SUB --> PE
+    PE --> EW
+    PE --> DL
+    PE -->|"BLOCK"| RP --> BobA["Bob Agent applies patch"]
+    BobA --> Tests["Safe build / tests"] --> PE
 ```
 
 > **Stack Notes:** Pure TypeScript/Node.js CLI (native ESM), npm registry adapter (PyPI is L1-identity only in v1), zero code execution anywhere — byte-level archive inspection, traversal-guarded tarball unpacking, and static AST parsing. See complete reference in [`docs/architecture.md`](docs/architecture.md).
