@@ -196,6 +196,115 @@ No package code is ever executed. Offline fixture mode uses version-pinned snaps
 
 ---
 
+## Visual Architecture & Workflow
+
+### 1. Intuitive View (High-Level Concept)
+
+Think of `phantomdeps` like an ID verification gate **before** letting an AI-written line of code install or execute unknown packages:
+
+```mermaid
+flowchart TD
+    A["🤖 AI assistant writes code<br/>and wants to install a package"] --> B{"phantomdeps checks two things:<br/>1) Does this package really exist?<br/>2) Does it really contain<br/>what the code is asking for?"}
+    B -->|"Fake or wrong"| C["🛑 Stop before installing.<br/>Show exactly what's wrong."]
+    B -->|"Not sure"| D["⚠️ Warn a human instead of guessing"]
+    B -->|"Verified"| E["✅ Let it install"]
+    C --> F["🔧 Find the correct package/fix<br/>Bob applies it — but only<br/>after a person approves"]
+    F --> G["✅ Tests pass, work continues safely"]
+```
+
+> **Plain-language summary:** *"The package exists, but the function the AI wrote doesn't — so phantomdeps catches that before anything installs, and IBM Bob fixes it for you."*
+
+### 2. Product Decision Flow
+
+```mermaid
+flowchart LR
+    U["Developer task"] --> M["IBM Bob generates code<br/>+ an install command"]
+    M --> G["phantomdeps<br/>Pre-Install Gate"]
+    G --> V{"Verdict"}
+    V -->|"ALLOW"| I["Install proceeds"]
+    V -->|"WARN"| H["Flagged for human review"]
+    V -->|"BLOCK"| R["Evidence card +<br/>revalidated repair plan"]
+    V -->|"UNVERIFIED"| N["Fails closed —<br/>never guesses"]
+    R --> P["Human approves the patch"]
+    P --> BA["Bob Agent applies<br/>only that patch"]
+    BA --> T["Tests run + gate re-checks"]
+    T --> L["Decision recorded<br/>(auditable trail)"]
+```
+
+### 3. Technical Stack & Layered Architecture
+
+```mermaid
+flowchart TD
+    subgraph Client["Interception Layer"]
+        HK["Bob PreToolUse hook<br/>(or CLI wrapper fallback)"]
+        CA["Command Adapter<br/>argv parser, no shell"]
+    end
+    subgraph L1["L1 — Identity & Registry"]
+        RA["Registry Adapter (npm / PyPI)"]
+        AR["Non-executing Archive Inspector"]
+    end
+    subgraph L2["L2 — Static Claim Resolver"]
+        IM["Changed-import Parser"]
+        EX["Exports / Types Resolver"]
+    end
+    subgraph L3["L3 — Risk Signals (warn-only)"]
+        SQ["Proximity / Age / Reputation"]
+    end
+    subgraph L4["L4 — Bounded Task Fit (optional)"]
+        SUB["Bob Subagent<br/>no tools, cited, sandboxed"]
+    end
+    subgraph Core["Policy & Output"]
+        PE["Policy Engine (rule-first)"]
+        EW["Evidence Writer<br/>card / JSON / SARIF"]
+        DL["Hash-chained Decision Log"]
+        RP["Remediation Planner"]
+    end
+
+    HK --> CA --> RA
+    RA --> AR --> IM --> EX
+    RA --> SQ
+    EX --> PE
+    SQ --> PE
+    PE -->|"ambiguous only"| SUB --> PE
+    PE --> EW
+    PE --> DL
+    PE -->|"BLOCK"| RP --> BobA["Bob Agent applies patch"]
+    BobA --> Tests["Safe build / tests"] --> PE
+```
+
+### 4. End-to-End Interception & Remediation Workflow
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant Bob as IBM Bob (Agent)
+    participant PD as phantomdeps Gate
+    participant Reg as Registry (npm)
+    participant Human as Human Approver
+
+    Dev->>Bob: Give coding task
+    Bob->>Bob: Generate code + install command
+    Bob->>PD: Install attempt (intercepted)
+    PD->>Reg: Verify exact package + version
+    Reg-->>PD: Metadata + artifact
+    PD->>PD: Check imported symbol vs exports (no execution)
+    alt Symbol missing
+        PD-->>Bob: BLOCK + evidence card
+        PD->>PD: Find & revalidate alternative
+        PD-->>Human: Propose patch
+        Human-->>PD: Approve
+        PD-->>Bob: Apply reviewed patch only
+        Bob->>Bob: Run safe tests
+        Bob->>PD: Re-check gate
+        PD-->>Dev: ALLOW + decision logged
+    else Symbol confirmed
+        PD-->>Bob: ALLOW
+        Bob->>Reg: Proceed with install
+    end
+```
+
+---
+
 ## Verdict semantics
 
 | Verdict | Meaning |
@@ -210,52 +319,81 @@ No package code is ever executed. Offline fixture mode uses version-pinned snaps
 ## Project structure
 
 ```
-src/
-  cli.ts               — entry point + argument router
-  parser.ts            — safe argv parser (shell metachar + protocol rejection, 214-char limit)
-  gate.ts              — orchestrator
-  types.ts             — shared types
-  adapters/
-    registry.ts        — npm registry adapter (L1)
-  checker/
-    static-claim.ts    — symbol resolver (L2)
-    risk-signals.ts    — warning signals (L3)
-  engine/
-    policy.ts          — rule-first verdict engine
-  evidence/
-    writer.ts          — terminal card + NDJSON log
-  fixtures/
-    loader.ts          — offline fixture loader
-  demo/
-    runner.ts          — fixture demo runner (multi-scenario)
-
-fixtures/
-  is-odd-demo.json              — is-odd@3.0.1: real package, absent symbol  → BLOCK
-  lodash-allow-demo.json        — lodash@4.17.21: real package, symbol present → ALLOW
-  risky-new-pkg-warn-demo.json  — package with install scripts               → WARN
-
-tests/
-  parser.test.ts            (8 tests)
-  static-claim.test.ts      (5 tests)
-  policy.test.ts            (6 tests)
-  fixture-loader.test.ts    (2 tests)
-  gate-integration.test.ts  (14 tests)
-  edge-cases.test.ts        (68 tests)   ← added Phase 05
-
-.bob/
-  hooks/PreToolUse.mjs — IBM Bob PreToolUse hook (exit 2 = BLOCK)
-  settings.json        — Bob hook registration (npx tsx)
-
-.github/workflows/
-  ci.yml               — Node 20 + 22 matrix: lint → test → demo
-
-.brain/
-  .imple-plan/         — phase implementation plans (00–08)
-  .report/             — phase reports, decisions, risks, traceability
-
-.docs/
-  01_RESEARCH/         — full research report + master prompt
-  10_DEMO/             — demo script, pitch, judge Q&A, PPT outline
+phantomdeps/
+├── src/
+│   ├── cli.ts                   — CLI entry point + command routing (check, verify, demo, audit-log)
+│   ├── gate.ts                  — pipeline orchestrator (combines L1–L3 + claim context)
+│   ├── parser.ts                — safe argv tokenizer & flag stripper (replaces regex parser)
+│   ├── diff-parser.ts           — git diff / file import extractor (explicit claim context)
+│   ├── capture-fixture.ts       — live registry fixture recorder utility
+│   ├── types.ts                 — core domain types, verdict enums, evidence contracts
+│   ├── adapters/
+│   │   ├── registry.ts          — npm registry packument/metadata resolver (L1)
+│   │   └── artifact.ts          — tarball fetcher, integrity checker & static AST export resolver (L2)
+│   ├── checker/
+│   │   ├── static-claim.ts      — AST symbol resolution against package exports (L2)
+│   │   └── risk-signals.ts      — install script detection, young package, integrity checks (L3)
+│   ├── engine/
+│   │   └── policy.ts            — deterministic rule-first verdict engine (ALLOW/WARN/BLOCK/UNVERIFIED)
+│   ├── evidence/
+│   │   └── writer.ts            — terminal card formatter, JSON emitter & hash-chained log writer
+│   ├── demo/
+│   │   └── runner.ts            — multi-scenario offline fixture demo runner
+│   └── fixtures/
+│       └── loader.ts            — offline fixture loader and validator
+│
+├── tests/                       — 10 comprehensive test suites (205 tests total)
+│   ├── parser.test.ts           — argv tokenizer, option-first, flags, length limits
+│   ├── static-claim.test.ts     — symbol resolution against exports
+│   ├── policy.test.ts           — rule-first policy engine logic
+│   ├── fixture-loader.test.ts   — offline fixture schema & loader tests
+│   ├── gate-integration.test.ts — full gate pipeline integration tests
+│   ├── edge-cases.test.ts       — adversarial inputs, protocol injection, malformed specs
+│   ├── artifact-registry.test.ts— tarball download, integrity verification, AST parsing
+│   ├── audit-log.test.ts        — hash chain verification, tamper detection, override records
+│   ├── claim-context.test.ts    — diff parsing, symbol contracts, missing context handling
+│   └── hook-subprocess.test.ts  — live PreToolUse.mjs subprocess execution & fail-closed tests
+│
+├── eval/                        — evaluation corpus & empirical measurement
+│   ├── corpus.json              — 15 version-pinned test cases (B0 baseline, B1 metadata, B2 API)
+│   ├── run-evaluation.ts        — automated benchmark runner measuring recall, precision, latency
+│   └── results.json             — empirical benchmark results (100% recall, 0% false block)
+│
+├── fixtures/                    — version-pinned offline demo fixtures
+│   ├── is-odd-demo.json         — is-odd@3.0.1: real package, absent symbol → BLOCK
+│   ├── lodash-allow-demo.json   — lodash@4.17.21: real package, symbol present → ALLOW
+│   └── risky-new-pkg-warn-demo.json — package with install scripts → WARN
+│
+├── docs/                        — technical documentation
+│   └── product-contract.md      — frozen product contract, verification boundary, CLI semantics
+│
+├── .bob/                        — IBM Bob integration
+│   ├── hooks/
+│   │   └── PreToolUse.mjs       — PreToolUse hook (argv tokenizer, strict-agent, exit 2 = BLOCK)
+│   └── settings.json            — Bob hook configuration
+│
+├── .phantomdeps/                — runtime state & audit trail
+│   ├── decisions.ndjson         — SHA-256 hash-chained decision audit log
+│   └── hook-info.json           — hook runtime registration metadata
+│
+├── .brain/                      — architectural records & planning
+│   ├── .imple-plan/             — synchronized phase implementation plans (Phases 00–14)
+│   │   ├── 00-roadmap-index.md  — roadmap index (Phases 00–14)
+│   │   ├── active-remediation-roadmap.md — active remediation roadmap
+│   │   ├── ibm-bob-roadmap.md   — historical Phase 00–08 baseline
+│   │   └── phase-00-implementation.md ... phase-14-implementation.md
+│   └── .report/                 — phase reports, decision log, risk log, test plan, traceability
+│       ├── 00-executive-summary.md — executive summary & gate status
+│       ├── research-alignment-ledger.md — capability matrix & research decision gates
+│       ├── phase-14-report.md   — independent release gate verification report
+│       └── phase-14-release-checklist.md — final release checklist & human stop gate
+│
+├── .docs/                       — hackathon research & submission assets
+│   ├── 01_RESEARCH/             — complete research document, reference log, master prompt
+│   └── 10_DEMO/                 — demo script, judge Q&A, pitch, presentation outline
+│
+└── .github/workflows/
+    └── ci.yml                   — GitHub Actions CI: Node 20 + 22 test & lint matrix
 ```
 
 ---
