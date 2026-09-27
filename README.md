@@ -6,47 +6,118 @@
 ![Tests](https://img.shields.io/badge/tests-205%2F205%20passing-brightgreen)
 ![Phase](https://img.shields.io/badge/phase-14%20complete-brightgreen)
 ![Version](https://img.shields.io/badge/version-v0.1.0-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.5-blue?logo=typescript)
+![Node](https://img.shields.io/badge/node-%3E%3D20-green?logo=node.js)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-`phantomdeps` is an npm-first, **verification-only** pre-install claim gate. It never installs or executes package code. Its offline fixture path provides a deterministic BLOCK/WARN/ALLOW demo against version-pinned snapshots. In live mode it resolves npm registry metadata and performs live exact-artifact static AST inspection of tarball exports without executing package code. The IBM Bob `PreToolUse` hook intercepts install tool requests with fail-closed argv tokenizing and multi-package aggregation.
+`phantomdeps` is an npm-first, **verification-only** pre-install claim gate designed to prevent AI coding agent package hallucinations. It never installs or executes package code. Its offline fixture path provides deterministic BLOCK/WARN/ALLOW decisions against version-pinned snapshots. In live mode, it resolves npm registry metadata and performs exact-artifact static AST inspection of tarball exports without executing package code. The IBM Bob `PreToolUse` hook intercepts install requests with fail-closed argv tokenizing and multi-package aggregation.
 
 ---
 
-## Why it exists
+## Table of Contents
 
-AI coding agents hallucinate package names and symbols. A [USENIX Security 2025 study](https://www.usenix.org/conference/usenixsecurity25) found a **19.7% package-level hallucination rate** across 2.23 million recommendations from 16 models.
-
-Name-existence checks miss the harder case: a real package that simply does not export the symbol the agent's code imports. `phantomdeps` catches that gap.
-
-> **Key V1 Security Features (Phase 14 Release):**
-> - **Exact Tarball Inspection:** Statically inspects package tarball exports (ESM `exports` and TypeScript `.d.ts` AST declarations) without code execution.
-> - **Fail-Closed Hook Guard:** IBM Bob `PreToolUse` hook uses an argv tokenizer, multi-package aggregation, and strict-agent UNVERIFIED -> exit 2 rules.
-> - **Tamper-Evident Audit Log:** SHA-256 hash-chained log verified via `phantomdeps audit-log verify`.
-> - **Explicit Claim Context:** Symbol context resolved via `--symbols`, `--diff` (git diff import extraction), or `--file`. Missing context returns `UNVERIFIED`.
-> - **Verification-Only:** `install`/`add` are aliases for `check`/`verify` — no package is ever installed or executed.
-
-```
-IBM Bob: "import { isOddBatch } from 'is-odd'"   ← hallucinated symbol
-phantomdeps: BLOCK — is-odd@3.0.1 exports isOdd(), not isOddBatch
-```
+- [Why It Exists](#why-it-exists)
+- [Key Features](#key-features)
+- [System Architecture](#system-architecture)
+- [Quick Start](#quick-start)
+- [Demo Scenarios](#demo-scenarios)
+- [Usage & Commands](#usage--commands)
+- [Project Structure](#project-structure)
+- [IBM Bob Integration](#ibm-bob-integration)
+- [Security, Provenance & Audit Logging](#security-provenance--audit-logging)
+- [Testing & Quality Assurance](#testing--quality-assurance)
+- [Git History & Milestone Timeline](#git-history--milestone-timeline)
+- [Team & Contribution](#team--contribution)
+- [Product Contract & Scope Boundaries](#product-contract--scope-boundaries)
+- [License & Acknowledgments](#license--acknowledgments)
 
 ---
 
-## Quick start
+## Why It Exists
+
+AI coding agents frequently recommend non-existent packages or hallucinate function exports from real packages. A [USENIX Security 2025 study](https://www.usenix.org/conference/usenixsecurity25) found a **19.7% package-level hallucination rate** across 2.23 million recommendations from 16 popular LLMs.
+
+Standard name-existence checks miss the critical gap: a real package that exists on npm, but does **not** export the specific function or symbol claimed in the AI-generated import. `phantomdeps` bridges this gap before `npm install` runs.
+
+```typescript
+// AI Agent generates:
+import { isOddBatch } from 'is-odd'; // Hallucinated symbol!
+
+// phantomdeps gate intercepts:
+// Verdict: BLOCK — is-odd@3.0.1 exports isOdd(n), not isOddBatch
+```
+
+> [!IMPORTANT]
+> **Verification-Only Guarantee**: `phantomdeps` never calls `npm install`, never imports third-party modules, and never executes package code or lifecycle scripts (`preinstall`/`postinstall`).
+
+---
+
+## Key Features
+
+- **Static Tarball AST Inspection**: Inspects package tarball exports (`package.json#exports` ESM maps and TypeScript `.d.ts` AST declarations) without executing code.
+- **Fail-Closed IBM Bob Hook Guard**: Intercepts `execute_command` requests (`npm install`, `npm add`, `npm i`) with argv whitespace tokenization, flag stripping, and multi-package severity aggregation (`BLOCK` > `UNVERIFIED` > `WARN` > `ALLOW`).
+- **Tamper-Evident SHA-256 Audit Log**: Appends decisions to `.phantomdeps/decisions.ndjson` with SHA-256 hash chaining. Verified via `phantomdeps audit-log verify`.
+- **Explicit Claim-Context Contract**: Accepts symbol context via `--symbols`, git diff import extraction (`--diff <file>`), or source file inspection (`--file <path>`). Missing context safely returns `UNVERIFIED`.
+- **Machine-Readable Output**: Emits structured JSON via `--json` and responsive terminal cards formatted dynamically for 80, 120, or 240 column displays.
+- **Human-Approved Remediation**: Suggests import fixes (e.g. replacing `isOddBatch` with `isOdd`) as terminal suggestions requiring explicit human confirmation.
+
+---
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    A["IBM Bob Agent / Developer CLI"] --> B["CommandAdapter / parser.ts"]
+    B -- Tokenizes argv & rejects metachars --> C{"Execution Mode"}
+    C -- Offline Fixture Mode --> D["FixtureLoader / fixtures/"]
+    C -- Live Registry Mode --> E["RegistryAdapter / adapters/registry.ts"]
+    
+    D --> H["PolicyEngine / policy.ts"]
+    E -- Tarball Download & AST Inspection --> F["StaticClaimChecker / static-claim.ts"]
+    E -- Script & Metadata Analysis --> G["RiskSignals / risk-signals.ts"]
+    
+    F --> H
+    G --> H
+    
+    H -- Decision & Findings --> I["EvidenceWriter / writer.ts"]
+    I --> J["Terminal Card / stdout"]
+    I --> K[".phantomdeps/decisions.ndjson (SHA-256 Chain)"]
+```
+
+### Verification Pipeline Layers
+
+1. **L0 Parser**: Tokenizes command line, strips flags (`-D`, `--save`), rejects shell metacharacters (`&`, `;`, `|`, `>`, `<`), and checks name constraints.
+2. **L1 Registry**: Resolves exact package version, tarball URL, publish timestamp, and `sha512` integrity hash.
+3. **L2 Static Claim Checker**: Downloads tarball (max 50 MB), verifies `sha512` hash, extracts via pure POSIX parser, and parses ESM/TypeScript declarations.
+4. **L3 Risk Signals**: Identifies install scripts (`preinstall`/`postinstall`), young packages (<30 days), or unverified integrity.
+5. **L4 Policy Engine**: Evaluates rule priority to issue `ALLOW`, `WARN`, `BLOCK`, or `UNVERIFIED`.
+6. **L5 Evidence Writer**: Formats CLI output and writes SHA-256 hash-chained NDJSON decision records.
+
+---
+
+## Quick Start
 
 ```bash
+# Clone the repository
 git clone https://github.com/adishxm/phantomdeps.git
 cd phantomdeps
+
+# Install dependencies & run build check
 npm install
-npm test                                      # 205/205 tests pass
-npx tsx src/cli.ts demo --fixture --offline   # live BLOCK demo
+npm run build
+
+# Execute test suite (10 test suites / 205 tests)
+npm test
+
+# Run the offline fixture demo (default BLOCK scenario)
+npx tsx src/cli.ts demo --fixture --offline
 ```
 
 ---
 
-## Demo scenarios
+## Demo Scenarios
 
-Three built-in offline scenarios — no network, no package installation:
+`phantomdeps` includes three built-in offline demo scenarios running against committed fixture snapshots without network calls:
 
 ```bash
 # BLOCK — hallucinated symbol (isOddBatch does not exist in is-odd)
@@ -59,41 +130,17 @@ npx tsx src/cli.ts demo --fixture --offline --scenario allow
 npx tsx src/cli.ts demo --fixture --offline --scenario warn
 ```
 
-| Scenario | Package | Verdict | Exit |
-|---|---|---|---|
-| `block` (default) | `is-odd@3.0.1` — `isOddBatch` absent | **BLOCK** | `2` |
-| `allow` | `lodash@4.17.21` — `merge` confirmed | **ALLOW** | `0` |
-| `warn` | `risky-new-pkg` — install scripts present | **WARN** | `1` |
+| Scenario | Package Target | Claimed Symbol | Verdict | Exit Code |
+|---|---|---|---|---|
+| `block` (default) | `is-odd@3.0.1` | `isOddBatch` | **BLOCK** | `2` |
+| `allow` | `lodash@4.17.21` | `merge` | **ALLOW** | `0` |
+| `warn` | `risky-new-pkg` | `initialize` (install script present) | **WARN** | `1` |
 
 ---
 
-## Verified output
+## Verified Output Example
 
-Confirmed on macOS / Node.js v26.8.1 — Phase 14 Release Candidate.
-
-### `npm test`
-
-```
- PASS  tests/gate-integration.test.ts
- PASS  tests/artifact-registry.test.ts
- PASS  tests/parser.test.ts
- PASS  tests/audit-log.test.ts
- PASS  tests/static-claim.test.ts
- PASS  tests/claim-context.test.ts
- PASS  tests/fixture-loader.test.ts
- PASS  tests/policy.test.ts
- PASS  tests/edge-cases.test.ts
- PASS  tests/hook-subprocess.test.ts
-
-Test Suites: 10 passed, 10 total
-Tests:       205 passed, 205 total
-Time:        ~6.3 s
-```
-
-
-### `npx tsx src/cli.ts demo --fixture --offline`
-
-```
+```text
 phantomdeps — pre-install AI dependency claim gate
 Offline fixture demo — no network calls, no package installation
 
@@ -137,277 +184,105 @@ Findings:
 
 ---
 
-## Commands
+## Usage & Commands
 
 ```bash
-# Offline fixture demo (default: BLOCK scenario)
-npx tsx src/cli.ts demo --fixture --offline
-
-# Offline demo — choose scenario
-npx tsx src/cli.ts demo --fixture --offline --scenario allow
-npx tsx src/cli.ts demo --fixture --offline --scenario warn
-
-# Check / verify a package against live registry
+# Verify a package against the live npm registry
 npx tsx src/cli.ts verify lodash@4.17.21 --symbols merge,cloneDeep
 
-# Machine-readable JSON output (Phase 13)
+# Machine-readable JSON output
 npx tsx src/cli.ts verify lodash@4.17.21 --symbols merge --json
 
-# Verify from diff context — only newly added imports are checked (Phase 13)
-npx tsx src/cli.ts verify lodash@4.17.21 --symbols merge --diff changes.diff
+# Verify from a unified git diff file (extracts newly added imports)
+npx tsx src/cli.ts verify lodash@4.17.21 --diff changes.diff
 
-# Verify the tamper-evident audit log (Phase 12)
+# Verify audit log integrity against tampering
 npx tsx src/cli.ts audit-log verify
-npx tsx src/cli.ts audit-log verify /path/to/decisions.ndjson
+npx tsx src/cli.ts audit-log verify .phantomdeps/decisions.ndjson
 
-# 'install' and 'add' are verification-only aliases (Phase 13 — do NOT run npm install)
+# Verification-only aliases (do NOT run npm install)
 npx tsx src/cli.ts install is-odd --symbols isOddBatch
+npx tsx src/cli.ts add lodash --symbols merge
 ```
 
-**Exit codes (check/verify/install commands):** `0` = ALLOW · `1` = WARN · `2` = BLOCK · `3` = UNVERIFIED
-**Exit code (demo command):** always `0` when the demo verdict matches the expected verdict.
-**Exit code (audit-log verify):** `0` = clean · `2` = violations detected.
+### Command Exit Codes
 
-> **Phase 12 note:** The decision log is **tamper-evident after verification**, not immutable.
-> Run `audit-log verify` to validate hash chain integrity, record hashes, ordering, and schema.
-> A passing verification means no detectable tampering occurred — it does not make the log append-only.
+| Command Type | Exit 0 | Exit 1 | Exit 2 | Exit 3 |
+|---|---|---|---|---|
+| `verify` / `check` / `install` | `ALLOW` | `WARN` | `BLOCK` | `UNVERIFIED` |
+| `demo` | Verdict matched expectation | Verdict mismatched | N/A | N/A |
+| `audit-log verify` | Log clean & chain valid | N/A | Tampering / violations detected | N/A |
 
 ---
 
-## How it works
+## Project Structure
 
-```
-npm install <pkg>
-    ↓
-CommandAdapter     — parses argv without shell evaluation; rejects metacharacters
-    ↓
-RegistryAdapter    — resolves exact version + integrity from npm registry (L1)
-    ↓
-StaticClaimChecker — checks declared exports against imported symbols (L2)
-    ↓
-RiskSignals        — warning-only: install scripts, young package, artifact integrity unavailable (L3)
-    ↓
-PolicyEngine       — rule-first ALLOW / WARN / BLOCK / UNVERIFIED
-    ↓
-EvidenceWriter     — terminal card + hash-chained NDJSON decision log
-```
-
-No package code is ever executed. Offline fixture mode uses version-pinned snapshots.
-
----
-
-## Visual Architecture & Workflow
-
-### 1. Intuitive View (High-Level Concept)
-
-Think of `phantomdeps` like an ID verification gate **before** letting an AI-written line of code install or execute unknown packages:
-
-```mermaid
-flowchart TD
-    A["🤖 AI assistant writes code<br/>and wants to install a package"] --> B{"phantomdeps checks two things:<br/>1) Does this package really exist?<br/>2) Does it really contain<br/>what the code is asking for?"}
-    B -->|"Fake or wrong"| C["🛑 Stop before installing.<br/>Show exactly what's wrong."]
-    B -->|"Not sure"| D["⚠️ Warn a human instead of guessing"]
-    B -->|"Verified"| E["✅ Let it install"]
-    C --> F["🔧 Find the correct package/fix<br/>Bob applies it — but only<br/>after a person approves"]
-    F --> G["✅ Tests pass, work continues safely"]
-```
-
-> **Plain-language summary:** *"The package exists, but the function the AI wrote doesn't — so phantomdeps catches that before anything installs, and IBM Bob fixes it for you."*
-
-### 2. Product Decision Flow
-
-```mermaid
-flowchart LR
-    U["Developer task"] --> M["IBM Bob generates code<br/>+ an install command"]
-    M --> G["phantomdeps<br/>Pre-Install Gate"]
-    G --> V{"Verdict"}
-    V -->|"ALLOW"| I["Install proceeds"]
-    V -->|"WARN"| H["Flagged for human review"]
-    V -->|"BLOCK"| R["Evidence card +<br/>revalidated repair plan"]
-    V -->|"UNVERIFIED"| N["Fails closed —<br/>never guesses"]
-    R --> P["Human approves the patch"]
-    P --> BA["Bob Agent applies<br/>only that patch"]
-    BA --> T["Tests run + gate re-checks"]
-    T --> L["Decision recorded<br/>(auditable trail)"]
-```
-
-### 3. Technical Stack & Layered Architecture
-
-```mermaid
-flowchart TD
-    subgraph Client["Interception Layer"]
-        HK["Bob PreToolUse hook<br/>(or CLI wrapper fallback)"]
-        CA["Command Adapter<br/>argv parser, no shell"]
-    end
-    subgraph L1["L1 — Identity & Registry"]
-        RA["Registry Adapter (npm / PyPI)"]
-        AR["Non-executing Archive Inspector"]
-    end
-    subgraph L2["L2 — Static Claim Resolver"]
-        IM["Changed-import Parser"]
-        EX["Exports / Types Resolver"]
-    end
-    subgraph L3["L3 — Risk Signals (warn-only)"]
-        SQ["Proximity / Age / Reputation"]
-    end
-    subgraph L4["L4 — Bounded Task Fit (optional)"]
-        SUB["Bob Subagent<br/>no tools, cited, sandboxed"]
-    end
-    subgraph Core["Policy & Output"]
-        PE["Policy Engine (rule-first)"]
-        EW["Evidence Writer<br/>card / JSON / SARIF"]
-        DL["Hash-chained Decision Log"]
-        RP["Remediation Planner"]
-    end
-
-    HK --> CA --> RA
-    RA --> AR --> IM --> EX
-    RA --> SQ
-    EX --> PE
-    SQ --> PE
-    PE -->|"ambiguous only"| SUB --> PE
-    PE --> EW
-    PE --> DL
-    PE -->|"BLOCK"| RP --> BobA["Bob Agent applies patch"]
-    BobA --> Tests["Safe build / tests"] --> PE
-```
-
-### 4. End-to-End Interception & Remediation Workflow
-
-```mermaid
-sequenceDiagram
-    participant Dev as Developer
-    participant Bob as IBM Bob (Agent)
-    participant PD as phantomdeps Gate
-    participant Reg as Registry (npm)
-    participant Human as Human Approver
-
-    Dev->>Bob: Give coding task
-    Bob->>Bob: Generate code + install command
-    Bob->>PD: Install attempt (intercepted)
-    PD->>Reg: Verify exact package + version
-    Reg-->>PD: Metadata + artifact
-    PD->>PD: Check imported symbol vs exports (no execution)
-    alt Symbol missing
-        PD-->>Bob: BLOCK + evidence card
-        PD->>PD: Find & revalidate alternative
-        PD-->>Human: Propose patch
-        Human-->>PD: Approve
-        PD-->>Bob: Apply reviewed patch only
-        Bob->>Bob: Run safe tests
-        Bob->>PD: Re-check gate
-        PD-->>Dev: ALLOW + decision logged
-    else Symbol confirmed
-        PD-->>Bob: ALLOW
-        Bob->>Reg: Proceed with install
-    end
-```
-
----
-
-## Verdict semantics
-
-| Verdict | Meaning |
-|---|---|
-| `ALLOW` | Required checks passed; no hard finding |
-| `WARN` | Weak signal or bounded ambiguity (install scripts, young package) |
-| `BLOCK` | High-confidence claim failure — 404, wrong ecosystem, symbol absent |
-| `UNVERIFIED` | Network/cache/parser prevented a reliable decision — **never silently converted to ALLOW** |
-
----
-
-## Project structure
-
-```
+```text
 phantomdeps/
 ├── src/
-│   ├── cli.ts                   — CLI entry point + command routing (check, verify, demo, audit-log)
-│   ├── gate.ts                  — pipeline orchestrator (combines L1–L3 + claim context)
-│   ├── parser.ts                — safe argv tokenizer & flag stripper (replaces regex parser)
-│   ├── diff-parser.ts           — git diff / file import extractor (explicit claim context)
-│   ├── capture-fixture.ts       — live registry fixture recorder utility
-│   ├── types.ts                 — core domain types, verdict enums, evidence contracts
+│   ├── cli.ts                # Entry point, CLI router & output formatter
+│   ├── parser.ts             # Safe argv tokenizer, metacharacter & protocol guard
+│   ├── gate.ts               # Core verification gate orchestrator
+│   ├── types.ts              # System types, discriminated unions & interfaces
+│   ├── capture-fixture.ts    # CLI utility to capture live npm fixtures
 │   ├── adapters/
-│   │   ├── registry.ts          — npm registry packument/metadata resolver (L1)
-│   │   └── artifact.ts          — tarball fetcher, integrity checker & static AST export resolver (L2)
+│   │   ├── registry.ts       # Typed npm registry adapter (L1)
+│   │   └── artifact.ts       # Safe tarball downloader, extractor & AST inspector (L2)
 │   ├── checker/
-│   │   ├── static-claim.ts      — AST symbol resolution against package exports (L2)
-│   │   └── risk-signals.ts      — install script detection, young package, integrity checks (L3)
+│   │   ├── static-claim.ts   # Symbol claim resolver & citation generator
+│   │   └── risk-signals.ts   # Supply-chain risk detectors (L3)
 │   ├── engine/
-│   │   └── policy.ts            — deterministic rule-first verdict engine (ALLOW/WARN/BLOCK/UNVERIFIED)
+│   │   └── policy.ts         # Rule-first policy engine (L4)
 │   ├── evidence/
-│   │   └── writer.ts            — terminal card formatter, JSON emitter & hash-chained log writer
-│   ├── demo/
-│   │   └── runner.ts            — multi-scenario offline fixture demo runner
-│   └── fixtures/
-│       └── loader.ts            — offline fixture loader and validator
-│
-├── tests/                       — 10 comprehensive test suites (205 tests total)
-│   ├── parser.test.ts           — argv tokenizer, option-first, flags, length limits
-│   ├── static-claim.test.ts     — symbol resolution against exports
-│   ├── policy.test.ts           — rule-first policy engine logic
-│   ├── fixture-loader.test.ts   — offline fixture schema & loader tests
-│   ├── gate-integration.test.ts — full gate pipeline integration tests
-│   ├── edge-cases.test.ts       — adversarial inputs, protocol injection, malformed specs
-│   ├── artifact-registry.test.ts— tarball download, integrity verification, AST parsing
-│   ├── audit-log.test.ts        — hash chain verification, tamper detection, override records
-│   ├── claim-context.test.ts    — diff parsing, symbol contracts, missing context handling
-│   └── hook-subprocess.test.ts  — live PreToolUse.mjs subprocess execution & fail-closed tests
-│
-├── eval/                        — evaluation corpus & empirical measurement
-│   ├── corpus.json              — 15 version-pinned test cases (B0 baseline, B1 metadata, B2 API)
-│   ├── run-evaluation.ts        — automated benchmark runner measuring recall, precision, latency
-│   └── results.json             — empirical benchmark results (100% recall, 0% false block)
-│
-├── fixtures/                    — version-pinned offline demo fixtures
-│   ├── is-odd-demo.json         — is-odd@3.0.1: real package, absent symbol → BLOCK
-│   ├── lodash-allow-demo.json   — lodash@4.17.21: real package, symbol present → ALLOW
-│   └── risky-new-pkg-warn-demo.json — package with install scripts → WARN
-│
-├── docs/                        — technical documentation
-│   └── product-contract.md      — frozen product contract, verification boundary, CLI semantics
-│
-├── .bob/                        — IBM Bob integration
-│   ├── hooks/
-│   │   └── PreToolUse.mjs       — PreToolUse hook (argv tokenizer, strict-agent, exit 2 = BLOCK)
-│   └── settings.json            — Bob hook configuration
-│
-├── .phantomdeps/                — runtime state & audit trail
-│   ├── decisions.ndjson         — SHA-256 hash-chained decision audit log
-│   └── hook-info.json           — hook runtime registration metadata
-│
-├── .brain/                      — architectural records & planning
-│   ├── .imple-plan/             — synchronized phase implementation plans (Phases 00–14)
-│   │   ├── 00-roadmap-index.md  — roadmap index (Phases 00–14)
-│   │   ├── active-remediation-roadmap.md — active remediation roadmap
-│   │   ├── ibm-bob-roadmap.md   — historical Phase 00–08 baseline
-│   │   └── phase-00-implementation.md ... phase-14-implementation.md
-│   └── .report/                 — phase reports, decision log, risk log, test plan, traceability
-│       ├── 00-executive-summary.md — executive summary & gate status
-│       ├── research-alignment-ledger.md — capability matrix & research decision gates
-│       ├── phase-14-report.md   — independent release gate verification report
-│       └── phase-14-release-checklist.md — final release checklist & human stop gate
-│
-├── .docs/                       — hackathon research & submission assets
-│   ├── 01_RESEARCH/             — complete research document, reference log, master prompt
-│   └── 10_DEMO/                 — demo script, judge Q&A, pitch, presentation outline
-│
-└── .github/workflows/
-    └── ci.yml                   — GitHub Actions CI: Node 20 + 22 test & lint matrix
+│   │   └── writer.ts         # Terminal card renderer & SHA-256 NDJSON log writer
+│   ├── fixtures/
+│   │   └── loader.ts         # Offline fixture loader
+│   └── demo/
+│       └── runner.ts         # Offline multi-scenario demo runner
+├── fixtures/                 # Version-pinned offline demo JSON fixtures
+│   ├── is-odd-demo.json
+│   ├── lodash-allow-demo.json
+│   └── risky-new-pkg-warn-demo.json
+├── tests/                    # Jest unit & integration test suites
+│   ├── gate-integration.test.ts
+│   ├── artifact-registry.test.ts
+│   ├── parser.test.ts
+│   ├── audit-log.test.ts
+│   ├── static-claim.test.ts
+│   ├── claim-context.test.ts
+│   ├── fixture-loader.test.ts
+│   ├── policy.test.ts
+│   ├── edge-cases.test.ts
+│   └── hook-subprocess.test.ts
+├── .bob/
+│   ├── hooks/PreToolUse.mjs  # IBM Bob PreToolUse hook (fail-closed exit 2)
+│   └── settings.json         # Bob hook registration config
+├── docs/
+│   └── product-contract.md   # Frozen V1 product contract
+├── .brain/                   # Project implementation plans & report audit files
+│   ├── .imple-plan/
+│   └── .report/
+├── .docs/                    # Research reports & presentation materials
+├── package.json              # Package metadata, bin routes & dependencies
+├── tsconfig.json             # TypeScript ES2022 / NodeNext configuration
+├── jest.config.js            # ESM Jest test runner setup
+├── CONTRIBUTING.md           # Team roster & contribution guidelines
+└── LICENSE                   # MIT License
 ```
 
 ---
 
-## IBM Bob integration
+## IBM Bob Integration
 
-`phantomdeps` uses IBM Bob throughout the build:
+`phantomdeps` integrates directly into IBM Bob via the `PreToolUse` hook interface:
 
-- **Plan mode** — architecture and policy design before coding
-- **Agent mode** — implementation, tests, and patch application
-- **Ask mode** — explain why a claim was blocked using the evidence file
-- **`PreToolUse` hook** — intercepts `execute_command` calls matching `npm install`; exit code `2` blocks the tool
+1. Intercepts `execute_command` tool requests matching `npm install`, `npm add`, or `npm i`.
+2. Tokenizes the command string, strips options, and checks every target package against the gate.
+3. If any package returns `BLOCK` or `UNVERIFIED` (in strict-agent mode), the hook exits with **code 2**, blocking tool execution.
+4. Appends structured decision records to `.phantomdeps/decisions.ndjson` and writes block details to `stderr`.
 
-Hook config (`.bob/settings.json`):
+### Hook Registration Config (`.bob/settings.json`)
+
 ```json
 {
   "hooks": {
@@ -421,104 +296,109 @@ Hook config (`.bob/settings.json`):
 }
 ```
 
-> **Note:** Per official IBM Bob docs, `PreToolUse` stdout is ignored. Evidence is written to `.phantomdeps/decisions.ndjson`. Exit code `2` blocks the matched tool.
+---
+
+## Security, Provenance & Audit Logging
+
+`phantomdeps` tracks supply-chain risk across **five explicit evidence dimensions**:
+
+1. **Artifact Integrity**: `verified` | `mismatch` | `unavailable` | `not_checked`
+2. **Registry Signature**: `present` | `absent` | `unknown`
+3. **Provenance Attestation**: `attested` | `not_attested` | `unknown` (SLSA / Sigstore)
+4. **Publisher Identity**: `known` | `unverified` | `unknown`
+5. **Source Repository**: `linked` | `missing` | `unknown`
+
+### Tamper-Evident Audit Log
+
+Every decision is logged to `.phantomdeps/decisions.ndjson` using SHA-256 hash chaining:
+
+$$\text{recordHash} = \text{SHA256}(\text{previousHash} + \text{decisionId} + \text{timestamp} + \text{action} + \text{evidenceHash})$$
+
+Run verification via:
+```bash
+npx tsx src/cli.ts audit-log verify
+```
 
 ---
 
-## Capability matrix
+## Testing & Quality Assurance
 
-| Capability | Status | Notes |
+All features are covered by 10 comprehensive Jest test suites totaling **205 passing test cases**:
+
+```bash
+npm run lint    # TypeScript typecheck (tsc --noEmit) — 0 errors
+npm run build   # Build distribution output (tsc) — 0 errors
+npm test        # Run Jest test runner — 205/205 PASS
+```
+
+| Test Suite | Focus Area | Test Count |
 |---|---|---|
-| Fixture-mode BLOCK / WARN / ALLOW demo | `implemented` | 3 committed fixtures; deterministic; 103/103 tests |
-| npm registry metadata resolution (live mode) | `implemented` | Version pinning, integrity, install-script signal |
-| Static symbol verification — fixture path | `implemented` | Against committed fixture `exports` + `claimedSymbols` |
-| Static symbol verification — live mode | `implemented` | Phase 11: tarball download + integrity verify + exports_field/declarations inspection; no code execution |
-| `UNVERIFIED` verdict (non-blocking ambiguity) | `implemented` | Never silently converted to ALLOW |
-| Provenance / publish-date risk signal | `implemented` | Phase 11: `publishedAt` now populated from packument `time` map in live mode |
-| IBM Bob `PreToolUse` hook — fixture + live metadata path | `implemented` | Phase 10: argv tokenizer, multi-package, strict UNVERIFIED→exit 2; 28 subprocess tests |
-| IBM Bob `PreToolUse` hook — live static symbol check | `planned` | Phase 11 target (tarball inspection) |
-| Multi-package command interception | `implemented` | Phase 10: all specs checked; BLOCK propagates fail-closed |
-| Option-first installs (`-D`, `--save`, etc.) | `implemented` | Phase 10: flags stripped before spec extraction |
-| Shell-metachar / protocol injection rejection | `implemented` | `PROTOCOL_RE`, 214-char limit, metachar guard |
-| NDJSON hash-chained decision log | `implemented` | `.phantomdeps/decisions.ndjson`; SHA-256 chain; tamper-evident after `audit-log verify` |
-| `audit-log verify` tamper-evidence check | `implemented` | Phase 12: schema, hash, chain, ordering, redaction validation |
-| Agent override records | `implemented` | Phase 12: actor, reason, timestamp, commandDigest, resultingPolicy — hash-chained |
-| Five-dimensional evidence provenance | `implemented` | Phase 12: artifactIntegrity / registrySignature / provenanceAttestation / publisherIdentity / sourceRepository |
-| Claim-context contract (--symbols / diff / file) | `implemented` | Phase 13: missing context → UNVERIFIED; no fixture substitution on live path |
-| Import diff parser | `implemented` | Phase 13: only newly added imports parsed from diff/file context |
-| Machine-readable --json output | `implemented` | Phase 13: structured JSON output for all check/verify commands |
-| Width-aware terminal wrapping | `implemented` | Phase 13: 80/120/240 column-aware output |
-| Patch-suggestion remediation | `implemented` | Terminal card only; human approval required; no auto-apply |
-| Non-npm ecosystems (pip, cargo, gem, …) | `unsupported` | npm-first only in v1 |
-| Transitive dependency analysis | `unsupported` | Not in v1 scope |
-| Lock-file / dependency graph analysis | `unsupported` | Not in v1 scope |
+| `gate-integration.test.ts` | End-to-end gate orchestrator & CLI workflows | 14 |
+| `artifact-registry.test.ts` | Tarball extraction, integrity, typed registry | 24 |
+| `parser.test.ts` | Argv tokenizer, shell metachars & protocol guards | 8 |
+| `audit-log.test.ts` | SHA-256 hash chain verification & 13 tamper tests | 13 |
+| `static-claim.test.ts` | Symbol claim resolution & citations | 5 |
+| `claim-context.test.ts` | Diff import parsing, JSON formatting, width wrap | 16 |
+| `fixture-loader.test.ts` | Offline fixture validation | 2 |
+| `policy.test.ts` | Policy rules & verdict aggregation | 6 |
+| `edge-cases.test.ts` | Boundary conditions, fuzzing & invalid inputs | 89 |
+| `hook-subprocess.test.ts` | Direct Node.js subprocess invocation of Bob hook | 28 |
 
 ---
 
-## Implementation Phases — Phases 00–14
+## Git History & Milestone Timeline
 
-All 15 implementation and remediation phases have been executed and verified. The full evidence trail is documented with individual step reports, automated test suites (205/205 passing), decision logs, and independent review:
+Chronological milestones extracted from verified repository Git commits:
 
-| Phase | Status | Key deliverables |
+| Milestone / Tag | Date | Description |
 |---|---|---|
-| 00 — Intake & audit | ✅ **PASSED** | Repo initialized, scaffold verified, MVP selected, pushed to GitHub |
-| 01 — Product contract | ✅ **PASSED** | 8 user stories, 10 ACs, 14 requirements mapped, 6 contradictions resolved |
-| 02 — Architecture & design | ✅ **PASSED** | Architecture, data model, UX flows, threat model, CI plan documented |
-| 03 — Build MVP | ✅ **PASSED** | CI pipeline, **35/35 tests**, BLOCK + WARN + ALLOW confirmed, 3 fixtures, hook wired |
-| 04 — Local validation | ✅ **PASSED** | Lint clean, 35/35 tests, AC-01–09 verified, NDJSON log bug fixed, evidence recorded |
-| 05 — Advanced validation | ✅ **PASSED** | 68 new tests (103 total), 2 parser fixes, 0 vulns, avg 1168ms offline |
-| 06 — Outsider review | ✅ **PASSED** | 2 blocking findings fixed (hook TS syntax, missing settings.json), hook verified |
-| 07 — Finalization & demo | ✅ **PASSED** | RC tag v0.1.0-rc.1, demo script finalized, judge Q&A, rehearsal 7/7 PASS |
-| 08 — Submission package | ✅ **PASSED** | Secret scan clean, 59-item checklist, stop gate enforced |
-| 09 — Alignment & baseline | ✅ **PASSED** | Roster confirmed (4 unique contributors), product contract frozen, baseline measurement |
-| 10 — Fail-closed Bob hook | ✅ **PASSED** | Argv tokenizer, multi-package aggregation, fail-closed strict UNVERIFIED→exit 2, 28 subprocess tests |
-| 11 — Static API verification | ✅ **PASSED** | Tarball download, sha512 integrity check, static AST export & declaration (.d.ts) inspection |
-| 12 — Evidence integrity | ✅ **PASSED** | 5D evidence provenance, SHA-256 hash-chain audit log verifier (`audit-log verify`), 21 tamper tests |
-| 13 — Claim context & CLI | ✅ **PASSED** | Diff import extractor, explicit claim-context contract, `verify` alias, machine-readable `--json`, width wrapping |
-| 14 — Independent release gate | ✅ **PASSED** | 205/205 tests passing across 10 suites, B0/B1/B2 corpus (100% recall, 0% false block), human stop gate enforced |
+| **Phase 00 Intake** | 2026-09-20 | Initial repository setup, architecture scaffold, and intake audit (`52c3d65`) |
+| **Phase 01–03 MVP** | 2026-09-22 | Product contract freeze, core engine build, and initial 35 unit tests (`c6fd683`) |
+| **Phase 04–05 Validation** | 2026-09-24 | Local acceptance verification, edge-case expansion to 103 tests (`61569ea`) |
+| **Tag `v0.1.0-rc.1`** | 2026-09-26 | Outsider code review, Bob hook TypeScript fix, release candidate tag (`7a493ac`) |
+| **Phase 09 Baseline** | 2026-09-27 | Truth reset, roster update (Roshan Singh added), baseline measurement (`54083c9`) |
+| **Phase 10 Hook Guard** | 2026-09-27 | Fail-closed argv tokenizer, multi-package aggregation, 28 subprocess tests |
+| **Phase 11 Tarball AST** | 2026-09-27 | Live exact-artifact tarball inspection without code execution, exact version resolution |
+| **Phase 12 Audit Chain** | 2026-09-27 | Five-dimensional provenance, SHA-256 hash chain verification (`audit-log verify`) |
+| **Phase 13 Claim Context** | 2026-09-27 | Git diff import parser, `--json` machine output, responsive terminal wrapping |
+| **Phase 14 Final Release** | 2026-09-27 | Clean checkout validation, final documentation alignment, 205/205 tests (`e7d3c2c`) |
 
 ---
 
-## Research and Phase Reports
+## Team & Contribution
 
-- Full research report: [`.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md`](.docs/01_RESEARCH/IBM_Bob2_Phantomdeps_Complete_Research.md)
-- Complete visual explainer & conversation log: [`.docs/01_RESEARCH/phantomdeps_full_reference.md`](.docs/01_RESEARCH/phantomdeps_full_reference.md)
-- Active remediation roadmap: [`.brain/.imple-plan/active-remediation-roadmap.md`](.brain/.imple-plan/active-remediation-roadmap.md)
-- Synchronized roadmap index: [`.brain/.imple-plan/roadmap-index.md`](.brain/.imple-plan/roadmap-index.md)
-- Capability ledger: [`.brain/.report/research-alignment-ledger.md`](.brain/.report/research-alignment-ledger.md)
-- Release checklist & stop gate: [`.brain/.report/phase-14-release-checklist.md`](.brain/.report/phase-14-release-checklist.md)
-- Decision log: [`.brain/.report/decision-log.md`](.brain/.report/decision-log.md)
-- Risk and blocker log: [`.brain/.report/risk-and-blocker-log.md`](.brain/.report/risk-and-blocker-log.md)
-- Test evidence index: [`.brain/.report/test-evidence-index.md`](.brain/.report/test-evidence-index.md)
-- Phase 00 report: [`.brain/.report/phase-00-report.md`](.brain/.report/phase-00-report.md)
-- Phase 01 report: [`.brain/.report/phase-01-report.md`](.brain/.report/phase-01-report.md)
-- Phase 02 report: [`.brain/.report/phase-02-report.md`](.brain/.report/phase-02-report.md)
-- Phase 03 report: [`.brain/.report/phase-03-report.md`](.brain/.report/phase-03-report.md)
-- Phase 04 report: [`.brain/.report/phase-04-report.md`](.brain/.report/phase-04-report.md)
-- Phase 05 report: [`.brain/.report/phase-05-report.md`](.brain/.report/phase-05-report.md)
-- Phase 06 report: [`.brain/.report/phase-06-report.md`](.brain/.report/phase-06-report.md)
-- Phase 07 report: [`.brain/.report/phase-07-report.md`](.brain/.report/phase-07-report.md)
-- Phase 08 report: [`.brain/.report/phase-08-report.md`](.brain/.report/phase-08-report.md)
-- Phase 09 report: [`.brain/.report/phase-09-report.md`](.brain/.report/phase-09-report.md)
-- Phase 10 report: [`.brain/.report/phase-10-report.md`](.brain/.report/phase-10-report.md)
-- Phase 11 report: [`.brain/.report/phase-11-report.md`](.brain/.report/phase-11-report.md)
-- Phase 12 report: [`.brain/.report/phase-12-report.md`](.brain/.report/phase-12-report.md)
-- Phase 13 report: [`.brain/.report/phase-13-report.md`](.brain/.report/phase-13-report.md)
-- Phase 14 report: [`.brain/.report/phase-14-report.md`](.brain/.report/phase-14-report.md)
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution guidelines.
 
+### Team Roster
+
+- **[Aditya Kumar Sharma](https://github.com/adishxm)** — Product & Architecture Lead
+- **[Narayan Kumar Jha](mailto:narayan.nkj@gmail.com)** — Core Implementation & Test Engineer
+- **[Utkarsh Yadav](https://github.com/utkarsh-2207)** — Validation, Security & IBM Bob Workflow Lead
+- **[Roshan Singh](https://github.com/rs3260821-dotcom)** — Demo, Documentation & Presentation Lead
 
 ---
 
-## Contributors
+## Product Contract & Scope Boundaries
 
-- [Aditya Kumar Sharma](https://github.com/adishxm) — product, architecture, demo, PPT
-- [narayan-nkj (Narayan Kumar Jha)](https://github.com/narayan-nkj) — implementation, tests
-- [Utkarsh Yadav](https://github.com/utkarsh-2207) — validation, security, IBM Bob workflow
-- [Roshan Singh](https://github.com/rs3260821-dotcom) — security enforcement, live AST verification, demo/PPT
+Grounded in frozen product specification [`docs/product-contract.md`](docs/product-contract.md):
 
+### What `phantomdeps` Does (V1)
+- Verification-only pre-install gate (never runs `npm install`).
+- `install` and `add` commands are verification-only aliases for `check`/`verify`.
+- Live static AST tarball export verification without executing third-party code.
+- SHA-256 hash-chained tamper-evident decision log.
+- Patch suggestions rendered as terminal recommendations requiring human confirmation.
+
+### Out of Scope (V1 Non-Goals)
+- Live code execution or package script invocation (`preinstall`/`postinstall`).
+- Automatic code patching without human approval.
+- Non-npm ecosystems (Python PyPI, Rust Crates, Go Modules).
+- Transitive dependency tree or lock-file graph scanning.
 
 ---
 
-## License
+## License & Acknowledgments
 
-MIT — see [LICENSE](LICENSE)
+- **License**: Released under the [MIT License](LICENSE).
+- **Research Citation**: Grounded in LLM dependency hallucination findings from *USENIX Security 2025*.
+- **Ecosystem Integration**: Developed for the IBM Developer & IBM Bob ecosystem.
