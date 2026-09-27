@@ -1,0 +1,230 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "phantomdeps B0/B1/B2/B3 evaluation corpus — labelled deterministic cases",
+    "commit": "phase-14",
+    "date": "2026-09-28",
+    "author": "Narayan Kumar Jha (Contributor 2)",
+    "runner": "eval/run-evaluation.ts",
+    "labels": {
+      "B0": "Package-name existence and basic registry check only",
+      "B1": "B0 plus exact package/version/integrity and risk signals",
+      "B2": "B1 plus static imported-symbol/API claim verification",
+      "B3": "B2 delivered through the wrapper or tested Bob hook, including repair and test rerun"
+    },
+    "runAt": "2026-09-27T09:26:57.131Z",
+    "environment": {
+      "node": "v26.8.1",
+      "platform": "darwin"
+    },
+    "totalCases": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "metrics": {
+    "wrongSymbolRecall": 1,
+    "falseBlockRate": 0,
+    "abstentionRate": 0.3333333333333333,
+    "medianLatencyMs": 0,
+    "p95LatencyMs": 1
+  },
+  "results": [
+    {
+      "id": "TC-001",
+      "tier": "B2",
+      "label": "wrong_symbol",
+      "description": "Real package, AI-generated symbol does NOT exist — deterministic BLOCK",
+      "expectedVerdict": "BLOCK",
+      "actualVerdict": "BLOCK",
+      "pass": true,
+      "latencyMs": 1,
+      "findingIds": [
+        "l2.symbol_missing"
+      ],
+      "expectedFinding": "l2.symbol_missing",
+      "findingMatch": true,
+      "notes": "isOddBatch is absent from is-odd@3.0.1; the only export is isOdd(). Version-pinned. Static inspection only — no code execution.",
+      "error": null
+    },
+    {
+      "id": "TC-002",
+      "tier": "B2",
+      "label": "valid_import",
+      "description": "Real package, AI-generated symbol EXISTS — ALLOW",
+      "expectedVerdict": "ALLOW",
+      "actualVerdict": "ALLOW",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [],
+      "expectedFinding": null,
+      "findingMatch": null,
+      "notes": "merge is a documented top-level export of lodash@4.17.21. Should produce ALLOW with no block finding.",
+      "error": null
+    },
+    {
+      "id": "TC-003",
+      "tier": "B1",
+      "label": "install_script_risk",
+      "description": "Package has install lifecycle scripts — WARN",
+      "expectedVerdict": "WARN",
+      "actualVerdict": "WARN",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [
+        "l3.risk_signal"
+      ],
+      "expectedFinding": "l3.risk_signal",
+      "findingMatch": true,
+      "notes": "Symbol is present but install scripts trigger a WARN. No block because symbol check passes.",
+      "error": null
+    },
+    {
+      "id": "TC-004",
+      "tier": "B0",
+      "label": "package_not_found",
+      "description": "Non-existent package — BLOCK on registry 404",
+      "expectedVerdict": "BLOCK",
+      "actualVerdict": "BLOCK",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [
+        "l1.not_found"
+      ],
+      "expectedFinding": "l1.not_found",
+      "findingMatch": true,
+      "notes": "Policy engine with null evidence produces l1.not_found BLOCK. Tests B0 base layer.",
+      "error": null
+    },
+    {
+      "id": "TC-005",
+      "tier": "B0",
+      "label": "registry_unavailable",
+      "description": "Registry unavailable — UNVERIFIED (never silently ALLOW)",
+      "expectedVerdict": "UNVERIFIED",
+      "actualVerdict": "UNVERIFIED",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [
+        "l1.unavailable"
+      ],
+      "expectedFinding": "l1.unavailable",
+      "findingMatch": true,
+      "notes": "Policy engine with UNAVAILABLE evidence produces UNVERIFIED. Must never convert to ALLOW.",
+      "error": null
+    },
+    {
+      "id": "TC-006",
+      "tier": "B0",
+      "label": "shell_injection",
+      "description": "Shell metacharacter injection attempt — rejected by parser",
+      "expectedVerdict": "PARSE_ERROR",
+      "actualVerdict": "PARSE_ERROR",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [],
+      "expectedFinding": null,
+      "findingMatch": null,
+      "notes": "parseIntent() must throw on shell metacharacters. Verified in tests/parser.test.ts.",
+      "error": null
+    },
+    {
+      "id": "TC-007",
+      "tier": "B0",
+      "label": "protocol_injection",
+      "description": "Protocol/URL form rejected by parser",
+      "expectedVerdict": "PARSE_ERROR",
+      "actualVerdict": "PARSE_ERROR",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [],
+      "expectedFinding": null,
+      "findingMatch": null,
+      "notes": "PROTOCOL_RE must reject URL forms. Only registry-name specs are supported in v1.",
+      "error": null
+    },
+    {
+      "id": "TC-008",
+      "tier": "B2",
+      "label": "missing_claim_context",
+      "description": "Missing claim context on live path — UNVERIFIED (not silent ALLOW)",
+      "expectedVerdict": "UNVERIFIED",
+      "actualVerdict": "UNVERIFIED",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [
+        "l2.context_missing",
+        "l1.unavailable"
+      ],
+      "expectedFinding": "l2.context_missing",
+      "findingMatch": true,
+      "notes": "Phase 13.1: claimContextKind=missing must produce l2.context_missing + UNVERIFIED. Never silent ALLOW.",
+      "error": null
+    },
+    {
+      "id": "TC-009",
+      "tier": "B2",
+      "label": "diff_wrong_symbol",
+      "description": "Diff context: newly added import of absent symbol — BLOCK",
+      "expectedVerdict": "BLOCK",
+      "actualVerdict": "BLOCK",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [
+        "l2.symbol_missing"
+      ],
+      "expectedFinding": "l2.symbol_missing",
+      "findingMatch": true,
+      "notes": "Phase 13.2: extractAddedImports parses +lines only. isOddBatch absent from fixture.",
+      "error": null
+    },
+    {
+      "id": "TC-010",
+      "tier": "B2",
+      "label": "diff_valid_symbol",
+      "description": "Diff context: import of existing symbol — ALLOW",
+      "expectedVerdict": "ALLOW",
+      "actualVerdict": "ALLOW",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [],
+      "expectedFinding": null,
+      "findingMatch": null,
+      "notes": "Phase 13.2: merge confirmed in lodash@4.17.21 fixture. Should produce ALLOW.",
+      "error": null
+    },
+    {
+      "id": "TC-011",
+      "tier": "B1",
+      "label": "young_package",
+      "description": "Young package (< 30 days) — WARN risk signal",
+      "expectedVerdict": "WARN",
+      "actualVerdict": "WARN",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [
+        "l3.risk_signal"
+      ],
+      "expectedFinding": "l3.risk_signal",
+      "findingMatch": true,
+      "notes": "risky-new-pkg fixture has a recent publishedAt and hasInstallScript=true. Both trigger WARN.",
+      "error": null
+    },
+    {
+      "id": "TC-012",
+      "tier": "B2",
+      "label": "artifact_integrity_unavailable",
+      "description": "Artifact integrity unavailable (no hash) — WARN, not BLOCK",
+      "expectedVerdict": "WARN",
+      "actualVerdict": "WARN",
+      "pass": true,
+      "latencyMs": 0,
+      "findingIds": [
+        "l3.risk_signal"
+      ],
+      "expectedFinding": "l3.risk_signal",
+      "findingMatch": true,
+      "notes": "Phase 12.2: missing integrity hash → WARN via noArtifactIntegrity. Must NOT say 'no provenance'.",
+      "error": null
+    }
+  ]
+}
