@@ -67,21 +67,16 @@ import { isOddBatch } from 'is-odd'; // Hallucinated symbol!
 For developers and non-technical readers, `phantomdeps` acts as an automated safety check between an AI assistant and package installation.
 
 ```mermaid
-flowchart TD
-    A["AI Assistant writes code & generates install command"] --> B["phantomdeps checks whether package exists on npm"]
-    B --> C["phantomdeps verifies imported symbols in package tarball"]
+flowchart LR
+    A["AI Assistant writes code"] --> B["phantomdeps checks package & symbols"]
+    B -- "Missing / Fake" --> C["BLOCK: Intercepted"]
+    B -- "Risky Signal" --> D["WARN: Review"]
+    B -- "Confirmed" --> E["ALLOW: Safe Install"]
     
-    C -- "Fake package or missing symbol" --> D["BLOCK: Installation intercepted before execution"]
-    C -- "Risky signal (e.g. install scripts)" --> E["WARN: Flagged for human review"]
-    C -- "Package & symbols confirmed" --> F["ALLOW: Safe to install"]
-    
-    D --> G["Bob proposes cited repair patch"]
-    E --> H["Human reviews risk signals"]
-    G --> I["Human approves repair patch"]
-    
-    H -- "Approved" --> F
-    I --> J["Bob applies patch & re-verifies"]
-    J --> K["Tests pass & work continues safely"]
+    C --> F["Bob proposes repair patch"]
+    F --> G["Human approves patch"]
+    G --> H["Bob applies patch & tests pass"]
+    D -- "Approved" --> E
 ```
 
 > *"The package exists, but the function the AI wrote doesn't — so we catch that before anything installs, and Bob fixes it for you."*
@@ -93,22 +88,14 @@ flowchart TD
 How `phantomdeps` evaluates AI tool invocations, returns deterministic policy decisions, and integrates into agent workflows.
 
 ```mermaid
-flowchart TD
-    A["Developer Task"] --> B["IBM Bob generates code & npm install command"]
-    B --> C["phantomdeps Pre-Install Gate"]
-    
-    C --> D{"Verdict Evaluation"}
-    D -- "ALLOW" --> E["Installation Proceeds"]
-    D -- "WARN" --> F["Flagged for Human Review"]
-    D -- "BLOCK" --> G["Evidence Card & Revalidated Repair Plan"]
-    D -- "UNVERIFIED" --> H["Fails Closed (Never Guesses)"]
-    
-    G --> I["Human Approves Patch"]
-    F -- "Approved" --> E
-    H -- "Manual Verification" --> I
-    I --> J["Bob Agent Applies Patch"]
-    J --> K["Safe Build & Tests Run"]
-    K --> L["Gate Re-Checks & Decision Recorded"]
+flowchart LR
+    A["Developer Task"] --> B["IBM Bob generates code"] --> C["phantomdeps Gate"]
+    C --> D{"Verdict"}
+    D -- "ALLOW" --> E["Install Proceeds"]
+    D -- "WARN" --> F["Human Review"] --> E
+    D -- "BLOCK" --> G["Evidence Card & Repair Plan"] --> H["Human Approves Patch"]
+    D -- "UNVERIFIED" --> I["Fails Closed"] --> H
+    H --> J["Bob Applies Patch"] --> K["Safe Build & Tests"] --> L["Decision Logged"]
 ```
 
 > *"phantomdeps is a deterministic-first claim gate — it verifies the package and the exact API an agent's code claims to use, before install, then hands IBM Bob a cited, reviewable repair."*
@@ -120,44 +107,42 @@ flowchart TD
 The multi-layered verification pipeline architecture powering `phantomdeps`.
 
 ```mermaid
-flowchart TD
-    subgraph Interception ["Interception Layer (L0)"]
-        A1["Bob PreToolUse Hook (.bob/hooks/PreToolUse.mjs)"]
-        A2["CLI Wrapper Fallback (src/cli.ts)"]
-        A3["Command Adapter & Argv Parser (src/parser.ts)"]
+flowchart LR
+    subgraph L0["L0 — Interception Layer"]
+        direction TB
+        A1["Bob Hook (.bob/hooks/PreToolUse.mjs)"]
+        A2["CLI Fallback (src/cli.ts)"]
+        A3["Argv Parser (src/parser.ts)"]
     end
 
-    subgraph Identity ["L1 — Identity & Registry"]
+    subgraph L1["L1 — Identity & Registry"]
+        direction TB
         B1["Registry Adapter (src/adapters/registry.ts)"]
-        B2["Non-executing Archive Inspector (src/adapters/artifact.ts)"]
+        B2["Archive Inspector (src/adapters/artifact.ts)"]
     end
 
-    subgraph StaticResolver ["L2 — Static Claim Resolver"]
-        C1["Changed-import Diff Parser (src/adapters/diff-parser.ts)"]
-        C2["Exports & Types AST Resolver (src/checker/static-claim.ts)"]
+    subgraph L2["L2 — Static AST Resolver"]
+        direction TB
+        C1["Diff Parser (src/adapters/diff-parser.ts)"]
+        C2["AST Resolver (src/checker/static-claim.ts)"]
     end
 
-    subgraph RiskSignals ["L3 — Risk Signals (Warn-Only)"]
-        D1["Install Scripts & Package Age (src/checker/risk-signals.ts)"]
-    end
-
-    subgraph BoundedFit ["L4 — Bounded Task Fit (Optional)"]
+    subgraph L3_L4["L3 & L4 — Risk & Task Fit"]
+        direction TB
+        D1["Risk Signals (src/checker/risk-signals.ts)"]
         E1["Bob Subagent (Sandboxed & Cited)"]
     end
 
-    subgraph PolicyEngine ["Policy & Output Engine"]
-        F1["Rule-First Policy Engine (src/engine/policy.ts)"]
-        F2["Evidence Writer Card / JSON / SARIF (src/evidence/writer.ts)"]
-        F3["SHA-256 Hash-Chained Audit Log (.phantomdeps/decisions.ndjson)"]
+    subgraph L5["Policy & Output Engine"]
+        direction TB
+        F1["Rule Policy (src/engine/policy.ts)"]
+        F2["Evidence Writer (src/evidence/writer.ts)"]
+        F3["Audit Log (.phantomdeps/decisions.ndjson)"]
         F4["Remediation Planner (src/remediation/engine.ts)"]
     end
 
-    Interception --> Identity
-    Identity --> StaticResolver
-    StaticResolver --> RiskSignals
-    RiskSignals --> BoundedFit
-    BoundedFit --> PolicyEngine
-    PolicyEngine -- "Human Approved Patch" --> G["Bob Agent Applies Patch -> Safe Build & Tests"]
+    L0 --> L1 --> L2 --> L3_L4 --> L5
+    L5 -- "Human Patch" --> G["Bob Applies Patch & Runs Tests"]
 ```
 
 > *"TypeScript/Node CLI, npm registry adapter (PyPI is L1-only in v1), no code execution anywhere — only byte-level archive inspection and static parsing."*
