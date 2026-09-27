@@ -36,11 +36,15 @@ export function computeRiskSignals(
     );
   }
 
-  // No provenance/integrity
-  const noProvenance = !evidence.integrity;
-  if (noProvenance) {
+  // Phase 12: artifact integrity status — "no integrity hash" ≠ "no provenance"
+  // The term "no provenance" is replaced with "artifact integrity unavailable" to be precise.
+  const noArtifactIntegrity = !evidence.integrity;
+  const noProvenance = noArtifactIntegrity; // backward-compat alias
+  if (noArtifactIntegrity) {
     warnings.push(
-      `WARN: No integrity hash available for '${evidence.name}@${evidence.resolvedVersion}'. Cannot verify artifact authenticity.`
+      `WARN: Artifact integrity unavailable for '${evidence.name}@${evidence.resolvedVersion}'. ` +
+      `No integrity hash was declared by the registry — the tarball cannot be hash-verified. ` +
+      `This does not indicate missing SLSA/sigstore provenance attestation; those are tracked separately.`
     );
   }
 
@@ -62,6 +66,7 @@ export function computeRiskSignals(
     crossEcosystemHit,
     youngPackage,
     hasInstallScript: evidence.hasInstallScript,
+    noArtifactIntegrity,
     noProvenance,
     warnings,
   };
