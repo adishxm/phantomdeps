@@ -37,3 +37,8 @@
 | `P09-HOOK-BLOCK` | Hook exits 2 on `npm install is-odd` | `echo '{...}' \| npx tsx .bob/hooks/PreToolUse.mjs` | `phase-09` HEAD | `exit 2 BLOCK` | `.brain/.report/phase-09-baseline.md` §7 | IBM Bob (Phase 09) |
 | `P09-HOOK-ALLOW` | Hook exits 0 on `npm install lodash` | `echo '{...}' \| npx tsx .bob/hooks/PreToolUse.mjs` | `phase-09` HEAD | `exit 0 ALLOW` | `.brain/.report/phase-09-baseline.md` §8 | IBM Bob (Phase 09) |
 | `P09-HOOK-PASSTHRU` | Hook exits 0 on non-npm command | `echo '{...,"ls -la"}' \| npx tsx .bob/hooks/PreToolUse.mjs` | `phase-09` HEAD | `exit 0` | `.brain/.report/phase-09-baseline.md` §9 | IBM Bob (Phase 09) |
+| `P10-HOOK-MULTI` | Multi-package: npm install is-odd lodash → exit 2 | `tests/hook-subprocess.test.ts` | `phase-10` | `28/28 PASS` | `.brain/.report/phase-10-report.md` §10.6 | IBM Bob (Phase 10) |
+| `P10-HOOK-OPTION` | Option-first: npm install -D is-odd → exit 2 | `tests/hook-subprocess.test.ts` | `phase-10` | `PASS` | `.brain/.report/phase-10-report.md` §10.6 | IBM Bob (Phase 10) |
+| `P10-HOOK-UNSUPPORTED` | URL/file/VCS spec → UNVERIFIED → exit 2 | `tests/hook-subprocess.test.ts` | `phase-10` | `PASS` | `.brain/.report/phase-10-report.md` §10.6 | IBM Bob (Phase 10) |
+| `P10-HOOK-UNKNOWN` | Unknown package → NOT_FOUND/UNAVAILABLE → exit 2 | `tests/hook-subprocess.test.ts` | `phase-10` | `PASS` | `.brain/.report/phase-10-report.md` §10.6 | IBM Bob (Phase 10) |
+| `P10-TOTAL` | 131/131 tests pass after Phase 10 | `npm test` | `phase-10` | `131/131 PASS` | `.brain/.report/phase-10-report.md` | IBM Bob (Phase 10) |

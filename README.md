@@ -277,9 +277,10 @@ Hook config (`.bob/settings.json`):
 | Static symbol verification — live mode | `fixture-only` | Live tarball inspection planned Phase 11 |
 | `UNVERIFIED` verdict (non-blocking ambiguity) | `implemented` | Never silently converted to ALLOW |
 | Provenance / publish-date risk signal | `fixture-only` | `publishedAt` always `null` in live mode; Phase 12 target |
-| IBM Bob `PreToolUse` hook — fixture path | `implemented` | Exit 2 = BLOCK, exit 0 = allow; stderr reason visible in Bob UI |
-| IBM Bob `PreToolUse` hook — live path | `planned` | Phase 10 fail-closed remediation target |
-| Multi-package command interception | `planned` | Phase 10 target |
+| IBM Bob `PreToolUse` hook — fixture + live metadata path | `implemented` | Phase 10: argv tokenizer, multi-package, strict UNVERIFIED→exit 2; 28 subprocess tests |
+| IBM Bob `PreToolUse` hook — live static symbol check | `planned` | Phase 11 target (tarball inspection) |
+| Multi-package command interception | `implemented` | Phase 10: all specs checked; BLOCK propagates fail-closed |
+| Option-first installs (`-D`, `--save`, etc.) | `implemented` | Phase 10: flags stripped before spec extraction |
 | Shell-metachar / protocol injection rejection | `implemented` | `PROTOCOL_RE`, 214-char limit, metachar guard |
 | NDJSON hash-chained decision log | `implemented` | `.phantomdeps/decisions.ndjson`; SHA-256 chain |
 | Patch-suggestion remediation | `implemented` | Terminal card only; human approval required; no auto-apply |

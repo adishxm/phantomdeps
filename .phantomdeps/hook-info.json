@@ -1,0 +1,5 @@
+{
+  "event": "UNSAFE_COMMAND",
+  "reason": "UNSAFE: shell metacharacters detected",
+  "command": "npm install pkg | cat"
+}
