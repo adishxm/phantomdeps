@@ -1,0 +1,30 @@
+{
+  "decisionId": "1291a358-c1da-4442-ba97-b6a61a442e58",
+  "previousHash": "sha256:eec14605f46971a5c6b50f9fb784c870095ee16332dd02416cab5d04df89db38",
+  "timestamp": "2026-09-27T11:48:38.408Z",
+  "origin": "agent",
+  "commandDigest": "sha256:4268a82d6d12f99d3e7cc4d79777231f6eafd9817d637c50885b188d2c66c5fa",
+  "ecosystem": "npm",
+  "packageSpec": "is-odd@latest",
+  "resolvedVersion": "3.0.1",
+  "integrity": "sha512-sSqAd7pMnQdFnCDMjIosBv6Ud7JJnDEE2pWXFQyRtDlOTvlDLnMZx27AEBGJ2Iigg8b5vFJ1qpNMsjW0mXJA==",
+  "registrySource": "fixture://is-odd-demo",
+  "cacheStatus": "fixture",
+  "action": "BLOCK",
+  "findings": [
+    {
+      "id": "l2.symbol_missing",
+      "severity": "block",
+      "message": "BLOCK: Symbol(s) [isOddBatch] are NOT present in the declared exports of is-odd@3.0.1. The AI-generated import claims a symbol that this package does not export. Citations: Source: fixture 'is-odd-demo' (2025-09-20T00:00:00.000Z) | Package: is-odd@3.0.1 | Exported symbols count: 2 | Exports declaration source: is-odd@3.0.1 package.json exports + index.js — package has a single default export `isOdd(n: number): boolean`",
+      "evidenceRefs": [
+        "Source: fixture 'is-odd-demo' (2025-09-20T00:00:00.000Z)",
+        "Package: is-odd@3.0.1",
+        "Exported symbols count: 2",
+        "Exports declaration source: is-odd@3.0.1 package.json exports + index.js — package has a single default export `isOdd(n: number): boolean`"
+      ]
+    }
+  ],
+  "remediationCandidate": null,
+  "bobSessionId": null,
+  "recordHash": "sha256:3c31714dc1ae3a267c68ac1a32007561a631955c6e08ab077a4edf1c855aaeda"
+}

@@ -1,0 +1,2 @@
+
+[phantomdeps] WARN — unsafe command shape, not intercepted: UNSAFE: shell metacharacters detected

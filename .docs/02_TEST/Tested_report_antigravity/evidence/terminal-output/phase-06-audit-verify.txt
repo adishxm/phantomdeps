@@ -1,0 +1,2 @@
+[32m✔ Audit log verified: 504 record(s) — chain intact, all hashes match, ordering valid. Tamper-evident after verification.[0m
+

@@ -1,0 +1,13 @@
+{
+  "id": "risky-new-pkg-warn-demo",
+  "packageName": "risky-new-pkg",
+  "resolvedVersion": "0.0.1",
+  "integrity": "sha512-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+  "capturedAt": "2025-09-19T00:00:00.000Z",
+  "hasInstallScript": true,
+  "exportedSymbols": ["doSomething", "default"],
+  "exportsSource": "risky-new-pkg@0.0.1 package.json exports — synthetic fixture for WARN path",
+  "claimedSymbols": ["doSomething"],
+  "expectedVerdict": "WARN",
+  "scenario": "IBM Bob generated code that uses `import { doSomething } from 'risky-new-pkg'`. The package is real and exports `doSomething`, but it has lifecycle install scripts and was published very recently (within 30 days). phantomdeps should WARN — symbol found, but L3 risk signals trigger."
+}

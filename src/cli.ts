@@ -56,7 +56,18 @@ if (command === "check" || command === "verify" || command === "install" || comm
     console.error("phantomdeps: missing package spec. Usage: phantomdeps check <name>[@version]");
     process.exit(1);
   }
-  const intent = parseIntent(opts.packageSpec);
+  let intent;
+  try {
+    intent = parseIntent(opts.packageSpec);
+  } catch (e: any) {
+    const msg = e?.message || String(e);
+    if (msg.startsWith("UNSUPPORTED")) {
+      console.error(`phantomdeps: UNVERIFIED — ${msg}`);
+      process.exit(3);
+    }
+    console.error(`phantomdeps: ${msg}`);
+    process.exit(1);
+  }
   const result = await runCheck(intent, opts);
   // Exit codes: 0=ALLOW, 1=WARN, 2=BLOCK, 3=UNVERIFIED
   const exitMap: Record<string, number> = { ALLOW: 0, WARN: 1, BLOCK: 2, UNVERIFIED: 3 };

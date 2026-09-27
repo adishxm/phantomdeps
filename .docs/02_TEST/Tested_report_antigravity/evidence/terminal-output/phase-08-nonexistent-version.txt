@@ -1,0 +1,26 @@
+
+[1m────────────────────────────────────────────────────────────────────────────────[0m
+[1mphantomdeps gate — [31mBLOCK[0m
+────────────────────────────────────────────────────────────────────────────────
+  Package  : lodash@99.99.99 → unknown
+  Ecosystem: npm
+  Source   : unknown
+  Integrity: not available
+  Time     : 2026-09-27T11:59:29.031Z
+  Decision : 3fa39311-fb93-40e7-9c9f-6de816a488e8
+  Origin   : human
+
+[1mFindings:[0m
+  ℹ [l2.context_missing][0m
+    No claim context provided for 'lodash'. Provide --symbols, --diff <path>, or --file <path> to enable static symbol verification. Without claim context, symbol claims are UNVERIFIED.
+    [2mEvidence: L2:no_claim_context[0m
+  [31m✖ [l1.not_found][0m
+    Package 'lodash' does not exist in the npm registry (HTTP 404). The requested package name is not registered.
+    [2mEvidence: L1:registry_404[0m
+
+  Record hash : [2msha256:5ac2864674892673b296cd1a7ef85626c3372d434db9033b54dd2a60cd10c987[0m
+  Prev hash   : [2msha256:68165d92520ab86f0274a4b78b11927318cc667ec09bd6a2acffa50c9c215ef0[0m
+────────────────────────────────────────────────────────────────────────────────
+
+
+Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\win\async.c, line 76

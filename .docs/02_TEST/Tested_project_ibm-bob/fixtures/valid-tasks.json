@@ -1,0 +1,24 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "title": "Design system architecture",
+    "status": "completed",
+    "createdAt": "2026-09-20T10:00:00.000Z",
+    "updatedAt": "2026-09-21T14:30:00.000Z",
+    "metadata": { "priority": "high", "team": "core" }
+  },
+  {
+    "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "title": "Implement PhantomDeps integration",
+    "status": "in_progress",
+    "createdAt": "2026-09-21T09:00:00.000Z",
+    "metadata": { "priority": "critical" }
+  },
+  {
+    "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+    "title": "Write validation tests",
+    "status": "pending",
+    "createdAt": "2026-09-22T08:00:00.000Z",
+    "metadata": {}
+  }
+]

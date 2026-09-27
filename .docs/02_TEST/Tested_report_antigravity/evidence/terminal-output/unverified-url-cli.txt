@@ -1,0 +1,2 @@
+
+phantomdeps: UNVERIFIED — UNSUPPORTED: 'https://example.com/malicious-pkg.tgz' uses a protocol/alias form. Only registry-name specs are supported in v1.

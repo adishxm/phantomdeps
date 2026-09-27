@@ -27,11 +27,11 @@ import { dirname } from "path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const HOOK = resolve(__dirname, "../.bob/hooks/PreToolUse.mjs");
 
-const TSX = resolve(__dirname, "../node_modules/.bin/tsx");
+const TSX_CLI = resolve(__dirname, "../node_modules/tsx/dist/cli.mjs");
 
 function runHook(command: string): { exit: number; stderr: string } {
   const input = JSON.stringify({ tool: "execute_command", input: { command } });
-  const result = spawnSync(TSX, [HOOK], {
+  const result = spawnSync(process.execPath, [TSX_CLI, HOOK], {
     input,
     encoding: "utf8",
     timeout: 20000,
@@ -45,7 +45,7 @@ function runHook(command: string): { exit: number; stderr: string } {
 
 function runHookNonInstall(tool: string, command: string): { exit: number } {
   const input = JSON.stringify({ tool, input: { command } });
-  const result = spawnSync(TSX, [HOOK], {
+  const result = spawnSync(process.execPath, [TSX_CLI, HOOK], {
     input,
     encoding: "utf8",
     timeout: 10000,

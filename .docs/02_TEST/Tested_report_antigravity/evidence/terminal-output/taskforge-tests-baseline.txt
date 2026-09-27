@@ -1,0 +1,36 @@
+
+> taskforge@1.0.0 test
+> node --test dist/tests/**/*.test.js
+
+▶ TaskForge E2E: CLI Executions
+  ✔ should show help when run with --help (1334.1531ms)
+  ✔ should create a task via CLI (1221.2195ms)
+  ✔ should list created tasks (5613.6002ms)
+  ✔ should produce valid JSON report (397.7195ms)
+  ✔ should import tasks from valid fixture (470.8113ms)
+  ✔ should fail gracefully on invalid fixture import (508.4812ms)
+✔ TaskForge E2E: CLI Executions (9551.7367ms)
+▶ TaskForge Integration: Reporting Pipeline
+  ✔ should calculate correct task counts and completion rate (2.3546ms)
+  ✔ should handle empty task list cleanly (0.4159ms)
+  ✔ should format readable text report (0.8227ms)
+✔ TaskForge Integration: Reporting Pipeline (5.8683ms)
+▶ TaskForge Unit: TaskStore
+  ✔ should create and retrieve tasks (4.9315ms)
+  ✔ should mark task as completed (1.7889ms)
+  ✔ should deep merge metadata using lodash.merge (2.4589ms)
+✔ TaskForge Unit: TaskStore (12.6123ms)
+▶ TaskForge Unit: Validation
+  ✔ should validate a correct task structure (2.6207ms)
+  ✔ should reject task with empty title or missing status (0.3768ms)
+  ✔ should validate an array of valid tasks (0.2678ms)
+  ✔ should reject non-array data for task list import (0.1872ms)
+✔ TaskForge Unit: Validation (4.8628ms)
+ℹ tests 16
+ℹ suites 4
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9967.3121

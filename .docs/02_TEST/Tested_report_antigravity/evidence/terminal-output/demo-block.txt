@@ -1,0 +1,45 @@
+
+[1mphantom[35mdeps[0m [2m— pre-install AI dependency claim gate[0m
+[2mOffline fixture demo [BLOCK] — no network calls, no package installation[0m
+
+[1m[SCENARIO][0m
+  Real package, AI-generated symbol does NOT exist → BLOCK
+  IBM Bob generated code that imports a function from an npm package.
+  Bob is about to run: [33mnpm install is-odd[0m
+  The generated code uses: [33mimport { isOddBatch } from 'is-odd'[0m
+  [2mphantom[0m[2mdeps intercepts the install command and checks the claim...[0m
+
+[2m[FIXTURE] Loaded: is-odd-demo — captured 2025-09-20T00:00:00.000Z[0m
+
+[1m────────────────────────────────────────────────────────────────────────────────[0m
+[1mphantomdeps gate — [31mBLOCK[0m
+────────────────────────────────────────────────────────────────────────────────
+  Package  : is-odd@3.0.1 → 3.0.1
+  Ecosystem: npm
+  Source   : fixture (fixture://is-odd-demo)
+  Integrity: sha512-sSqAd7pMnQdFnCDMjIosBv6Ud7JJnDEE2pWXFQyRtDlOTvlDLnMZx27AEBGJ2Iigg8b5vFJ1qpNMsjW0mXJA==
+  Time     : 2026-09-27T11:40:29.262Z
+  Decision : 587fce76-e1af-4eeb-9efd-1fc50c79ec06
+  Origin   : fixture
+
+[1mFindings:[0m
+  [31m✖ [l2.symbol_missing][0m
+    BLOCK: Symbol(s) [isOddBatch] are NOT present in the declared exports of is-odd@3.0.1. The AI-generated import claims a symbol that this package does not export. Citations: Source: fixture 'is-odd-demo' (2025-09-20T00:00:00.000Z) | Package: is-odd@3.0.1 | Exported symbols count: 2 | Exports declaration source: is-odd@3.0.1 package.json exports + index.js — package has a single default export `isOdd(n: number): boolean`
+    [2mEvidence: Source: fixture 'is-odd-demo' (2025-09-20T00:00:00.000Z) | Package: is-odd@3.0.1 | Exported symbols count: 2[0m
+
+  Record hash : [2msha256:0228daa64f974e3ecab76439a94ee40a0aa742d6e2a2d9fc589831e49ccfa4b5[0m
+  Prev hash   : [2msha256:bdf0537c56be4b05ad6ab0ecddb7c6ce5bd8e32b5ea7bd24b6dde9500704ca40[0m
+────────────────────────────────────────────────────────────────────────────────
+
+[1m[REMEDIATION][0m
+  The symbol 'isOddBatch' does not exist in is-odd@3.0.1.
+  The correct exported function is: [32misOdd()[0m
+  Suggested patch (requires human approval before application):
+  [32m  - import { isOddBatch } from 'is-odd'[0m
+  [32m  + import isOdd from 'is-odd'[0m
+
+  [2mNo package was installed. No code was executed.[0m
+  [2mDecision record appended to .phantomdeps/decisions.ndjson[0m
+
+[32m✔ Demo completed. Verdict: BLOCK (expected: BLOCK)[0m
+

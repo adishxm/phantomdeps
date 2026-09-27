@@ -473,12 +473,23 @@ npx tsx src/cli.ts audit-log verify
 
 ## Testing & Quality Assurance
 
-All features are covered by 10 comprehensive Jest test suites totaling **205 passing test cases**:
+`phantomdeps` includes comprehensive test suites, deterministic offline fixtures, real-time pre-install interception gates, and cryptographic audit log verifiers.
+
+---
+
+### 1. Core phantomdeps Test Suite & Build
+
+Run the TypeScript typechecker, build compiler, and Jest test runner:
 
 ```bash
-npm run lint    # TypeScript typecheck (tsc --noEmit) — 0 errors
-npm run build   # Build distribution output (tsc) — 0 errors
-npm test        # Run Jest test runner — 205/205 PASS
+# Typecheck without emitting code
+npm run lint
+
+# Compile TypeScript to dist/
+npm run build
+
+# Run full Jest test suite across unit, integration, and subprocess tests
+npm test
 ```
 
 | Test Suite | Focus Area | Test Count |
@@ -493,6 +504,133 @@ npm test        # Run Jest test runner — 205/205 PASS
 | `policy.test.ts` | Policy rules & verdict aggregation | 6 |
 | `edge-cases.test.ts` | Boundary conditions, fuzzing & invalid inputs | 89 |
 | `hook-subprocess.test.ts` | Direct Node.js subprocess invocation of Bob hook | 28 |
+
+---
+
+### 2. Offline Deterministic Scenario Demos
+
+Run the pre-packaged offline fixture scenarios to test all primary gate verdicts without network access:
+
+```bash
+# Scenario 1: BLOCK — is-odd@3.0.1 claiming missing symbol isOddBatch
+npx tsx src/cli.ts demo --fixture --offline --scenario block
+
+# Scenario 2: ALLOW — lodash@4.17.21 claiming present symbol merge
+npx tsx src/cli.ts demo --fixture --offline --scenario allow
+
+# Scenario 3: WARN — risky-new-pkg@0.0.1 with lifecycle install scripts
+npx tsx src/cli.ts demo --fixture --offline --scenario warn
+```
+
+---
+
+### 3. Package & Symbol Claim Verification Commands
+
+Verify packages with explicit symbols, from AST source files, or from git diffs:
+
+```bash
+# 1. Verify specific exported symbols (ALLOW: exit 0)
+npx tsx src/cli.ts check lodash@4.17.21 --symbols merge --offline
+
+# 2. Verify with machine-readable JSON output
+npx tsx src/cli.ts check lodash@4.17.21 --symbols merge --offline --json
+
+# 3. Verify from an AST source file (automatically extracts imported symbols)
+npx tsx src/cli.ts check is-odd@3.0.1 --file src/report.ts --offline
+
+# 4. Verify from a unified git diff file
+npx tsx src/cli.ts verify lodash@4.17.21 --diff changes.diff
+
+# 5. Non-registry URL / protocol spec (fail-closed, exit 3: UNVERIFIED)
+npx tsx src/cli.ts check https://example.com/malicious-pkg.tgz
+```
+
+---
+
+### 4. Tamper-Evident Audit Log Verification
+
+Verify the SHA-256 hash chain and schema integrity of all logged decisions:
+
+```bash
+# Verify default decision log (.phantomdeps/decisions.ndjson)
+npx tsx src/cli.ts audit-log verify
+
+# Verify custom path
+npx tsx src/cli.ts audit-log verify .phantomdeps/decisions.ndjson
+```
+
+---
+
+### 5. Real-Time Validation Target (TaskForge)
+
+TaskForge (`.docs/02_TEST/Tested_project_antigravity/`) is a controlled, real-world TypeScript project used to prove that `phantomdeps` blocks hallucinated dependencies **before** `npm install` executes.
+
+#### Running on Linux / macOS / Bash:
+
+```bash
+# Step 1: Run TaskForge clean baseline tests (16 tests pass)
+cd .docs/02_TEST/Tested_project_antigravity && npm test
+
+# Step 2: Simulate AI proposing 'npm install is-odd' claiming absent 'isOddBatch'
+# Intercepted via the IBM Bob PreToolUse hook (Exits with code 2: BLOCK)
+node ../../../node_modules/tsx/dist/cli.mjs ../../../.bob/hooks/PreToolUse.mjs <<EOF
+{"tool":"execute_command","input":{"command":"npm install is-odd"}}
+EOF
+
+# Step 3: Rebuild and test clean TaskForge
+npm run build && npm test
+cd ../../..
+```
+
+#### Running on Windows (PowerShell):
+
+```powershell
+# Step 1: Run TaskForge clean baseline tests (16 tests pass)
+Set-Location .docs\02_TEST\Tested_project_antigravity; npm test
+
+# Step 2: Simulate AI proposing 'npm install is-odd' claiming absent 'isOddBatch'
+# Intercepted via the IBM Bob PreToolUse hook (Exits with code 2: BLOCK)
+'{"tool":"execute_command","input":{"command":"npm install is-odd"}}' | node ..\..\..\node_modules\tsx\dist\cli.mjs ..\..\..\.bob\hooks\PreToolUse.mjs
+
+# Step 3: Rebuild and test clean TaskForge
+npm run build; npm test
+Set-Location ..\..\..
+```
+
+---
+
+### 6. IBM Bob PreToolUse Hook Parity & Multi-Package Aggregation
+
+Test the hook contract directly via JSON stdin:
+
+```bash
+# Verified ALLOW case (exit 0)
+echo '{"tool":"execute_command","input":{"command":"npm install lodash"}}' | npx tsx .bob/hooks/PreToolUse.mjs
+
+# Risky package WARN case (exit 0, advisory warning printed to stderr)
+echo '{"tool":"execute_command","input":{"command":"npm install risky-new-pkg"}}' | npx tsx .bob/hooks/PreToolUse.mjs
+
+# Unsupported URL spec case (exit 2, fail-closed strict-agent)
+echo '{"tool":"execute_command","input":{"command":"npm install https://example.com/pkg.tgz"}}' | npx tsx .bob/hooks/PreToolUse.mjs
+
+# Multi-package worst-case aggregation: ALLOW (lodash) + BLOCK (is-odd) -> BLOCK (exit 2)
+echo '{"tool":"execute_command","input":{"command":"npm install lodash is-odd"}}' | npx tsx .bob/hooks/PreToolUse.mjs
+
+# Non-install tool pass-through (exit 0)
+echo '{"tool":"execute_command","input":{"command":"git status"}}' | npx tsx .bob/hooks/PreToolUse.mjs
+```
+
+---
+
+### 7. Adversarial & Tamper-Detection Testing
+
+```bash
+# Nonexistent package check (404 Not Found -> BLOCK, exit 2)
+npx tsx src/cli.ts check nonexistent-package-random-12345xyz
+
+# Secret & credential scan
+node .docs/02_TEST/Tested_report_antigravity/evidence/commands/run-secret-scan.cjs
+```
 
 ---
 

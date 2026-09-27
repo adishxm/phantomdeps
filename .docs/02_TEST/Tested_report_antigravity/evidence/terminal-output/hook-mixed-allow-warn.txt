@@ -1,0 +1,2 @@
+
+[phantomdeps] WARN — lodash, risky-new-pkg

@@ -1,0 +1,8 @@
+
+[phantomdeps] UNVERIFIED — 'https://example.com/malicious-pkg.tgz' is an unsupported spec form. Only registry-name specs are supported. Failing closed in agent context.
+
+[phantomdeps] UNVERIFIED (strict-agent: fail-closed)
+Packages checked: https://example.com/malicious-pkg.tgz
+Decisions written to: .phantomdeps/decisions.ndjson
+
+  https://example.com/malicious-pkg.tgz: UNVERIFIED: 'https://example.com/malicious-pkg.tgz' is a non-registry spec form (url/vcs/file/alias). Only registry-name specs are supported in v1. Failing closed in agent context.

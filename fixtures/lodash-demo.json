@@ -1,0 +1,13 @@
+{
+  "id": "lodash-allow-demo",
+  "packageName": "lodash",
+  "resolvedVersion": "4.17.21",
+  "integrity": "sha512-v2kDE8oiAMXKkSE8VLFkXRbBM8GmzFsIcFsqBFCaRN4p9SFNjX3uKuSLRFTEfmKGChHe1ioqX16bv3k6m9pA==",
+  "capturedAt": "2025-09-20T00:00:00.000Z",
+  "hasInstallScript": false,
+  "exportedSymbols": ["merge", "cloneDeep", "debounce", "throttle", "get", "set", "pick", "omit", "flatten", "chunk", "default"],
+  "exportsSource": "lodash@4.17.21 package.json + index.js — CJS default export exposes all lodash methods including merge, cloneDeep, debounce, throttle, get, set, pick, omit",
+  "claimedSymbols": ["merge"],
+  "expectedVerdict": "ALLOW",
+  "scenario": "IBM Bob generated code that does `import { merge } from 'lodash'`. The package `lodash@4.17.21` is real and exports `merge`. phantomdeps should ALLOW the install — symbol is present, no install scripts, no deprecation."
+}

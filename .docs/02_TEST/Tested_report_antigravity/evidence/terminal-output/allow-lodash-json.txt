@@ -1,0 +1,19 @@
+{
+  "decisionId": "922224db-96b2-46aa-b300-dfa1d2ce4e08",
+  "previousHash": "sha256:36a64af3841f0b5fe128e003d9ca684c11a7d08c8f4f54fb83155c3becfeb1ad",
+  "timestamp": "2026-09-27T11:53:28.072Z",
+  "origin": "human",
+  "commandDigest": "sha256:adaac4144887ebc2c1b682380ff385210f681fc58b4bc1ef3986148cf8dcd28a",
+  "ecosystem": "npm",
+  "packageSpec": "lodash@4.17.21",
+  "resolvedVersion": "4.17.21",
+  "integrity": "sha512-v2kDE8oiAMXKkSE8VLFkXRbBM8GmzFsIcFsqBFCaRN4p9SFNjX3uKuSLRFTEfmKGChHe1ioqX16bv3k6m9pA==",
+  "registrySource": "fixture://lodash-allow-demo",
+  "cacheStatus": "fixture",
+  "action": "ALLOW",
+  "findings": [],
+  "remediationCandidate": null,
+  "bobSessionId": null,
+  "recordHash": "sha256:1eae7d77948cbc2b6281dd45c1f7a953334352158c213607036db9fef848d62e"
+}
+

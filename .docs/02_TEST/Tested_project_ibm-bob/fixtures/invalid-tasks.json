@@ -1,0 +1,13 @@
+[
+  {
+    "id": "invalid-001",
+    "title": "",
+    "status": "pending",
+    "createdAt": "2026-09-20T10:00:00.000Z"
+  },
+  {
+    "id": "invalid-002",
+    "status": "unknown_status",
+    "createdAt": "2026-09-20T10:00:00.000Z"
+  }
+]

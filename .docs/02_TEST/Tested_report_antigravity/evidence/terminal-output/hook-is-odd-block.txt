@@ -1,0 +1,7 @@
+
+
+[phantomdeps] BLOCK
+Packages checked: is-odd
+Decisions written to: .phantomdeps/decisions.ndjson
+
+  is-odd@latest: BLOCK: Symbol(s) [isOddBatch] are NOT present in the declared exports of is-odd@3.0.1. The AI-generated import claims a symbol that this package does not export. Citations: Source: fixture 'is-odd-dem

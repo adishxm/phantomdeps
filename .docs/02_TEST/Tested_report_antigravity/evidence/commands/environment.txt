@@ -1,0 +1,6 @@
+Node version: v24.11.0
+npm version: 11.12.1
+Git commit: 0b6a319f5484ccb8693eae0c7bd2a8bf05fb215a
+Git branch: main
+OS: win32 x64
+Timestamp: 2026-09-27T11:40:28.739Z
