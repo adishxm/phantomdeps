@@ -412,7 +412,23 @@ phantomdeps/
 ├── .brain/                   # Project implementation plans & report audit files
 │   ├── .imple-plan/
 │   └── .report/
-├── .docs/                    # Research reports & presentation materials
+├── .docs/                    # Research, real-time validation testing (IBM Bob & Antigravity) & presentations
+│   ├── 01_RESEARCH/          # Comprehensive architectural research, references & master prompts
+│   │   ├── IBM_Bob2_Phantomdeps_Complete_Research.md
+│   │   ├── MasterPrompt.md
+│   │   └── phantomdeps_full_reference.md
+│   ├── 02_TEST/              # Real-time validation protocol, test targets & evidence reports
+│   │   ├── Tested_project_ibm-bob/       # Controlled TaskForge target for IBM Bob lane
+│   │   ├── Tested_report_ibm-bob/        # 11-phase validation reports for IBM Bob
+│   │   ├── Tested_project_antigravity/   # Controlled TaskForge target for Antigravity lane
+│   │   ├── Tested_report_antigravity/    # 11-phase validation reports for Antigravity
+│   │   ├── phantomdeps_validation_protocol.md
+│   │   └── PhantomDeps Real-Time Validation Report.md
+│   └── 03_DEMO/              # Demo scripts, pitch presentations, judge Q&A & checklists
+│       ├── demo-script.md
+│       ├── pitch.md
+│       ├── ppt-outline.md
+│       └── release-checklist.md
 ├── package.json              # Package metadata, bin routes & dependencies
 ├── tsconfig.json             # TypeScript ES2022 / NodeNext configuration
 ├── jest.config.js            # ESM Jest test runner setup
